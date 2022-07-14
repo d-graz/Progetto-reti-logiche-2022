@@ -1,0 +1,6 @@
+NOTA: 
+
+I test forniti sono di prova (quindi non esauriscono tutti i casi potenzialmente possibili), sono sviluppati da vostri colleghi (non li abbiamo completamente verificati), non hanno la pretesa di testare i casi limite e aiutano SOLO allo sviluppo di test personali. 
+
+Verificare il corretto e buon funzionamento del lavoro svolto è COMPITO ESCLUSIVO dello gruppo di lavoro. Si ricorda che l'analisi e la scelta dei test è un VOSTRO COMPITO ED E' PARTE DELLA RELAZIONE; in questa sezione della relazione DOVETE descrivere i TB che utilizzate, motivarli, mostrare le somunlazioni, etc. A questa sezione viene attribuito un punteggio. Fornirvi i test di prova è una facilitazione e NON E' AMMESSO che non SVOLGIATE LA PARTE DI SCELTA E STESURA DEI TEST o AFFRONTARLA SUPERFICIALMENTE. 
+
