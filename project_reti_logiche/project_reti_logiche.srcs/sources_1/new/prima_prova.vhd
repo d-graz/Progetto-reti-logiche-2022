@@ -1,43 +1,38 @@
-----------------------------------------------------------------------------------
--- Company: 
--- Engineer: 
--- 
--- Create Date: 07/15/2022 03:32:01 PM
--- Design Name: 
--- Module Name: prima_prova - Behavioral
--- Project Name: 
--- Target Devices: 
--- Tool Versions: 
--- Description: 
--- 
--- Dependencies: 
--- 
--- Revision:
--- Revision 0.01 - File Created
--- Additional Comments:
--- 
-----------------------------------------------------------------------------------
+-- Progetto reti logiche
+-- Davide Grazzani, 10660259
+------------------------------
 
 
-library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
-
--- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
---use IEEE.NUMERIC_STD.ALL;
-
--- Uncomment the following library declaration if instantiating
--- any Xilinx leaf cells in this code.
---library UNISIM;
---use UNISIM.VComponents.all;
-
-entity prima_prova is
---  Port ( );
-end prima_prova;
-
-architecture Behavioral of prima_prova is
-
-begin
+-- library declaration
+library ieee;
+use ieee.std_logic_1164.all;
 
 
-end Behavioral;
+--Flip Flop type D 
+entity FF_D is
+    port(
+        input  : in std_logic;
+        clk    : in std_logic;
+        rst    : in std_logic;
+        output : out std_logic
+    );
+end FF_D;
+
+architecture dataflow of FF_D is
+    
+
+
+-- project interface declaration
+entity project_reti_logiche is
+    port(
+        i_clk     : in std_logic;
+        i_rst     : in std_logic;
+        i_start   : in std_logic;
+        i_data    : in std_logic_vector(7 downto 0);
+        o_address : out std_logic_vector(15 downto 0);
+        o_done    : out std_logic;
+        o_en      : out std_logic;
+        o_we      : out std_logic;
+        o_data    : out std_logic_vector (7 downto 0)
+    );
+end project_reti_logiche;
