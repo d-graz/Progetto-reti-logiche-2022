@@ -1,0 +1,1 @@
+--incr --debug "typical" --relax --mt "8" -L "xil_defaultlib" -L "secureip" --snapshot "convolutional_encoder_behav" "xil_defaultlib.convolutional_encoder" -log "elaborate.log" 
