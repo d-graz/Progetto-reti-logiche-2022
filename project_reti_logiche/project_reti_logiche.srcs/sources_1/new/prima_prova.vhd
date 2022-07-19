@@ -128,49 +128,64 @@ entity controller is
         reset : in std_logic;
         start : in std_logic;
         data : in std_logic_vector (7 downto 0);
-        convolutional_encoder_index : out std_logic_vector(2 downto 0);
-        done : out std_logic := '0';
+        done : out std_logic := '-';
         mem_address : out std_logic_vector(15 downto 0);
         mem_enable : out std_logic;
         mem_write : out std_logic;
-        u : out std_logic
+        u : out std_logic;
+        controller_clk : out std_logic := '0'
     );
 end controller;
 
 architecture dataflow of controller is
-    type state_type is (read_wc,read,calculate,write);
-    constant bit : unsigned := "001";
+    type state_type is (idle,r_wc,r,p_0,p_1,p_2,p_3,p_4,p_5,p_6,p_7);
     signal next_state : state_type;
-    signal current_state : state_type := read_wc;
-    signal convolutional_encoder_inout : std_logic_vector(2 downto 0) := "111";
+    signal current_state : state_type := idle;
     signal number_of_words : integer;
     signal base_read : integer := 0;
     signal base_write : integer := 1000;
+    signal done_inout : std_logic := '0';
     
     begin
-        done <= '1' when (number_of_words = 0 and current_state = read) else
-                '0' when reset = '1' else '0';
-        -- todo fixare il next state in caso di done per smettere di eseguire tutto, ricontrollare il ciclo degli stati
-        next_state <= read when current_state = write else
-                      read when (current_state = read_wc and start = '1') else
-                      calculate when current_state = read else
-                      write when (current_state = calculate and convolutional_encoder_inout = "000") else
-                      read_wc when reset = '1' else current_state;
-        current_state <= next_state when rising_edge(clock) else
-                         read_wc when reset = '1' else current_state;
-        convolutional_encoder_inout <= std_logic_vector(unsigned(convolutional_encoder_inout) - bit) when (current_state = calculate and falling_edge(clock)) else convolutional_encoder_inout;
-        convolutional_encoder_index <= convolutional_encoder_inout;
-        number_of_words <= number_of_words -1 when (current_state = read and falling_edge(clock)) else number_of_words;
-        base_read <= base_read+1 when ((current_state = read or current_state = read_wc) and falling_edge(clock)) else
+        done_inout <= '1' when (current_state = idle and number_of_words = 0 and reset = '0' and start = '1') else
+                      '0' when reset = '1' else 
+                      '0' when (current_state = r_wc and reset = '0') else done_inout;
+        done <= done_inout;
+        next_state <= idle when (start = '0' or current_state = p_7) else
+                      r_wc when (current_state = idle and done_inout = '-') else
+                      r when (current_state = r_wc or (current_state = idle and done_inout = '0')) else
+                      p_0 when (current_state = r) else
+                      p_1 when (current_state = p_0) else
+                      p_2 when (current_state = p_1) else
+                      p_3 when (current_state = p_2) else
+                      p_4 when (current_state = p_3) else
+                      p_5 when (current_state = p_4) else
+                      p_6 when (current_state = p_5) else
+                      p_7 when (current_state = p_6);
+        current_state <= next_state when (rising_edge(clock) and reset = '0') else
+                         idle when reset = '1' else current_state;
+        with current_state select
+            u <= data(7) when p_0,
+                 data(6) when p_1,
+                 data(5) when p_2,
+                 data(4) when p_3,
+                 data(3) when p_4,
+                 data(2) when p_5,
+                 data(1) when p_6,
+                 data(0) when p_7,
+                 "-" when others;
+        base_read <= base_read + 1 when (falling_edge(clock) and (current_state = r_wc or current_state = r) and reset = '0') else
                      0 when reset = '1' else base_read;
-        base_write <= base_write+1 when (((current_state = calculate and convolutional_encoder_inout = "000") or current_state = write) and falling_edge(clock)) else
+        base_write <= base_write +1 when (falling_edge(clock) and (current_state = p_3 or current_state = p_7) and reset = '0')else
                       1000 when reset = '1' else base_write;
-        mem_enable <= '1' when (current_state = read or (current_state = read_wc and start = '1') or current_state = write or ( current_state = calculate and convolutional_encoder_inout = "000")) else '0';
-        mem_write <= '1' when ((current_state = calculate and convolutional_encoder_inout = "000") or current_state = write) else '0';
-        -- todo : gestire data e base address
-        u <= data(to_integer(unsigned(convolutional_encoder_inout)));
-        mem_address <= std_logic_vector(to_unsigned(base_read,16)) when (current_state = read_wc or current_state = read) else
-                       std_logic_vector(to_unsigned(base_write,16)) when (current_state = write or (current_state = calculate and convolutional_encoder_inout = "111"));
+        number_of_words <= to_integer(unsigned(data)) when current_state = r_wc else
+                           number_of_words - 1 when (current_state = r and falling_edge(clk)) else number_of_words;
+        mem_address <= std_logic_vector(to_unsigned(base_read,16)) when current_state = r else 
+                       std_logic_vector(to_unsigned(base_write,16)) when (current_state = p_3 or current_state = p_7) else mem_address;
+        mem_enable <= '1' when (current_state = r_wc or current_state = r or current_state = p_3 or current_state = p_7) else '0';
+        mem_write <= '1' when (current_state = p_3 or current_state = p_7) else '0';
+        controller_clk <= '1' when (rising_edge(clock) and current_state /= idle and current_state /= r_wc and current_state /= r) else
+                          '0' when falling_edge(clock) else controller_clk;
      
 end dataflow;
 
@@ -195,4 +210,50 @@ entity project_reti_logiche is
 end project_reti_logiche;
 
 architecture structural of project_reti_logiche is
+    signal u : std_logic;
+    signal controller_clk : std_logic;
+    signal conv_encoder_out : std_logic_vector(1 downto 0);
+
+    component convolutional_encoder is 
+    port(
+        u   : in std_logic;
+        controller_clk : in std_logic;
+        rst : in std_logic;
+        pk : out std_logic_vector(1 downto 0)
+    );
+    end component;
+
+    component controller is
+        port(
+            clock : in std_logic;
+            reset : in std_logic;
+            start : in std_logic;
+            data : in std_logic_vector (7 downto 0);
+            done : out std_logic := '-';
+            mem_address : out std_logic_vector(15 downto 0);
+            mem_enable : out std_logic;
+            mem_write : out std_logic;
+            u : out std_logic;
+            controller_clk : out std_logic := '0'
+        );
+    end component;
+
+    component string_managar is
+        port(
+        controller_clk : in std_logic;
+        rst : in std_logic;
+        bits : in std_logic_vector(1 downto 0);
+        half_z : out std_logic_vector(7 downto 0)
+        );
+    end component;
+    
+    controller : controller
+        port map(clock =>i_clk,reset=>i_rst,start =>i_start,data =>i_data, done =>o_done, mem_address =>o_address, mem_enable =>o_en, mem_write =>o_we, u =>u, controller_clk =>controller_clk);
+
+    encoder : convolutional_encoder
+        port map(u =>u,controller_clk =>controller_clk, rst =>i_rst, pk =>conv_encoder_out);
+
+    string_manager : string_manager
+        port map(controller_clk =>controller_clk, rst =>i_rst, bits =>conv_encoder_out, half_z =>o_data);
+
 end structural;
