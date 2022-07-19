@@ -1,3 +1,4 @@
+------------------------------
 -- Progetto reti logiche 2022
 -- Davide Grazzani, 10660259
 ------------------------------
@@ -34,10 +35,8 @@ architecture dataflow of FF_D is
     
     begin
         output_inout <= '0' when rst = '1' else
-                  input when rising_edge(clk) else
-                  output_inout; 
+                  input when rising_edge(clk) else output_inout; 
         output <= output_inout;
-        -- debug : output non completamete specificato nel caso in cui non debba fare nulla
 end dataflow;
     
 
@@ -49,16 +48,17 @@ use ieee.std_logic_1164.all;
 entity convolutional_encoder is 
     port(
         u   : in std_logic;
-        clk : in std_logic;
+        controller_clk : in std_logic;
         rst : in std_logic;
-        p1k : out std_logic;
-        p2k : out std_logic
+        pk : out std_logic_vector(1 downto 0)
     );
 end convolutional_encoder;
 
 architecture structural of convolutional_encoder is
     signal FF1_signal : std_logic := '0';
     signal FF2_signal : std_logic := '0';
+    signal p1k : std_logic;
+    signal p2k : std_logic;
 
     component FF_D is
         port(
@@ -71,13 +71,13 @@ architecture structural of convolutional_encoder is
 
     begin
         FF1 : FF_D
-            port map(input => u,clk => clk,rst => rst, output => FF1_signal);
+            port map(input => u,clk => controller_clk,rst => rst, output => FF1_signal);
         FF2 : FF_D
-            port map(input => FF1_signal,clk => clk,rst => rst, output => FF2_signal);
+            port map(input => FF1_signal,clk => controller_clk,rst => rst, output => FF2_signal);
         -- domanda : bisogna resettare il segnale in uscita dal covolutore -> per ora non implemento
-        -- p1k e p2k non sono completamenta specificate ! -> vedere se funziona altrimenti specificare come ff_d
-        p1k <= u xor FF2_signal when clk = '1';
-        p2k <= u xor FF1_signal xor FF2_signal when clk = '1';
+        p1k <= u xor FF2_signal when clk = '1' else p1k;
+        p2k <= u xor FF1_signal xor FF2_signal when clk = '1' else p2k;
+        pk <= p1k & p2k;
 
 end structural;
 
@@ -89,22 +89,29 @@ use ieee.numeric_std.all;
 
 entity string_managar is
     port(
-    clk : in std_logic;
+    controller_clk : in std_logic;
     rst : in std_logic;
-    bit1 : in std_logic;
-    bit2 : in std_logic;
-    position : in std_logic_vector(2 downto 0);
+    bits : in std_logic_vector(1 downto 0);
     half_z : out std_logic_vector(7 downto 0)
     );
 end string_managar;
 
 architecture dataflow of string_managar is
-    signal index : unsigned;
-    
+    signal half_z_inout : std_logic_vector(7 downto 0) := (others => '0');
+    signal counter : unsigned(2 downto 0) := "11";
+    constant bit1 : unsigned(2 downto 0) := "01";
+    constant zero : unsigned(2 downto 0) := "00";
+    constant full : unsigned(2 downto 0) := "11";
+
     begin
-    index <= (2*unsigned(position)+1) when clk = '1' else index;
-    --assegnazione dei valori di output 
-    
+        counter <= counter - bit1 when (falling_edge(controller_clk) and counter /= zero and rst = '0') else
+                   full when(falling_edge(controller_clk) and (counter = zero or rst = '1')) else counter;
+        half_z_inout <= bits & half_z_inout(5 downto 0) when (counter = "11" and rst = '0') else
+                        half_z_inout(7 downto 6) & bits & half_z_inout(3 downto 0) when (counter = "10" and rst = '0') else
+                        half_z_inout(7 downto 4) & bits & half_z_inout(1 downto 0) when (counter = "01" and rst = '0') else
+                        half_z_inout(7 downto 2) & bits when (counter = "00" and rst = '0') else
+                        "00000000" when rst = '1' else half_z_inout;
+        half_z <= half_z_inout;
 end dataflow;
     
 
@@ -188,34 +195,4 @@ entity project_reti_logiche is
 end project_reti_logiche;
 
 architecture structural of project_reti_logiche is
-    
-    
-    component controller is
-        port(
-        clock : in std_logic;
-        reset : in std_logic;
-        start : in std_logic;
-        data : in std_logic_vector (7 downto 0);
-        convolutional_encoder_index : out std_logic_vector(2 downto 0);
-        done : out std_logic := '0';
-        mem_address : out std_logic_vector(15 downto 0);
-        mem_enable : out std_logic;
-        mem_write : out std_logic;
-        u : out std_logic
-    );
-    end component;
-    
-    component convolutional_encoder is
-        port(
-        u   : in std_logic;
-        clk : in std_logic;
-        rst : in std_logic;
-        p1k : out std_logic;
-        p2k : out std_logic
-    );
-    end component;
-    
-    begin
-    --logic : controller
-        -- port map(clock =>, reset =>, start =>, data =>, )
 end structural;
