@@ -1,7 +1,0 @@
-Running: xsim.dir/convolutional_encoder_behav/xsimk -simmode gui -wdb convolutional_encoder_behav.wdb -simrunnum 0 -socket 45417
-Design successfully loaded
-Design Loading Memory Usage: 32872 KB (Peak: 33580 KB)
-Design Loading CPU Usage: 0 ms
-Simulation completed
-Simulation Memory Usage: 114608 KB (Peak: 172140 KB)
-Simulation CPU Usage: 0 ms

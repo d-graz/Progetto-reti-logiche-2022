@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="project_tb_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="project_tb" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="350.000 ns"></ZoomStartTime>
+      <ZoomEndTime time="534.054 ns"></ZoomEndTime>
+      <Cursor1Time time="442.500 ns"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="329"></NameColumnWidth>
+      <ValueColumnWidth column_width="141"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="16" />
+   <wvobject type="logic" fp_name="/project_tb/UUT/cont/clock">
+      <obj_property name="ElementShortName">clock</obj_property>
+      <obj_property name="ObjectShortName">clock</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/project_tb/UUT/cont/controller_clk">
+      <obj_property name="ElementShortName">controller_clk</obj_property>
+      <obj_property name="ObjectShortName">controller_clk</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/project_tb/UUT/cont/reset">
+      <obj_property name="ElementShortName">reset</obj_property>
+      <obj_property name="ObjectShortName">reset</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/project_tb/UUT/cont/start">
+      <obj_property name="ElementShortName">start</obj_property>
+      <obj_property name="ObjectShortName">start</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/project_tb/UUT/cont/data">
+      <obj_property name="ElementShortName">data[7:0]</obj_property>
+      <obj_property name="ObjectShortName">data[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/project_tb/UUT/cont/u">
+      <obj_property name="ElementShortName">u</obj_property>
+      <obj_property name="ObjectShortName">u</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/project_tb/UUT/cont/mem_address">
+      <obj_property name="ElementShortName">mem_address[15:0]</obj_property>
+      <obj_property name="ObjectShortName">mem_address[15:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/project_tb/UUT/cont/mem_enable">
+      <obj_property name="ElementShortName">mem_enable</obj_property>
+      <obj_property name="ObjectShortName">mem_enable</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/project_tb/UUT/cont/mem_write">
+      <obj_property name="ElementShortName">mem_write</obj_property>
+      <obj_property name="ObjectShortName">mem_write</obj_property>
+   </wvobject>
+   <wvobject type="other" fp_name="/project_tb/UUT/cont/current_state">
+      <obj_property name="ElementShortName">current_state</obj_property>
+      <obj_property name="ObjectShortName">current_state</obj_property>
+   </wvobject>
+   <wvobject type="other" fp_name="/project_tb/UUT/cont/next_state">
+      <obj_property name="ElementShortName">next_state</obj_property>
+      <obj_property name="ObjectShortName">next_state</obj_property>
+   </wvobject>
+   <wvobject type="other" fp_name="/project_tb/UUT/cont/number_of_words">
+      <obj_property name="ElementShortName">number_of_words</obj_property>
+      <obj_property name="ObjectShortName">number_of_words</obj_property>
+   </wvobject>
+   <wvobject type="other" fp_name="/project_tb/UUT/cont/base_read">
+      <obj_property name="ElementShortName">base_read</obj_property>
+      <obj_property name="ObjectShortName">base_read</obj_property>
+   </wvobject>
+   <wvobject type="other" fp_name="/project_tb/UUT/cont/base_write">
+      <obj_property name="ElementShortName">base_write</obj_property>
+      <obj_property name="ObjectShortName">base_write</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/project_tb/UUT/cont/done">
+      <obj_property name="ElementShortName">done</obj_property>
+      <obj_property name="ObjectShortName">done</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/project_tb/UUT/o_data">
+      <obj_property name="ElementShortName">o_data[7:0]</obj_property>
+      <obj_property name="ObjectShortName">o_data[7:0]</obj_property>
+   </wvobject>
+</wave_config>

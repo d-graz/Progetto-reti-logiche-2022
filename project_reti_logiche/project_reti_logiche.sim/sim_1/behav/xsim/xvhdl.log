@@ -1,0 +1,6 @@
+INFO: [VRFC 10-163] Analyzing VHDL file "/home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.srcs/sources_1/new/prima_prova.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'FF_D'
+INFO: [VRFC 10-3107] analyzing entity 'convolutional_encoder'
+INFO: [VRFC 10-3107] analyzing entity 'string_manager'
+INFO: [VRFC 10-3107] analyzing entity 'controller'
+INFO: [VRFC 10-3107] analyzing entity 'project_reti_logiche'
