@@ -12,31 +12,28 @@ use ieee.std_logic_1164.all;
 entity FF_D is
     port(
         input  : in std_logic;
-        clk    : in std_logic;
-        rst    : in std_logic;
+        clock    : in std_logic;
+        reset    : in std_logic;
         output : out std_logic
     );
 end FF_D;
 
-architecture behavioral of FF_D is
-    begin
-        process(clk,rst)
-        begin
-            if rst = '1' then
-                output <= '0';
-            elsif rising_edge(clk) then
-                output <= input;
-            end if;
-        end process;
-end behavioral;
+--architecture behavioral of FF_D is
+--    begin
+--        process(clock,reset)
+--        begin
+--            if reset = '1' then
+--                output <= '0';
+--            elsif rising_edge(clock) then
+--                output <= input;
+--            end if;
+--        end process;
+--end behavioral;
 
 architecture dataflow of FF_D is
-    signal output_inout : std_logic;
-    
     begin
-        output_inout <= '0' when rst = '1' else
-                  input when rising_edge(clk) else output_inout; 
-        output <= output_inout;
+        output <= '0' when reset = '1' else
+                  input when falling_edge(clock);
 end dataflow;
     
 
@@ -63,17 +60,17 @@ architecture structural of convolutional_encoder is
     component FF_D is
         port(
         input  : in std_logic;
-        clk    : in std_logic;
-        rst    : in std_logic;
+        clock    : in std_logic;
+        reset    : in std_logic;
         output : out std_logic
     );
     end component;
 
     begin
         FF1 : FF_D
-            port map(input => u,clk => controller_clk,rst => rst, output => FF1_signal);
+            port map(input => u,clock => controller_clk,reset => rst, output => FF1_signal);
         FF2 : FF_D
-            port map(input => FF1_signal,clk => controller_clk,rst => rst, output => FF2_signal);
+            port map(input => FF1_signal,clock => controller_clk,reset => rst, output => FF2_signal);
         -- domanda : bisogna resettare il segnale in uscita dal covolutore -> per ora non implemento
         p1k <= u xor FF2_signal when controller_clk = '1' else p1k;
         p2k <= u xor FF1_signal xor FF2_signal when controller_clk = '1' else p2k;
@@ -98,14 +95,15 @@ end string_manager;
 
 architecture dataflow of string_manager is
     signal half_z_inout : std_logic_vector(7 downto 0) := (others => '0');
-    signal counter : unsigned(1 downto 0) := "11";
+    signal counter : unsigned(1 downto 0) := "00";
     constant bit1 : unsigned(1 downto 0) := "01";
     constant zero : unsigned(1 downto 0) := "00";
     constant full : unsigned(1 downto 0) := "11";
 
     begin
-        counter <= counter - bit1 when (falling_edge(controller_clk) and counter /= zero and rst = '0') else
-                   full when(falling_edge(controller_clk) and (counter = zero or rst = '1')) else counter;
+        counter <= counter - bit1 when (rising_edge(controller_clk) and counter /= zero and rst = '0') else
+                   full when(rising_edge(controller_clk) and counter = zero) else
+                   zero when rst = '1' else counter;
         half_z_inout <= bits & half_z_inout(5 downto 0) when (counter = "11" and rst = '0') else
                         half_z_inout(7 downto 6) & bits & half_z_inout(3 downto 0) when (counter = "10" and rst = '0') else
                         half_z_inout(7 downto 4) & bits & half_z_inout(1 downto 0) when (counter = "01" and rst = '0') else
@@ -152,7 +150,7 @@ architecture dataflow of controller is
         mem_inout <= data when (current_state = p_0 and clock = '1') else mem_inout;
         next_state <= idle when start = '0' else
                       r_wc when (current_state = idle and start = '1') else
-                      r when (current_state = r_wc or (current_state = d and number_of_words /= 0)) else
+                      r when ((current_state = r_wc or current_state = d) and number_of_words /= 0) else
                       p_0 when current_state = r else
                       p_1 when current_state = p_0 else
                       p_2 when current_state = p_1 else
@@ -161,7 +159,7 @@ architecture dataflow of controller is
                       p_5 when current_state = p_4 else
                       p_6 when current_state = p_5 else
                       p_7 when current_state = p_6 else
-                      d when current_state = p_7;
+                      d when (current_state = p_7 or (current_state = r_wc and number_of_words = 0)) ;
         current_state <= next_state when (rising_edge(clock) and reset = '0') else
                          idle when reset = '1' else current_state;
         with current_state select

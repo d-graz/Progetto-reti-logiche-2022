@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="project_tb_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="project_tb" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="356.200 ns"></ZoomStartTime>
+      <ZoomEndTime time="472.501 ns"></ZoomEndTime>
+      <Cursor1Time time="435.000 ns"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="329"></NameColumnWidth>
+      <ValueColumnWidth column_width="133"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="12" />
+   <wvobject type="logic" fp_name="/project_tb/UUT/cont/clock">
+      <obj_property name="ElementShortName">clock</obj_property>
+      <obj_property name="ObjectShortName">clock</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/project_tb/UUT/cont/reset">
+      <obj_property name="ElementShortName">reset</obj_property>
+      <obj_property name="ObjectShortName">reset</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/project_tb/UUT/cont/start">
+      <obj_property name="ElementShortName">start</obj_property>
+      <obj_property name="ObjectShortName">start</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/project_tb/UUT/cont/data">
+      <obj_property name="ElementShortName">data[7:0]</obj_property>
+      <obj_property name="ObjectShortName">data[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="other" fp_name="/project_tb/UUT/cont/current_state">
+      <obj_property name="ElementShortName">current_state</obj_property>
+      <obj_property name="ObjectShortName">current_state</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/project_tb/UUT/cont/controller_clk">
+      <obj_property name="ElementShortName">controller_clk</obj_property>
+      <obj_property name="ObjectShortName">controller_clk</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/project_tb/UUT/encoder/u">
+      <obj_property name="ElementShortName">u</obj_property>
+      <obj_property name="ObjectShortName">u</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/project_tb/UUT/encoder/FF1_signal">
+      <obj_property name="ElementShortName">FF1_signal</obj_property>
+      <obj_property name="ObjectShortName">FF1_signal</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/project_tb/UUT/encoder/FF2_signal">
+      <obj_property name="ElementShortName">FF2_signal</obj_property>
+      <obj_property name="ObjectShortName">FF2_signal</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/project_tb/UUT/encoder/pk">
+      <obj_property name="ElementShortName">pk[1:0]</obj_property>
+      <obj_property name="ObjectShortName">pk[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/project_tb/UUT/str_mng/counter">
+      <obj_property name="ElementShortName">counter[1:0]</obj_property>
+      <obj_property name="ObjectShortName">counter[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/project_tb/UUT/str_mng/half_z">
+      <obj_property name="ElementShortName">half_z[7:0]</obj_property>
+      <obj_property name="ObjectShortName">half_z[7:0]</obj_property>
+   </wvobject>
+</wave_config>
