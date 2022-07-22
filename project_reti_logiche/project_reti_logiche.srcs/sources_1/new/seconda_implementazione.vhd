@@ -2,7 +2,7 @@
 -- Progetto reti logiche 2022
 -- Davide Grazzani, 10660259
 ------------------------------
--- todo : inverti i falling edge dopo l'else
+
 
 --Flip Flop type D
 
@@ -17,18 +17,6 @@ entity FF_D is
         output : out std_logic
     );
 end FF_D;
-
---architecture behavioral of FF_D is
---    begin
---        process(clock,reset)
---        begin
---            if reset = '1' then
---                output <= '0';
---            elsif rising_edge(clock) then
---                output <= input;
---            end if;
---        end process;
---end behavioral;
 
 architecture dataflow of FF_D is
     begin
@@ -71,12 +59,12 @@ architecture structural of convolutional_encoder is
             port map(input => u,clock => controller_clk,reset => rst, output => FF1_signal);
         FF2 : FF_D
             port map(input => FF1_signal,clock => controller_clk,reset => rst, output => FF2_signal);
-        -- domanda : bisogna resettare il segnale in uscita dal covolutore -> per ora non implemento
         p1k <= u xor FF2_signal when controller_clk = '1' else p1k;
         p2k <= u xor FF1_signal xor FF2_signal when controller_clk = '1' else p2k;
         pk <= p1k & p2k;
 
 end structural;
+
 
 -- string concatenator
 
@@ -144,7 +132,7 @@ architecture dataflow of controller is
     signal base_read : integer := 0;
     signal base_write : integer := 1000;
     signal mem_inout : std_logic_vector(7 downto 0);
-    signal clock_enable : std_logic;
+    signal component_enable : std_logic :='0';
     
     begin
         done <= '1' when (current_state = d and number_of_words = 0 and reset = '0' and start = '1') else
@@ -162,8 +150,6 @@ architecture dataflow of controller is
                       p_6 when current_state = p_5 else
                       p_7 when current_state = p_6 else
                       d when (current_state = p_7 or (current_state = r_wc and number_of_words = 0)) ;
-        --current_state <= next_state when (rising_edge(clock) and reset = '0') else
-        --                 idle when reset = '1' else current_state;
         current_state <= idle when reset = '1' else
                          next_state when (rising_edge(clock) and reset = '0');
         with current_state select
@@ -176,37 +162,22 @@ architecture dataflow of controller is
                  mem_inout(1) when p_6,
                  mem_inout(0) when p_7,
                  '0' when others;
-        --base_read <= base_read + 1 when (falling_edge(clock) and current_state = r and reset = '0') else
-        --             0 when (reset = '1' or start = '0') else base_read;
-        --base_write <= base_write +1 when (falling_edge(clock) and (current_state = p_4 or current_state = d) and reset = '0')else
-        --              1000 when (reset = '1' or start = '0') else base_write;
         base_read <= 0 when (reset = '1' or start = '0') else
                      base_read + 1 when (falling_edge(clock) and current_state = r and reset = '0');
         base_write <= 1000 when (reset = '1' or start = '0') else 
                       base_write +1 when (falling_edge(clock) and (current_state = p_4 or current_state = d) and reset = '0');
-        --number_of_words <= to_integer(unsigned(data)) when (current_state = r_wc) else
-                           --number_of_words - 1 when (current_state = r and falling_edge(clock)) else
-                           ---1 when reset = '1' else number_of_words;
         number_of_words <= to_integer(unsigned(data)) when (current_state = r_wc) else
                            -1 when reset = '1' else 
                            number_of_words - 1 when (current_state = r and falling_edge(clock));
         mem_address <= std_logic_vector(to_unsigned(base_read,16)) when (next_state = r_wc or current_state = r) else 
                        std_logic_vector(to_unsigned(base_write,16)) when (current_state = p_3 or current_state = p_7);
-        -- waringn mem enable non completamente specificata
         mem_enable <= '1' when ((current_state = idle and next_state = r_wc) or current_state = r_wc or current_state = r or current_state = p_3 or current_state = p_7) else '0';
         mem_write <= '1' when (current_state = p_3 or current_state = p_7) else '0';
-        -- warning : controller_clk non completamente specificata
-         --with current_state select
-             --controller_clk <= '1' when p_0 | p_1 | p_2 | p_3 | p_4 | p_5 | p_6 | p_7,
-                               --'0' when others;
-        --controller_clk <= '0' when clock_enable = '0' else
-                          --'1' when (rising_edge(clock) and clock_enable = '1');
-        --controller_clk <= '0' when clock = '0' else
-        --                  '1' when (current_state'event and current_state /= idle and current_state /= r and current_state /= d and current_state /= r_wc);
-        controller_clk <= '1' when (clock = '1' and (current_state = p_0 or current_state = p_1 or current_state = p_2 or current_state = p_3 or current_state = p_4 or current_state = p_5 or current_state = p_6 or current_state = p_7 )) else '0';
+        controller_clk <= '0' when component_enable = '0' else
+                          '1' when (rising_edge(clock) and component_enable = '1');
         controller_rst <= '1' when (reset = '1' or start = '0') else '0';
-       -- clock_enable <= '1' when (next_state = p_0 or next_state = p_1 or next_state = p_2 or next_state = p_3 or next_state = p_4 or next_state = p_5 or next_state = p_6 or next_state = p_7) else 
-                        --'0' when falling_edge(clock);
+        component_enable <= '1' when (component_enable = '0' and (next_state /= idle and next_state /= r_wc and next_state /= r and next_state /= d)) else 
+                            '0' when falling_edge(clock);
 end dataflow;
 
 

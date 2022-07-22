@@ -10,18 +10,22 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="356.200 ns"></ZoomStartTime>
-      <ZoomEndTime time="472.501 ns"></ZoomEndTime>
-      <Cursor1Time time="435.000 ns"></Cursor1Time>
+      <ZoomStartTime time="2,398.747 ns"></ZoomStartTime>
+      <ZoomEndTime time="2,529.251 ns"></ZoomEndTime>
+      <Cursor1Time time="2,567.500 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="329"></NameColumnWidth>
-      <ValueColumnWidth column_width="133"></ValueColumnWidth>
+      <ValueColumnWidth column_width="129"></ValueColumnWidth>
    </column_width_setting>
    <WVObjectSize size="12" />
    <wvobject type="logic" fp_name="/project_tb/UUT/cont/clock">
       <obj_property name="ElementShortName">clock</obj_property>
       <obj_property name="ObjectShortName">clock</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/project_tb/UUT/cont/controller_clk">
+      <obj_property name="ElementShortName">controller_clk</obj_property>
+      <obj_property name="ObjectShortName">controller_clk</obj_property>
    </wvobject>
    <wvobject type="logic" fp_name="/project_tb/UUT/cont/reset">
       <obj_property name="ElementShortName">reset</obj_property>
@@ -38,10 +42,6 @@
    <wvobject type="other" fp_name="/project_tb/UUT/cont/current_state">
       <obj_property name="ElementShortName">current_state</obj_property>
       <obj_property name="ObjectShortName">current_state</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/project_tb/UUT/cont/controller_clk">
-      <obj_property name="ElementShortName">controller_clk</obj_property>
-      <obj_property name="ObjectShortName">controller_clk</obj_property>
    </wvobject>
    <wvobject type="logic" fp_name="/project_tb/UUT/encoder/u">
       <obj_property name="ElementShortName">u</obj_property>
@@ -66,5 +66,6 @@
    <wvobject type="array" fp_name="/project_tb/UUT/str_mng/half_z">
       <obj_property name="ElementShortName">half_z[7:0]</obj_property>
       <obj_property name="ObjectShortName">half_z[7:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
    </wvobject>
 </wave_config>

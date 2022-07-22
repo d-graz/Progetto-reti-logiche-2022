@@ -10,15 +10,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="350.000 ns"></ZoomStartTime>
-      <ZoomEndTime time="534.054 ns"></ZoomEndTime>
-      <Cursor1Time time="442.500 ns"></Cursor1Time>
+      <ZoomStartTime time="0.000 ns"></ZoomStartTime>
+      <ZoomEndTime time="229.374 ns"></ZoomEndTime>
+      <Cursor1Time time="3.550 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="329"></NameColumnWidth>
-      <ValueColumnWidth column_width="141"></ValueColumnWidth>
+      <ValueColumnWidth column_width="133"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="16" />
+   <WVObjectSize size="17" />
    <wvobject type="logic" fp_name="/project_tb/UUT/cont/clock">
       <obj_property name="ElementShortName">clock</obj_property>
       <obj_property name="ObjectShortName">clock</obj_property>
@@ -26,6 +26,10 @@
    <wvobject type="logic" fp_name="/project_tb/UUT/cont/controller_clk">
       <obj_property name="ElementShortName">controller_clk</obj_property>
       <obj_property name="ObjectShortName">controller_clk</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/project_tb/UUT/cont/component_enable">
+      <obj_property name="ElementShortName">component_enable</obj_property>
+      <obj_property name="ObjectShortName">component_enable</obj_property>
    </wvobject>
    <wvobject type="logic" fp_name="/project_tb/UUT/cont/reset">
       <obj_property name="ElementShortName">reset</obj_property>
