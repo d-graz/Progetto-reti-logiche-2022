@@ -84,14 +84,20 @@ end string_manager;
 architecture dataflow of string_manager is
     signal half_z_inout : std_logic_vector(7 downto 0) := (others => '0');
     signal counter : unsigned(1 downto 0) := "00";
-    constant bit1 : unsigned(1 downto 0) := "01";
-    constant zero : unsigned(1 downto 0) := "00";
-    constant full : unsigned(1 downto 0) := "11";
+    signal next_counter : unsigned(1 downto 0) := "00";
 
     begin
-        counter <= counter - bit1 when (rising_edge(controller_clk) and counter /= zero and rst = '0') else
-                   full when(rising_edge(controller_clk) and counter = zero) else
-                   zero when rst = '1' else counter;
+        --counter <= counter - "01" when (rising_edge(controller_clk) and counter /= "00" and rst = '0') else
+        --           "11" when(rising_edge(controller_clk) and counter = "00") else
+        --           "00" when rst = '1' else counter;
+        with counter select
+            next_counter <= "10" when "11",
+                            "01" when "10",
+                            "00" when "01",
+                            "11" when "00",
+                            "00" when others;
+        counter <= "00" when rst = '1' else
+                    next_counter when (rising_edge(controller_clk) and rst = '0');
         half_z_inout <= bits & half_z_inout(5 downto 0) when (counter = "11" and rst = '0' and controller_clk = '1') else
                         half_z_inout(7 downto 6) & bits & half_z_inout(3 downto 0) when (counter = "10" and rst = '0' and controller_clk = '1') else
                         half_z_inout(7 downto 4) & bits & half_z_inout(1 downto 0) when (counter = "01" and rst = '0' and controller_clk = '1') else

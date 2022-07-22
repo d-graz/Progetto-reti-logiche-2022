@@ -10,15 +10,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="2,398.747 ns"></ZoomStartTime>
-      <ZoomEndTime time="2,529.251 ns"></ZoomEndTime>
-      <Cursor1Time time="2,567.500 ns"></Cursor1Time>
+      <ZoomStartTime time="358.010 ns"></ZoomStartTime>
+      <ZoomEndTime time="504.953 ns"></ZoomEndTime>
+      <Cursor1Time time="382.500 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="329"></NameColumnWidth>
-      <ValueColumnWidth column_width="129"></ValueColumnWidth>
+      <ValueColumnWidth column_width="125"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="12" />
+   <WVObjectSize size="13" />
    <wvobject type="logic" fp_name="/project_tb/UUT/cont/clock">
       <obj_property name="ElementShortName">clock</obj_property>
       <obj_property name="ObjectShortName">clock</obj_property>
@@ -62,6 +62,10 @@
    <wvobject type="array" fp_name="/project_tb/UUT/str_mng/counter">
       <obj_property name="ElementShortName">counter[1:0]</obj_property>
       <obj_property name="ObjectShortName">counter[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/project_tb/UUT/str_mng/next_counter">
+      <obj_property name="ElementShortName">next_counter[1:0]</obj_property>
+      <obj_property name="ObjectShortName">next_counter[1:0]</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/project_tb/UUT/str_mng/half_z">
       <obj_property name="ElementShortName">half_z[7:0]</obj_property>

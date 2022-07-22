@@ -2,12 +2,12 @@
 # Vivado v2021.2 (64-bit)
 # SW Build 3367213 on Tue Oct 19 02:47:39 MDT 2021
 # IP Build 3369179 on Thu Oct 21 08:25:16 MDT 2021
-# Start of session at: Fri Jul 22 23:17:27 2022
-# Process ID: 151663
+# Start of session at: Fri Jul 22 23:45:28 2022
+# Process ID: 162946
 # Current directory: /home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.runs/synth_1
 # Command line: vivado -log project_reti_logiche.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source project_reti_logiche.tcl
 # Log file: /home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.runs/synth_1/project_reti_logiche.vds
 # Journal file: /home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.runs/synth_1/vivado.jou
-# Running On: dgraz, OS: Linux, CPU Frequency: 2200.000 MHz, CPU Physical cores: 16, Host memory: 16694 MB
+# Running On: dgraz, OS: Linux, CPU Frequency: 3800.000 MHz, CPU Physical cores: 16, Host memory: 16694 MB
 #-----------------------------------------------------------
 source project_reti_logiche.tcl -notrace
