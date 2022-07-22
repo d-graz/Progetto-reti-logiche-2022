@@ -1,7 +1,7 @@
 # compile vhdl design source files
 vhdl xil_defaultlib  \
 "../../../../project_reti_logiche.srcs/sources_1/new/prima_prova.vhd" \
-"../../../../../docs/Test Bench  Progetto/cartella_1/tb_esempio_2.vhd" \
+"../../../../../docs/Test Bench  Progetto/cartella_1/tb_tre_bis.vhd" \
 
 # Do not sort compile order
 nosort

@@ -2,7 +2,7 @@
 -- Progetto reti logiche 2022
 -- Davide Grazzani, 10660259
 ------------------------------
-
+-- todo : inverti i falling edge dopo l'else
 
 --Flip Flop type D
 
@@ -131,7 +131,8 @@ entity controller is
         mem_enable : out std_logic;
         mem_write : out std_logic;
         u : out std_logic;
-        controller_clk : out std_logic := '0'
+        controller_clk : out std_logic := '0';
+        controller_rst : out std_logic := '0'
     );
 end controller;
 
@@ -160,8 +161,10 @@ architecture dataflow of controller is
                       p_6 when current_state = p_5 else
                       p_7 when current_state = p_6 else
                       d when (current_state = p_7 or (current_state = r_wc and number_of_words = 0)) ;
-        current_state <= next_state when (rising_edge(clock) and reset = '0') else
-                         idle when reset = '1' else current_state;
+        --current_state <= next_state when (rising_edge(clock) and reset = '0') else
+        --                 idle when reset = '1' else current_state;
+        current_state <= idle when reset = '1' else
+                         next_state when (rising_edge(clock) and reset = '0');
         with current_state select
             u <= mem_inout(7) when p_0,
                  mem_inout(6) when p_1,
@@ -172,23 +175,32 @@ architecture dataflow of controller is
                  mem_inout(1) when p_6,
                  mem_inout(0) when p_7,
                  '-' when others;
-        base_read <= base_read + 1 when (falling_edge(clock) and current_state = r and reset = '0') else
-                     0 when reset = '1' else base_read;
-        base_write <= base_write +1 when (falling_edge(clock) and (current_state = p_4 or current_state = d) and reset = '0')else
-                      1000 when reset = '1' else base_write;
-                      -- todo fix lettura numero di parole dopo che avviene la r_wc
+        --base_read <= base_read + 1 when (falling_edge(clock) and current_state = r and reset = '0') else
+        --             0 when (reset = '1' or start = '0') else base_read;
+        --base_write <= base_write +1 when (falling_edge(clock) and (current_state = p_4 or current_state = d) and reset = '0')else
+        --              1000 when (reset = '1' or start = '0') else base_write;
+        base_read <= 0 when (reset = '1' or start = '0') else
+                     base_read + 1 when (falling_edge(clock) and current_state = r and reset = '0');
+        base_write <= 1000 when (reset = '1' or start = '0') else 
+                      base_write +1 when (falling_edge(clock) and (current_state = p_4 or current_state = d) and reset = '0');
+        --number_of_words <= to_integer(unsigned(data)) when (current_state = r_wc) else
+                           --number_of_words - 1 when (current_state = r and falling_edge(clock)) else
+                           ---1 when reset = '1' else number_of_words;
         number_of_words <= to_integer(unsigned(data)) when (current_state = r_wc) else
-                           number_of_words - 1 when (current_state = r and falling_edge(clock)) else
-                           -1 when reset = '1' else number_of_words;
-        -- warning : mem_address non completamente specificata
-        mem_address <= std_logic_vector(to_unsigned(base_read,16)) when (current_state = r_wc or current_state = r) else 
+                           -1 when reset = '1' else 
+                           number_of_words - 1 when (current_state = r and falling_edge(clock));
+        mem_address <= std_logic_vector(to_unsigned(base_read,16)) when (next_state = r_wc or current_state = r) else 
                        std_logic_vector(to_unsigned(base_write,16)) when (current_state = p_3 or current_state = p_7);
         -- waringn mem enable non completamente specificata
         mem_enable <= '1' when ((current_state = idle and next_state = r_wc) or current_state = r_wc or current_state = r or current_state = p_3 or current_state = p_7) else '0';
         mem_write <= '1' when (current_state = p_3 or current_state = p_7) else '0';
         -- warning : controller_clk non completamente specificata
-        controller_clk <= '1' when (current_state'event and current_state /= idle and current_state /= r_wc and current_state /= r and current_state /= d) else
-                          '0' when falling_edge(clock);
+        --with current_state select
+        --    controller_clk <= clock when p_0 | p_1 | p_2 | p_3 | p_4 | p_5 | p_6 | p_7,
+        --                      '0' when others;
+        controller_clk <= '0' when clock = '0' else
+                          '1' when (current_state'event and current_state /= idle and current_state /= r and current_state /= d and current_state /= r_wc);
+        controller_rst <= '1' when (reset = '1' or start = '0') else '0';
 end dataflow;
 
 
@@ -214,6 +226,7 @@ end project_reti_logiche;
 architecture structural of project_reti_logiche is
     signal u : std_logic;
     signal controller_clk : std_logic;
+    signal controller_rst : std_logic;
     signal conv_encoder_out : std_logic_vector(1 downto 0);
 
     component convolutional_encoder is 
@@ -236,7 +249,8 @@ architecture structural of project_reti_logiche is
             mem_enable : out std_logic;
             mem_write : out std_logic;
             u : out std_logic;
-            controller_clk : out std_logic := '0'
+            controller_clk : out std_logic := '0';
+            controller_rst : out std_logic := '0'
         );
     end component;
 
@@ -252,12 +266,12 @@ architecture structural of project_reti_logiche is
     begin
     
         cont : controller
-            port map(clock =>i_clk,reset=>i_rst,start =>i_start,data =>i_data, done =>o_done, mem_address =>o_address, mem_enable =>o_en, mem_write =>o_we, u =>u, controller_clk =>controller_clk);
+            port map(clock =>i_clk,reset=>i_rst,start =>i_start,data =>i_data, done =>o_done, mem_address =>o_address, mem_enable =>o_en, mem_write =>o_we, u =>u, controller_clk =>controller_clk,controller_rst => controller_rst);
 
         encoder : convolutional_encoder
-            port map(u =>u,controller_clk =>controller_clk, rst =>i_rst, pk =>conv_encoder_out);
+            port map(u =>u,controller_clk =>controller_clk, rst =>controller_rst, pk =>conv_encoder_out);
 
         str_mng: string_manager
-            port map(controller_clk =>controller_clk, rst =>i_rst, bits =>conv_encoder_out, half_z =>o_data);
+            port map(controller_clk =>controller_clk, rst =>controller_rst, bits =>conv_encoder_out, half_z =>o_data);
 
 end structural;
