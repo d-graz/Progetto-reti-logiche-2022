@@ -83,26 +83,12 @@ end string_manager;
 
 architecture dataflow of string_manager is
     signal half_z_inout : std_logic_vector(7 downto 0) := (others => '0');
-    signal counter : unsigned(1 downto 0) := "00";
-    signal next_counter : unsigned(1 downto 0) := "00";
+    signal half_z_inout_shifter : std_logic_vector(7 downto 0) := (others => '0');
 
     begin
-        --counter <= counter - "01" when (rising_edge(controller_clk) and counter /= "00" and rst = '0') else
-        --           "11" when(rising_edge(controller_clk) and counter = "00") else
-        --           "00" when rst = '1' else counter;
-        with counter select
-            next_counter <= "10" when "11",
-                            "01" when "10",
-                            "00" when "01",
-                            "11" when "00",
-                            "00" when others;
-        counter <= "00" when rst = '1' else
-                    next_counter when (rising_edge(controller_clk) and rst = '0');
-        half_z_inout <= bits & half_z_inout(5 downto 0) when (counter = "11" and rst = '0' and controller_clk = '1') else
-                        half_z_inout(7 downto 6) & bits & half_z_inout(3 downto 0) when (counter = "10" and rst = '0' and controller_clk = '1') else
-                        half_z_inout(7 downto 4) & bits & half_z_inout(1 downto 0) when (counter = "01" and rst = '0' and controller_clk = '1') else
-                        half_z_inout(7 downto 2) & bits when (counter = "00" and rst = '0' and controller_clk = '1') else
-                        "00000000" when rst = '1' else half_z_inout;
+        half_z_inout_shifter <= half_z_inout(5 downto 0)& "00" when (rising_edge(controller_clk));
+        half_z_inout <= half_z_inout_shifter(7 downto 2) & bits when rst = '0' else
+                        "00000000" when rst = '1';
         half_z <= half_z_inout;
 end dataflow;
     

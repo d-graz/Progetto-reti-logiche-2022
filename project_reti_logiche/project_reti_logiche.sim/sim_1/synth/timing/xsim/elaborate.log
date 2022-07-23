@@ -26,6 +26,8 @@ Compiling module simprims_ver.LUT4
 Compiling module simprims_ver.FDPE(IS_C_INVERTED=1'b1)
 Compiling module simprims_ver.LUT5
 Compiling module simprims_ver.FDCE_default
+Compiling module simprims_ver.x_lut2_mux4
+Compiling module simprims_ver.LUT2
 Compiling module simprims_ver.latchsre_ldpe
 Compiling module simprims_ver.LDPE
 Compiling module simprims_ver.LUT6
@@ -33,8 +35,6 @@ Compiling module simprims_ver.x_lut3_mux8
 Compiling module simprims_ver.LUT3
 Compiling module simprims_ver.latchsre_ldce
 Compiling module simprims_ver.LDCE
-Compiling module simprims_ver.x_lut2_mux4
-Compiling module simprims_ver.LUT2
 Compiling module xil_defaultlib.controller
 Compiling module simprims_ver.BUFG
 Compiling module xil_defaultlib.FF_D
@@ -42,6 +42,7 @@ Compiling module xil_defaultlib.FF_D_0
 Compiling module xil_defaultlib.convolutional_encoder
 Compiling module simprims_ver.IBUF
 Compiling module simprims_ver.OBUF
+Compiling module simprims_ver.FDRE_default
 Compiling module xil_defaultlib.string_manager
 Compiling module xil_defaultlib.project_reti_logiche
 Compiling architecture projecttb of entity xil_defaultlib.project_tb

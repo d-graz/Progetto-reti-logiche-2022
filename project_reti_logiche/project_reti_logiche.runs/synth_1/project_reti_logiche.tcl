@@ -95,6 +95,8 @@ foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
   set_property used_in_implementation false $dcp
 }
 set_param ips.enableIPCacheLiteLoad 1
+
+read_checkpoint -auto_incremental -incremental /home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.srcs/utils_1/imports/synth_1/project_reti_logiche.dcp
 close [open __synthesis_is_running__ w]
 
 OPTRACE "synth_design" START { }

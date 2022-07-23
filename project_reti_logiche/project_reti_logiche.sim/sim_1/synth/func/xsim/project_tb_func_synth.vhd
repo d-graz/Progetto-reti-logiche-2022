@@ -1,7 +1,7 @@
 -- Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2021.2 (lin64) Build 3367213 Tue Oct 19 02:47:39 MDT 2021
--- Date        : Fri Jul 22 23:48:57 2022
+-- Date        : Sat Jul 23 13:24:48 2022
 -- Host        : dgraz running 64-bit Manjaro Linux
 -- Command     : write_vhdl -mode funcsim -nolib -force -file
 --               /home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.sim/sim_1/synth/func/xsim/project_tb_func_synth.vhd
@@ -19,7 +19,7 @@ entity FF_D is
     output : out STD_LOGIC;
     u : in STD_LOGIC;
     output_reg_0 : in STD_LOGIC;
-    AR : in STD_LOGIC_VECTOR ( 0 to 0 )
+    controller_rst_BUFG : in STD_LOGIC
   );
 end FF_D;
 
@@ -33,7 +33,7 @@ output_reg: unisim.vcomponents.FDCE
         port map (
       C => output_reg_0,
       CE => '1',
-      CLR => AR(0),
+      CLR => controller_rst_BUFG,
       D => u,
       Q => output
     );
@@ -47,7 +47,7 @@ entity FF_D_0 is
     FF2_signal : out STD_LOGIC;
     output : in STD_LOGIC;
     output_reg_0 : in STD_LOGIC;
-    AR : in STD_LOGIC_VECTOR ( 0 to 0 )
+    controller_rst_BUFG : in STD_LOGIC
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of FF_D_0 : entity is "FF_D";
@@ -63,7 +63,7 @@ output_reg: unisim.vcomponents.FDCE
         port map (
       C => output_reg_0,
       CE => '1',
-      CLR => AR(0),
+      CLR => controller_rst_BUFG,
       D => output,
       Q => FF2_signal
     );
@@ -75,6 +75,7 @@ use UNISIM.VCOMPONENTS.ALL;
 entity controller is
   port (
     o_done_OBUF : out STD_LOGIC;
+    controller_rst : out STD_LOGIC;
     o_en_OBUF : out STD_LOGIC;
     u : out STD_LOGIC;
     o_we_OBUF : out STD_LOGIC;
@@ -85,10 +86,9 @@ entity controller is
     controller_rst_BUFG : in STD_LOGIC;
     i_clk_IBUF_BUFG : in STD_LOGIC;
     i_start_IBUF : in STD_LOGIC;
-    controller_rst : in STD_LOGIC;
     i_clk_IBUF : in STD_LOGIC;
-    D : in STD_LOGIC_VECTOR ( 7 downto 0 );
     i_rst_IBUF : in STD_LOGIC;
+    D : in STD_LOGIC_VECTOR ( 7 downto 0 );
     FF2_signal : in STD_LOGIC;
     output : in STD_LOGIC
   );
@@ -164,6 +164,7 @@ architecture STRUCTURE of controller is
   signal component_enable : STD_LOGIC;
   signal component_enable0 : STD_LOGIC;
   signal controller_clk_i_1_n_0 : STD_LOGIC;
+  signal \^controller_rst\ : STD_LOGIC;
   signal current_state : STD_LOGIC_VECTOR ( 3 downto 0 );
   signal done0 : STD_LOGIC;
   signal done_reg_i_25_n_0 : STD_LOGIC;
@@ -525,6 +526,7 @@ architecture STRUCTURE of controller is
   attribute SOFT_HLUTNM of output_i_1 : label is "soft_lutpair3";
   attribute SOFT_HLUTNM of p1k_reg_i_1 : label is "soft_lutpair3";
 begin
+  controller_rst <= \^controller_rst\;
 \base_read[0]_i_2\: unisim.vcomponents.LUT1
     generic map(
       INIT => X"1"
@@ -1101,6 +1103,15 @@ controller_clk_reg: unisim.vcomponents.FDCE
       D => '1',
       Q => controller_clk_reg_0
     );
+controller_rst_BUFG_inst_i_1: unisim.vcomponents.LUT2
+    generic map(
+      INIT => X"B"
+    )
+        port map (
+      I0 => i_rst_IBUF,
+      I1 => i_start_IBUF,
+      O => \^controller_rst\
+    );
 \current_state_reg[0]\: unisim.vcomponents.FDCE
     generic map(
       INIT => '0'
@@ -1163,7 +1174,7 @@ done_reg_i_1: unisim.vcomponents.LUT6
         port map (
       I0 => current_state(0),
       I1 => current_state(3),
-      I2 => controller_rst,
+      I2 => \^controller_rst\,
       I3 => current_state(1),
       I4 => current_state(2),
       I5 => done_reg_i_2_n_0,
@@ -4105,346 +4116,150 @@ library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
 entity string_manager is
   port (
-    Q : out STD_LOGIC_VECTOR ( 7 downto 0 );
-    controller_rst : out STD_LOGIC;
-    \counter_reg[0]_0\ : in STD_LOGIC;
-    conv_encoder_out : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    o_data_OBUF : out STD_LOGIC_VECTOR ( 5 downto 0 );
     i_start_IBUF : in STD_LOGIC;
     i_rst_IBUF : in STD_LOGIC;
-    AR : in STD_LOGIC_VECTOR ( 0 to 0 )
+    controller_rst_BUFG : in STD_LOGIC;
+    \half_z_inout_shifter_reg[7]_0\ : in STD_LOGIC;
+    conv_encoder_out : in STD_LOGIC_VECTOR ( 1 downto 0 )
   );
 end string_manager;
 
 architecture STRUCTURE of string_manager is
-  signal \^q\ : STD_LOGIC_VECTOR ( 7 downto 0 );
-  signal \^controller_rst\ : STD_LOGIC;
-  signal counter : STD_LOGIC_VECTOR ( 1 downto 0 );
-  signal \counter[1]_i_1_n_0\ : STD_LOGIC;
-  signal half_z_inout : STD_LOGIC_VECTOR ( 7 downto 1 );
-  signal \half_z_inout_reg[0]_i_1_n_0\ : STD_LOGIC;
-  signal \half_z_inout_reg[1]_i_1_n_0\ : STD_LOGIC;
-  signal \half_z_inout_reg[2]_i_1_n_0\ : STD_LOGIC;
-  signal \half_z_inout_reg[3]_i_1_n_0\ : STD_LOGIC;
-  signal \half_z_inout_reg[4]_i_1_n_0\ : STD_LOGIC;
-  signal \half_z_inout_reg[5]_i_1_n_0\ : STD_LOGIC;
-  signal \half_z_inout_reg[6]_i_1_n_0\ : STD_LOGIC;
-  signal \half_z_inout_reg[7]_i_1_n_0\ : STD_LOGIC;
-  signal next_counter : STD_LOGIC_VECTOR ( 0 to 0 );
+  signal p_0_in : STD_LOGIC_VECTOR ( 7 downto 2 );
   attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of \counter[0]_i_1\ : label is "soft_lutpair21";
-  attribute SOFT_HLUTNM of \counter[1]_i_1\ : label is "soft_lutpair21";
-  attribute XILINX_LEGACY_PRIM : string;
-  attribute XILINX_LEGACY_PRIM of \half_z_inout_reg[0]\ : label is "LD";
-  attribute XILINX_TRANSFORM_PINMAP : string;
-  attribute XILINX_TRANSFORM_PINMAP of \half_z_inout_reg[0]\ : label is "VCC:GE GND:CLR";
-  attribute XILINX_LEGACY_PRIM of \half_z_inout_reg[1]\ : label is "LD";
-  attribute XILINX_TRANSFORM_PINMAP of \half_z_inout_reg[1]\ : label is "VCC:GE GND:CLR";
-  attribute SOFT_HLUTNM of \half_z_inout_reg[1]_i_2\ : label is "soft_lutpair20";
-  attribute XILINX_LEGACY_PRIM of \half_z_inout_reg[2]\ : label is "LD";
-  attribute XILINX_TRANSFORM_PINMAP of \half_z_inout_reg[2]\ : label is "VCC:GE GND:CLR";
-  attribute XILINX_LEGACY_PRIM of \half_z_inout_reg[3]\ : label is "LD";
-  attribute XILINX_TRANSFORM_PINMAP of \half_z_inout_reg[3]\ : label is "VCC:GE GND:CLR";
-  attribute SOFT_HLUTNM of \half_z_inout_reg[3]_i_2\ : label is "soft_lutpair20";
-  attribute XILINX_LEGACY_PRIM of \half_z_inout_reg[4]\ : label is "LD";
-  attribute XILINX_TRANSFORM_PINMAP of \half_z_inout_reg[4]\ : label is "VCC:GE GND:CLR";
-  attribute XILINX_LEGACY_PRIM of \half_z_inout_reg[5]\ : label is "LD";
-  attribute XILINX_TRANSFORM_PINMAP of \half_z_inout_reg[5]\ : label is "VCC:GE GND:CLR";
-  attribute SOFT_HLUTNM of \half_z_inout_reg[5]_i_2\ : label is "soft_lutpair19";
-  attribute XILINX_LEGACY_PRIM of \half_z_inout_reg[6]\ : label is "LD";
-  attribute XILINX_TRANSFORM_PINMAP of \half_z_inout_reg[6]\ : label is "VCC:GE GND:CLR";
-  attribute XILINX_LEGACY_PRIM of \half_z_inout_reg[7]\ : label is "LD";
-  attribute XILINX_TRANSFORM_PINMAP of \half_z_inout_reg[7]\ : label is "VCC:GE GND:CLR";
-  attribute SOFT_HLUTNM of \half_z_inout_reg[7]_i_2\ : label is "soft_lutpair19";
+  attribute SOFT_HLUTNM of \o_data_OBUF[2]_inst_i_1\ : label is "soft_lutpair22";
+  attribute SOFT_HLUTNM of \o_data_OBUF[3]_inst_i_1\ : label is "soft_lutpair22";
+  attribute SOFT_HLUTNM of \o_data_OBUF[4]_inst_i_1\ : label is "soft_lutpair21";
+  attribute SOFT_HLUTNM of \o_data_OBUF[5]_inst_i_1\ : label is "soft_lutpair21";
+  attribute SOFT_HLUTNM of \o_data_OBUF[6]_inst_i_1\ : label is "soft_lutpair20";
+  attribute SOFT_HLUTNM of \o_data_OBUF[7]_inst_i_1\ : label is "soft_lutpair20";
 begin
-  Q(7 downto 0) <= \^q\(7 downto 0);
-  controller_rst <= \^controller_rst\;
-controller_rst_BUFG_inst_i_1: unisim.vcomponents.LUT2
+\half_z_inout_shifter_reg[2]\: unisim.vcomponents.FDRE
     generic map(
-      INIT => X"B"
+      INIT => '0'
     )
         port map (
-      I0 => i_rst_IBUF,
+      C => \half_z_inout_shifter_reg[7]_0\,
+      CE => '1',
+      D => conv_encoder_out(0),
+      Q => p_0_in(2),
+      R => controller_rst_BUFG
+    );
+\half_z_inout_shifter_reg[3]\: unisim.vcomponents.FDRE
+    generic map(
+      INIT => '0'
+    )
+        port map (
+      C => \half_z_inout_shifter_reg[7]_0\,
+      CE => '1',
+      D => conv_encoder_out(1),
+      Q => p_0_in(3),
+      R => controller_rst_BUFG
+    );
+\half_z_inout_shifter_reg[4]\: unisim.vcomponents.FDRE
+    generic map(
+      INIT => '0'
+    )
+        port map (
+      C => \half_z_inout_shifter_reg[7]_0\,
+      CE => '1',
+      D => p_0_in(2),
+      Q => p_0_in(4),
+      R => controller_rst_BUFG
+    );
+\half_z_inout_shifter_reg[5]\: unisim.vcomponents.FDRE
+    generic map(
+      INIT => '0'
+    )
+        port map (
+      C => \half_z_inout_shifter_reg[7]_0\,
+      CE => '1',
+      D => p_0_in(3),
+      Q => p_0_in(5),
+      R => controller_rst_BUFG
+    );
+\half_z_inout_shifter_reg[6]\: unisim.vcomponents.FDRE
+    generic map(
+      INIT => '0'
+    )
+        port map (
+      C => \half_z_inout_shifter_reg[7]_0\,
+      CE => '1',
+      D => p_0_in(4),
+      Q => p_0_in(6),
+      R => controller_rst_BUFG
+    );
+\half_z_inout_shifter_reg[7]\: unisim.vcomponents.FDRE
+    generic map(
+      INIT => '0'
+    )
+        port map (
+      C => \half_z_inout_shifter_reg[7]_0\,
+      CE => '1',
+      D => p_0_in(5),
+      Q => p_0_in(7),
+      R => controller_rst_BUFG
+    );
+\o_data_OBUF[2]_inst_i_1\: unisim.vcomponents.LUT3
+    generic map(
+      INIT => X"08"
+    )
+        port map (
+      I0 => p_0_in(2),
       I1 => i_start_IBUF,
-      O => \^controller_rst\
+      I2 => i_rst_IBUF,
+      O => o_data_OBUF(0)
     );
-\counter[0]_i_1\: unisim.vcomponents.LUT1
+\o_data_OBUF[3]_inst_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"1"
+      INIT => X"08"
     )
         port map (
-      I0 => counter(0),
-      O => next_counter(0)
+      I0 => p_0_in(3),
+      I1 => i_start_IBUF,
+      I2 => i_rst_IBUF,
+      O => o_data_OBUF(1)
     );
-\counter[1]_i_1\: unisim.vcomponents.LUT2
+\o_data_OBUF[4]_inst_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"9"
+      INIT => X"08"
     )
         port map (
-      I0 => counter(0),
-      I1 => counter(1),
-      O => \counter[1]_i_1_n_0\
+      I0 => p_0_in(4),
+      I1 => i_start_IBUF,
+      I2 => i_rst_IBUF,
+      O => o_data_OBUF(2)
     );
-\counter_reg[0]\: unisim.vcomponents.FDCE
+\o_data_OBUF[5]_inst_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => '0'
+      INIT => X"08"
     )
         port map (
-      C => \counter_reg[0]_0\,
-      CE => '1',
-      CLR => AR(0),
-      D => next_counter(0),
-      Q => counter(0)
+      I0 => p_0_in(5),
+      I1 => i_start_IBUF,
+      I2 => i_rst_IBUF,
+      O => o_data_OBUF(3)
     );
-\counter_reg[1]\: unisim.vcomponents.FDCE
+\o_data_OBUF[6]_inst_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => '0'
+      INIT => X"08"
     )
         port map (
-      C => \counter_reg[0]_0\,
-      CE => '1',
-      CLR => AR(0),
-      D => \counter[1]_i_1_n_0\,
-      Q => counter(1)
+      I0 => p_0_in(6),
+      I1 => i_start_IBUF,
+      I2 => i_rst_IBUF,
+      O => o_data_OBUF(4)
     );
-\half_z_inout_reg[0]\: unisim.vcomponents.LDCE
+\o_data_OBUF[7]_inst_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => '0'
+      INIT => X"08"
     )
         port map (
-      CLR => '0',
-      D => \half_z_inout_reg[0]_i_1_n_0\,
-      G => half_z_inout(1),
-      GE => '1',
-      Q => \^q\(0)
-    );
-\half_z_inout_reg[0]_i_1\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"00AB000000A80000"
-    )
-        port map (
-      I0 => \^q\(0),
-      I1 => counter(0),
-      I2 => counter(1),
-      I3 => \^controller_rst\,
-      I4 => \counter_reg[0]_0\,
-      I5 => conv_encoder_out(0),
-      O => \half_z_inout_reg[0]_i_1_n_0\
-    );
-\half_z_inout_reg[1]\: unisim.vcomponents.LDCE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      CLR => '0',
-      D => \half_z_inout_reg[1]_i_1_n_0\,
-      G => half_z_inout(1),
-      GE => '1',
-      Q => \^q\(1)
-    );
-\half_z_inout_reg[1]_i_1\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"00AB000000A80000"
-    )
-        port map (
-      I0 => \^q\(1),
-      I1 => counter(0),
-      I2 => counter(1),
-      I3 => \^controller_rst\,
-      I4 => \counter_reg[0]_0\,
-      I5 => conv_encoder_out(1),
-      O => \half_z_inout_reg[1]_i_1_n_0\
-    );
-\half_z_inout_reg[1]_i_2\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"FFFF10FF"
-    )
-        port map (
-      I0 => counter(0),
-      I1 => counter(1),
-      I2 => \counter_reg[0]_0\,
-      I3 => i_start_IBUF,
-      I4 => i_rst_IBUF,
-      O => half_z_inout(1)
-    );
-\half_z_inout_reg[2]\: unisim.vcomponents.LDCE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      CLR => '0',
-      D => \half_z_inout_reg[2]_i_1_n_0\,
-      G => half_z_inout(3),
-      GE => '1',
-      Q => \^q\(2)
-    );
-\half_z_inout_reg[2]_i_1\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"00BA0000008A0000"
-    )
-        port map (
-      I0 => \^q\(2),
-      I1 => counter(1),
-      I2 => counter(0),
-      I3 => \^controller_rst\,
-      I4 => \counter_reg[0]_0\,
-      I5 => conv_encoder_out(0),
-      O => \half_z_inout_reg[2]_i_1_n_0\
-    );
-\half_z_inout_reg[3]\: unisim.vcomponents.LDCE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      CLR => '0',
-      D => \half_z_inout_reg[3]_i_1_n_0\,
-      G => half_z_inout(3),
-      GE => '1',
-      Q => \^q\(3)
-    );
-\half_z_inout_reg[3]_i_1\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"00BA0000008A0000"
-    )
-        port map (
-      I0 => \^q\(3),
-      I1 => counter(1),
-      I2 => counter(0),
-      I3 => \^controller_rst\,
-      I4 => \counter_reg[0]_0\,
-      I5 => conv_encoder_out(1),
-      O => \half_z_inout_reg[3]_i_1_n_0\
-    );
-\half_z_inout_reg[3]_i_2\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"FFFF40FF"
-    )
-        port map (
-      I0 => counter(1),
-      I1 => counter(0),
-      I2 => \counter_reg[0]_0\,
-      I3 => i_start_IBUF,
-      I4 => i_rst_IBUF,
-      O => half_z_inout(3)
-    );
-\half_z_inout_reg[4]\: unisim.vcomponents.LDCE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      CLR => '0',
-      D => \half_z_inout_reg[4]_i_1_n_0\,
-      G => half_z_inout(5),
-      GE => '1',
-      Q => \^q\(4)
-    );
-\half_z_inout_reg[4]_i_1\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"00BA0000008A0000"
-    )
-        port map (
-      I0 => \^q\(4),
-      I1 => counter(0),
-      I2 => counter(1),
-      I3 => \^controller_rst\,
-      I4 => \counter_reg[0]_0\,
-      I5 => conv_encoder_out(0),
-      O => \half_z_inout_reg[4]_i_1_n_0\
-    );
-\half_z_inout_reg[5]\: unisim.vcomponents.LDCE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      CLR => '0',
-      D => \half_z_inout_reg[5]_i_1_n_0\,
-      G => half_z_inout(5),
-      GE => '1',
-      Q => \^q\(5)
-    );
-\half_z_inout_reg[5]_i_1\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"00BA0000008A0000"
-    )
-        port map (
-      I0 => \^q\(5),
-      I1 => counter(0),
-      I2 => counter(1),
-      I3 => \^controller_rst\,
-      I4 => \counter_reg[0]_0\,
-      I5 => conv_encoder_out(1),
-      O => \half_z_inout_reg[5]_i_1_n_0\
-    );
-\half_z_inout_reg[5]_i_2\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"FFFF40FF"
-    )
-        port map (
-      I0 => counter(0),
-      I1 => counter(1),
-      I2 => \counter_reg[0]_0\,
-      I3 => i_start_IBUF,
-      I4 => i_rst_IBUF,
-      O => half_z_inout(5)
-    );
-\half_z_inout_reg[6]\: unisim.vcomponents.LDCE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      CLR => '0',
-      D => \half_z_inout_reg[6]_i_1_n_0\,
-      G => half_z_inout(7),
-      GE => '1',
-      Q => \^q\(6)
-    );
-\half_z_inout_reg[6]_i_1\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"00EA0000002A0000"
-    )
-        port map (
-      I0 => \^q\(6),
-      I1 => counter(0),
-      I2 => counter(1),
-      I3 => \^controller_rst\,
-      I4 => \counter_reg[0]_0\,
-      I5 => conv_encoder_out(0),
-      O => \half_z_inout_reg[6]_i_1_n_0\
-    );
-\half_z_inout_reg[7]\: unisim.vcomponents.LDCE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      CLR => '0',
-      D => \half_z_inout_reg[7]_i_1_n_0\,
-      G => half_z_inout(7),
-      GE => '1',
-      Q => \^q\(7)
-    );
-\half_z_inout_reg[7]_i_1\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"00EA0000002A0000"
-    )
-        port map (
-      I0 => \^q\(7),
-      I1 => counter(0),
-      I2 => counter(1),
-      I3 => \^controller_rst\,
-      I4 => \counter_reg[0]_0\,
-      I5 => conv_encoder_out(1),
-      O => \half_z_inout_reg[7]_i_1_n_0\
-    );
-\half_z_inout_reg[7]_i_2\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"FFFF80FF"
-    )
-        port map (
-      I0 => counter(0),
-      I1 => counter(1),
-      I2 => \counter_reg[0]_0\,
-      I3 => i_start_IBUF,
-      I4 => i_rst_IBUF,
-      O => half_z_inout(7)
+      I0 => p_0_in(7),
+      I1 => i_start_IBUF,
+      I2 => i_rst_IBUF,
+      O => o_data_OBUF(5)
     );
 end STRUCTURE;
 library IEEE;
@@ -4456,16 +4271,23 @@ entity convolutional_encoder is
     conv_encoder_out : out STD_LOGIC_VECTOR ( 1 downto 0 );
     output : out STD_LOGIC;
     FF2_signal : out STD_LOGIC;
+    o_data_OBUF : out STD_LOGIC_VECTOR ( 1 downto 0 );
     p2k0 : in STD_LOGIC;
     output_reg : in STD_LOGIC;
     p1k0 : in STD_LOGIC;
     u : in STD_LOGIC;
-    AR : in STD_LOGIC_VECTOR ( 0 to 0 )
+    controller_rst_BUFG : in STD_LOGIC;
+    i_start_IBUF : in STD_LOGIC;
+    i_rst_IBUF : in STD_LOGIC
   );
 end convolutional_encoder;
 
 architecture STRUCTURE of convolutional_encoder is
+  signal \^conv_encoder_out\ : STD_LOGIC_VECTOR ( 1 downto 0 );
   signal \^output\ : STD_LOGIC;
+  attribute SOFT_HLUTNM : string;
+  attribute SOFT_HLUTNM of \o_data_OBUF[0]_inst_i_1\ : label is "soft_lutpair19";
+  attribute SOFT_HLUTNM of \o_data_OBUF[1]_inst_i_1\ : label is "soft_lutpair19";
   attribute XILINX_LEGACY_PRIM : string;
   attribute XILINX_LEGACY_PRIM of p1k_reg : label is "LD";
   attribute XILINX_TRANSFORM_PINMAP : string;
@@ -4473,20 +4295,41 @@ architecture STRUCTURE of convolutional_encoder is
   attribute XILINX_LEGACY_PRIM of p2k_reg : label is "LD";
   attribute XILINX_TRANSFORM_PINMAP of p2k_reg : label is "VCC:GE GND:CLR";
 begin
+  conv_encoder_out(1 downto 0) <= \^conv_encoder_out\(1 downto 0);
   output <= \^output\;
 FF1: entity work.FF_D
      port map (
-      AR(0) => AR(0),
+      controller_rst_BUFG => controller_rst_BUFG,
       output => \^output\,
       output_reg_0 => output_reg,
       u => u
     );
 FF2: entity work.FF_D_0
      port map (
-      AR(0) => AR(0),
       FF2_signal => FF2_signal,
+      controller_rst_BUFG => controller_rst_BUFG,
       output => \^output\,
       output_reg_0 => output_reg
+    );
+\o_data_OBUF[0]_inst_i_1\: unisim.vcomponents.LUT3
+    generic map(
+      INIT => X"08"
+    )
+        port map (
+      I0 => \^conv_encoder_out\(0),
+      I1 => i_start_IBUF,
+      I2 => i_rst_IBUF,
+      O => o_data_OBUF(0)
+    );
+\o_data_OBUF[1]_inst_i_1\: unisim.vcomponents.LUT3
+    generic map(
+      INIT => X"08"
+    )
+        port map (
+      I0 => \^conv_encoder_out\(1),
+      I1 => i_start_IBUF,
+      I2 => i_rst_IBUF,
+      O => o_data_OBUF(1)
     );
 p1k_reg: unisim.vcomponents.LDCE
     generic map(
@@ -4497,7 +4340,7 @@ p1k_reg: unisim.vcomponents.LDCE
       D => p1k0,
       G => output_reg,
       GE => '1',
-      Q => conv_encoder_out(1)
+      Q => \^conv_encoder_out\(1)
     );
 p2k_reg: unisim.vcomponents.LDCE
     generic map(
@@ -4508,7 +4351,7 @@ p2k_reg: unisim.vcomponents.LDCE
       D => p2k0,
       G => output_reg,
       GE => '1',
-      Q => conv_encoder_out(0)
+      Q => \^conv_encoder_out\(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -4579,9 +4422,12 @@ controller_rst_BUFG_inst: unisim.vcomponents.BUFG
     );
 encoder: entity work.convolutional_encoder
      port map (
-      AR(0) => controller_rst_BUFG,
       FF2_signal => FF2_signal,
+      controller_rst_BUFG => controller_rst_BUFG,
       conv_encoder_out(1 downto 0) => conv_encoder_out(1 downto 0),
+      i_rst_IBUF => i_rst_IBUF,
+      i_start_IBUF => i_start_IBUF,
+      o_data_OBUF(1 downto 0) => o_data_OBUF(1 downto 0),
       output => output,
       output_reg => controller_clk,
       p1k0 => p1k0,
@@ -4785,12 +4631,11 @@ o_we_OBUF_inst: unisim.vcomponents.OBUF
     );
 str_mng: entity work.string_manager
      port map (
-      AR(0) => controller_rst_BUFG,
-      Q(7 downto 0) => o_data_OBUF(7 downto 0),
-      controller_rst => controller_rst,
+      controller_rst_BUFG => controller_rst_BUFG,
       conv_encoder_out(1 downto 0) => conv_encoder_out(1 downto 0),
-      \counter_reg[0]_0\ => controller_clk,
+      \half_z_inout_shifter_reg[7]_0\ => controller_clk,
       i_rst_IBUF => i_rst_IBUF,
-      i_start_IBUF => i_start_IBUF
+      i_start_IBUF => i_start_IBUF,
+      o_data_OBUF(5 downto 0) => o_data_OBUF(7 downto 2)
     );
 end STRUCTURE;

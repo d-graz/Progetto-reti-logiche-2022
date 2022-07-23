@@ -1,7 +1,7 @@
 // Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2021.2 (lin64) Build 3367213 Tue Oct 19 02:47:39 MDT 2021
-// Date        : Fri Jul 22 23:56:46 2022
+// Date        : Sat Jul 23 13:25:08 2022
 // Host        : dgraz running 64-bit Manjaro Linux
 // Command     : write_verilog -mode timesim -nolib -sdf_anno true -force -file
 //               /home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.sim/sim_1/synth/timing/xsim/project_tb_time_synth.v
@@ -17,13 +17,13 @@ module FF_D
    (\output ,
     u,
     output_reg_0,
-    AR);
+    controller_rst_BUFG);
   output \output ;
   input u;
   input output_reg_0;
-  input [0:0]AR;
+  input controller_rst_BUFG;
 
-  wire [0:0]AR;
+  wire controller_rst_BUFG;
   wire \output ;
   wire output_reg_0;
   wire u;
@@ -34,7 +34,7 @@ module FF_D
     output_reg
        (.C(output_reg_0),
         .CE(1'b1),
-        .CLR(AR),
+        .CLR(controller_rst_BUFG),
         .D(u),
         .Q(\output ));
 endmodule
@@ -44,14 +44,14 @@ module FF_D_0
    (FF2_signal,
     \output ,
     output_reg_0,
-    AR);
+    controller_rst_BUFG);
   output FF2_signal;
   input \output ;
   input output_reg_0;
-  input [0:0]AR;
+  input controller_rst_BUFG;
 
-  wire [0:0]AR;
   wire FF2_signal;
+  wire controller_rst_BUFG;
   wire \output ;
   wire output_reg_0;
 
@@ -61,13 +61,14 @@ module FF_D_0
     output_reg
        (.C(output_reg_0),
         .CE(1'b1),
-        .CLR(AR),
+        .CLR(controller_rst_BUFG),
         .D(\output ),
         .Q(FF2_signal));
 endmodule
 
 module controller
    (o_done_OBUF,
+    controller_rst,
     o_en_OBUF,
     u,
     o_we_OBUF,
@@ -78,13 +79,13 @@ module controller
     controller_rst_BUFG,
     i_clk_IBUF_BUFG,
     i_start_IBUF,
-    controller_rst,
     i_clk_IBUF,
-    D,
     i_rst_IBUF,
+    D,
     FF2_signal,
     \output );
   output o_done_OBUF;
+  output controller_rst;
   output o_en_OBUF;
   output u;
   output o_we_OBUF;
@@ -95,10 +96,9 @@ module controller
   input controller_rst_BUFG;
   input i_clk_IBUF_BUFG;
   input i_start_IBUF;
-  input controller_rst;
   input i_clk_IBUF;
-  input [7:0]D;
   input i_rst_IBUF;
+  input [7:0]D;
   input FF2_signal;
   input \output ;
 
@@ -816,6 +816,12 @@ module controller
         .CLR(controller_clk_i_1_n_0),
         .D(1'b1),
         .Q(controller_clk_reg_0));
+  LUT2 #(
+    .INIT(4'hB)) 
+    controller_rst_BUFG_inst_i_1
+       (.I0(i_rst_IBUF),
+        .I1(i_start_IBUF),
+        .O(controller_rst));
   FDCE #(
     .INIT(1'b0)) 
     \current_state_reg[0] 
@@ -3086,23 +3092,32 @@ module convolutional_encoder
    (conv_encoder_out,
     \output ,
     FF2_signal,
+    o_data_OBUF,
     p2k0,
     output_reg,
     p1k0,
     u,
-    AR);
+    controller_rst_BUFG,
+    i_start_IBUF,
+    i_rst_IBUF);
   output [1:0]conv_encoder_out;
   output \output ;
   output FF2_signal;
+  output [1:0]o_data_OBUF;
   input p2k0;
   input output_reg;
   input p1k0;
   input u;
-  input [0:0]AR;
+  input controller_rst_BUFG;
+  input i_start_IBUF;
+  input i_rst_IBUF;
 
-  wire [0:0]AR;
   wire FF2_signal;
+  wire controller_rst_BUFG;
   wire [1:0]conv_encoder_out;
+  wire i_rst_IBUF;
+  wire i_start_IBUF;
+  wire [1:0]o_data_OBUF;
   wire \output ;
   wire output_reg;
   wire p1k0;
@@ -3110,15 +3125,31 @@ module convolutional_encoder
   wire u;
 
   FF_D FF1
-       (.AR(AR),
+       (.controller_rst_BUFG(controller_rst_BUFG),
         .\output (\output ),
         .output_reg_0(output_reg),
         .u(u));
   FF_D_0 FF2
-       (.AR(AR),
-        .FF2_signal(FF2_signal),
+       (.FF2_signal(FF2_signal),
+        .controller_rst_BUFG(controller_rst_BUFG),
         .\output (\output ),
         .output_reg_0(output_reg));
+  (* SOFT_HLUTNM = "soft_lutpair19" *) 
+  LUT3 #(
+    .INIT(8'h08)) 
+    \o_data_OBUF[0]_inst_i_1 
+       (.I0(conv_encoder_out[0]),
+        .I1(i_start_IBUF),
+        .I2(i_rst_IBUF),
+        .O(o_data_OBUF[0]));
+  (* SOFT_HLUTNM = "soft_lutpair19" *) 
+  LUT3 #(
+    .INIT(8'h08)) 
+    \o_data_OBUF[1]_inst_i_1 
+       (.I0(conv_encoder_out[1]),
+        .I1(i_start_IBUF),
+        .I2(i_rst_IBUF),
+        .O(o_data_OBUF[1]));
   (* XILINX_LEGACY_PRIM = "LD" *) 
   (* XILINX_TRANSFORM_PINMAP = "VCC:GE GND:CLR" *) 
   LDCE #(
@@ -3216,9 +3247,12 @@ end
        (.I(controller_rst),
         .O(controller_rst_BUFG));
   convolutional_encoder encoder
-       (.AR(controller_rst_BUFG),
-        .FF2_signal(FF2_signal),
+       (.FF2_signal(FF2_signal),
+        .controller_rst_BUFG(controller_rst_BUFG),
         .conv_encoder_out(conv_encoder_out),
+        .i_rst_IBUF(i_rst_IBUF),
+        .i_start_IBUF(i_start_IBUF),
+        .o_data_OBUF(o_data_OBUF[1:0]),
         .\output (\output ),
         .output_reg(controller_clk),
         .p1k0(p1k0),
@@ -3342,286 +3376,132 @@ end
        (.I(o_we_OBUF),
         .O(o_we));
   string_manager str_mng
-       (.AR(controller_rst_BUFG),
-        .Q(o_data_OBUF),
-        .controller_rst(controller_rst),
+       (.controller_rst_BUFG(controller_rst_BUFG),
         .conv_encoder_out(conv_encoder_out),
-        .\counter_reg[0]_0 (controller_clk),
+        .\half_z_inout_shifter_reg[7]_0 (controller_clk),
         .i_rst_IBUF(i_rst_IBUF),
-        .i_start_IBUF(i_start_IBUF));
+        .i_start_IBUF(i_start_IBUF),
+        .o_data_OBUF(o_data_OBUF[7:2]));
 endmodule
 
 module string_manager
-   (Q,
-    controller_rst,
-    \counter_reg[0]_0 ,
-    conv_encoder_out,
+   (o_data_OBUF,
     i_start_IBUF,
     i_rst_IBUF,
-    AR);
-  output [7:0]Q;
-  output controller_rst;
-  input \counter_reg[0]_0 ;
-  input [1:0]conv_encoder_out;
+    controller_rst_BUFG,
+    \half_z_inout_shifter_reg[7]_0 ,
+    conv_encoder_out);
+  output [5:0]o_data_OBUF;
   input i_start_IBUF;
   input i_rst_IBUF;
-  input [0:0]AR;
+  input controller_rst_BUFG;
+  input \half_z_inout_shifter_reg[7]_0 ;
+  input [1:0]conv_encoder_out;
 
-  wire [0:0]AR;
-  wire [7:0]Q;
-  wire controller_rst;
+  wire controller_rst_BUFG;
   wire [1:0]conv_encoder_out;
-  wire [1:0]counter;
-  wire \counter[1]_i_1_n_0 ;
-  wire \counter_reg[0]_0 ;
-  wire [7:1]half_z_inout;
-  wire \half_z_inout_reg[0]_i_1_n_0 ;
-  wire \half_z_inout_reg[1]_i_1_n_0 ;
-  wire \half_z_inout_reg[2]_i_1_n_0 ;
-  wire \half_z_inout_reg[3]_i_1_n_0 ;
-  wire \half_z_inout_reg[4]_i_1_n_0 ;
-  wire \half_z_inout_reg[5]_i_1_n_0 ;
-  wire \half_z_inout_reg[6]_i_1_n_0 ;
-  wire \half_z_inout_reg[7]_i_1_n_0 ;
+  wire \half_z_inout_shifter_reg[7]_0 ;
   wire i_rst_IBUF;
   wire i_start_IBUF;
-  wire [0:0]next_counter;
+  wire [5:0]o_data_OBUF;
+  wire [7:2]p_0_in;
 
-  LUT2 #(
-    .INIT(4'hB)) 
-    controller_rst_BUFG_inst_i_1
-       (.I0(i_rst_IBUF),
+  FDRE #(
+    .INIT(1'b0)) 
+    \half_z_inout_shifter_reg[2] 
+       (.C(\half_z_inout_shifter_reg[7]_0 ),
+        .CE(1'b1),
+        .D(conv_encoder_out[0]),
+        .Q(p_0_in[2]),
+        .R(controller_rst_BUFG));
+  FDRE #(
+    .INIT(1'b0)) 
+    \half_z_inout_shifter_reg[3] 
+       (.C(\half_z_inout_shifter_reg[7]_0 ),
+        .CE(1'b1),
+        .D(conv_encoder_out[1]),
+        .Q(p_0_in[3]),
+        .R(controller_rst_BUFG));
+  FDRE #(
+    .INIT(1'b0)) 
+    \half_z_inout_shifter_reg[4] 
+       (.C(\half_z_inout_shifter_reg[7]_0 ),
+        .CE(1'b1),
+        .D(p_0_in[2]),
+        .Q(p_0_in[4]),
+        .R(controller_rst_BUFG));
+  FDRE #(
+    .INIT(1'b0)) 
+    \half_z_inout_shifter_reg[5] 
+       (.C(\half_z_inout_shifter_reg[7]_0 ),
+        .CE(1'b1),
+        .D(p_0_in[3]),
+        .Q(p_0_in[5]),
+        .R(controller_rst_BUFG));
+  FDRE #(
+    .INIT(1'b0)) 
+    \half_z_inout_shifter_reg[6] 
+       (.C(\half_z_inout_shifter_reg[7]_0 ),
+        .CE(1'b1),
+        .D(p_0_in[4]),
+        .Q(p_0_in[6]),
+        .R(controller_rst_BUFG));
+  FDRE #(
+    .INIT(1'b0)) 
+    \half_z_inout_shifter_reg[7] 
+       (.C(\half_z_inout_shifter_reg[7]_0 ),
+        .CE(1'b1),
+        .D(p_0_in[5]),
+        .Q(p_0_in[7]),
+        .R(controller_rst_BUFG));
+  (* SOFT_HLUTNM = "soft_lutpair22" *) 
+  LUT3 #(
+    .INIT(8'h08)) 
+    \o_data_OBUF[2]_inst_i_1 
+       (.I0(p_0_in[2]),
         .I1(i_start_IBUF),
-        .O(controller_rst));
+        .I2(i_rst_IBUF),
+        .O(o_data_OBUF[0]));
+  (* SOFT_HLUTNM = "soft_lutpair22" *) 
+  LUT3 #(
+    .INIT(8'h08)) 
+    \o_data_OBUF[3]_inst_i_1 
+       (.I0(p_0_in[3]),
+        .I1(i_start_IBUF),
+        .I2(i_rst_IBUF),
+        .O(o_data_OBUF[1]));
   (* SOFT_HLUTNM = "soft_lutpair21" *) 
-  LUT1 #(
-    .INIT(2'h1)) 
-    \counter[0]_i_1 
-       (.I0(counter[0]),
-        .O(next_counter));
+  LUT3 #(
+    .INIT(8'h08)) 
+    \o_data_OBUF[4]_inst_i_1 
+       (.I0(p_0_in[4]),
+        .I1(i_start_IBUF),
+        .I2(i_rst_IBUF),
+        .O(o_data_OBUF[2]));
   (* SOFT_HLUTNM = "soft_lutpair21" *) 
-  LUT2 #(
-    .INIT(4'h9)) 
-    \counter[1]_i_1 
-       (.I0(counter[0]),
-        .I1(counter[1]),
-        .O(\counter[1]_i_1_n_0 ));
-  FDCE #(
-    .INIT(1'b0)) 
-    \counter_reg[0] 
-       (.C(\counter_reg[0]_0 ),
-        .CE(1'b1),
-        .CLR(AR),
-        .D(next_counter),
-        .Q(counter[0]));
-  FDCE #(
-    .INIT(1'b0)) 
-    \counter_reg[1] 
-       (.C(\counter_reg[0]_0 ),
-        .CE(1'b1),
-        .CLR(AR),
-        .D(\counter[1]_i_1_n_0 ),
-        .Q(counter[1]));
-  (* XILINX_LEGACY_PRIM = "LD" *) 
-  (* XILINX_TRANSFORM_PINMAP = "VCC:GE GND:CLR" *) 
-  LDCE #(
-    .INIT(1'b0)) 
-    \half_z_inout_reg[0] 
-       (.CLR(1'b0),
-        .D(\half_z_inout_reg[0]_i_1_n_0 ),
-        .G(half_z_inout[1]),
-        .GE(1'b1),
-        .Q(Q[0]));
-  LUT6 #(
-    .INIT(64'h00AB000000A80000)) 
-    \half_z_inout_reg[0]_i_1 
-       (.I0(Q[0]),
-        .I1(counter[0]),
-        .I2(counter[1]),
-        .I3(controller_rst),
-        .I4(\counter_reg[0]_0 ),
-        .I5(conv_encoder_out[0]),
-        .O(\half_z_inout_reg[0]_i_1_n_0 ));
-  (* XILINX_LEGACY_PRIM = "LD" *) 
-  (* XILINX_TRANSFORM_PINMAP = "VCC:GE GND:CLR" *) 
-  LDCE #(
-    .INIT(1'b0)) 
-    \half_z_inout_reg[1] 
-       (.CLR(1'b0),
-        .D(\half_z_inout_reg[1]_i_1_n_0 ),
-        .G(half_z_inout[1]),
-        .GE(1'b1),
-        .Q(Q[1]));
-  LUT6 #(
-    .INIT(64'h00AB000000A80000)) 
-    \half_z_inout_reg[1]_i_1 
-       (.I0(Q[1]),
-        .I1(counter[0]),
-        .I2(counter[1]),
-        .I3(controller_rst),
-        .I4(\counter_reg[0]_0 ),
-        .I5(conv_encoder_out[1]),
-        .O(\half_z_inout_reg[1]_i_1_n_0 ));
+  LUT3 #(
+    .INIT(8'h08)) 
+    \o_data_OBUF[5]_inst_i_1 
+       (.I0(p_0_in[5]),
+        .I1(i_start_IBUF),
+        .I2(i_rst_IBUF),
+        .O(o_data_OBUF[3]));
   (* SOFT_HLUTNM = "soft_lutpair20" *) 
-  LUT5 #(
-    .INIT(32'hFFFF10FF)) 
-    \half_z_inout_reg[1]_i_2 
-       (.I0(counter[0]),
-        .I1(counter[1]),
-        .I2(\counter_reg[0]_0 ),
-        .I3(i_start_IBUF),
-        .I4(i_rst_IBUF),
-        .O(half_z_inout[1]));
-  (* XILINX_LEGACY_PRIM = "LD" *) 
-  (* XILINX_TRANSFORM_PINMAP = "VCC:GE GND:CLR" *) 
-  LDCE #(
-    .INIT(1'b0)) 
-    \half_z_inout_reg[2] 
-       (.CLR(1'b0),
-        .D(\half_z_inout_reg[2]_i_1_n_0 ),
-        .G(half_z_inout[3]),
-        .GE(1'b1),
-        .Q(Q[2]));
-  LUT6 #(
-    .INIT(64'h00BA0000008A0000)) 
-    \half_z_inout_reg[2]_i_1 
-       (.I0(Q[2]),
-        .I1(counter[1]),
-        .I2(counter[0]),
-        .I3(controller_rst),
-        .I4(\counter_reg[0]_0 ),
-        .I5(conv_encoder_out[0]),
-        .O(\half_z_inout_reg[2]_i_1_n_0 ));
-  (* XILINX_LEGACY_PRIM = "LD" *) 
-  (* XILINX_TRANSFORM_PINMAP = "VCC:GE GND:CLR" *) 
-  LDCE #(
-    .INIT(1'b0)) 
-    \half_z_inout_reg[3] 
-       (.CLR(1'b0),
-        .D(\half_z_inout_reg[3]_i_1_n_0 ),
-        .G(half_z_inout[3]),
-        .GE(1'b1),
-        .Q(Q[3]));
-  LUT6 #(
-    .INIT(64'h00BA0000008A0000)) 
-    \half_z_inout_reg[3]_i_1 
-       (.I0(Q[3]),
-        .I1(counter[1]),
-        .I2(counter[0]),
-        .I3(controller_rst),
-        .I4(\counter_reg[0]_0 ),
-        .I5(conv_encoder_out[1]),
-        .O(\half_z_inout_reg[3]_i_1_n_0 ));
+  LUT3 #(
+    .INIT(8'h08)) 
+    \o_data_OBUF[6]_inst_i_1 
+       (.I0(p_0_in[6]),
+        .I1(i_start_IBUF),
+        .I2(i_rst_IBUF),
+        .O(o_data_OBUF[4]));
   (* SOFT_HLUTNM = "soft_lutpair20" *) 
-  LUT5 #(
-    .INIT(32'hFFFF40FF)) 
-    \half_z_inout_reg[3]_i_2 
-       (.I0(counter[1]),
-        .I1(counter[0]),
-        .I2(\counter_reg[0]_0 ),
-        .I3(i_start_IBUF),
-        .I4(i_rst_IBUF),
-        .O(half_z_inout[3]));
-  (* XILINX_LEGACY_PRIM = "LD" *) 
-  (* XILINX_TRANSFORM_PINMAP = "VCC:GE GND:CLR" *) 
-  LDCE #(
-    .INIT(1'b0)) 
-    \half_z_inout_reg[4] 
-       (.CLR(1'b0),
-        .D(\half_z_inout_reg[4]_i_1_n_0 ),
-        .G(half_z_inout[5]),
-        .GE(1'b1),
-        .Q(Q[4]));
-  LUT6 #(
-    .INIT(64'h00BA0000008A0000)) 
-    \half_z_inout_reg[4]_i_1 
-       (.I0(Q[4]),
-        .I1(counter[0]),
-        .I2(counter[1]),
-        .I3(controller_rst),
-        .I4(\counter_reg[0]_0 ),
-        .I5(conv_encoder_out[0]),
-        .O(\half_z_inout_reg[4]_i_1_n_0 ));
-  (* XILINX_LEGACY_PRIM = "LD" *) 
-  (* XILINX_TRANSFORM_PINMAP = "VCC:GE GND:CLR" *) 
-  LDCE #(
-    .INIT(1'b0)) 
-    \half_z_inout_reg[5] 
-       (.CLR(1'b0),
-        .D(\half_z_inout_reg[5]_i_1_n_0 ),
-        .G(half_z_inout[5]),
-        .GE(1'b1),
-        .Q(Q[5]));
-  LUT6 #(
-    .INIT(64'h00BA0000008A0000)) 
-    \half_z_inout_reg[5]_i_1 
-       (.I0(Q[5]),
-        .I1(counter[0]),
-        .I2(counter[1]),
-        .I3(controller_rst),
-        .I4(\counter_reg[0]_0 ),
-        .I5(conv_encoder_out[1]),
-        .O(\half_z_inout_reg[5]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair19" *) 
-  LUT5 #(
-    .INIT(32'hFFFF40FF)) 
-    \half_z_inout_reg[5]_i_2 
-       (.I0(counter[0]),
-        .I1(counter[1]),
-        .I2(\counter_reg[0]_0 ),
-        .I3(i_start_IBUF),
-        .I4(i_rst_IBUF),
-        .O(half_z_inout[5]));
-  (* XILINX_LEGACY_PRIM = "LD" *) 
-  (* XILINX_TRANSFORM_PINMAP = "VCC:GE GND:CLR" *) 
-  LDCE #(
-    .INIT(1'b0)) 
-    \half_z_inout_reg[6] 
-       (.CLR(1'b0),
-        .D(\half_z_inout_reg[6]_i_1_n_0 ),
-        .G(half_z_inout[7]),
-        .GE(1'b1),
-        .Q(Q[6]));
-  LUT6 #(
-    .INIT(64'h00EA0000002A0000)) 
-    \half_z_inout_reg[6]_i_1 
-       (.I0(Q[6]),
-        .I1(counter[0]),
-        .I2(counter[1]),
-        .I3(controller_rst),
-        .I4(\counter_reg[0]_0 ),
-        .I5(conv_encoder_out[0]),
-        .O(\half_z_inout_reg[6]_i_1_n_0 ));
-  (* XILINX_LEGACY_PRIM = "LD" *) 
-  (* XILINX_TRANSFORM_PINMAP = "VCC:GE GND:CLR" *) 
-  LDCE #(
-    .INIT(1'b0)) 
-    \half_z_inout_reg[7] 
-       (.CLR(1'b0),
-        .D(\half_z_inout_reg[7]_i_1_n_0 ),
-        .G(half_z_inout[7]),
-        .GE(1'b1),
-        .Q(Q[7]));
-  LUT6 #(
-    .INIT(64'h00EA0000002A0000)) 
-    \half_z_inout_reg[7]_i_1 
-       (.I0(Q[7]),
-        .I1(counter[0]),
-        .I2(counter[1]),
-        .I3(controller_rst),
-        .I4(\counter_reg[0]_0 ),
-        .I5(conv_encoder_out[1]),
-        .O(\half_z_inout_reg[7]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair19" *) 
-  LUT5 #(
-    .INIT(32'hFFFF80FF)) 
-    \half_z_inout_reg[7]_i_2 
-       (.I0(counter[0]),
-        .I1(counter[1]),
-        .I2(\counter_reg[0]_0 ),
-        .I3(i_start_IBUF),
-        .I4(i_rst_IBUF),
-        .O(half_z_inout[7]));
+  LUT3 #(
+    .INIT(8'h08)) 
+    \o_data_OBUF[7]_inst_i_1 
+       (.I0(p_0_in[7]),
+        .I1(i_start_IBUF),
+        .I2(i_rst_IBUF),
+        .O(o_data_OBUF[5]));
 endmodule
 `ifndef GLBL
 `define GLBL
