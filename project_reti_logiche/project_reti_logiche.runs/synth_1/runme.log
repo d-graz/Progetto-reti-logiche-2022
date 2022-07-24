@@ -20,9 +20,9 @@ WARNING: [Designutils 20-4072] Reference run did not run incremental synthesis b
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 56130
+INFO: [Synth 8-7075] Helper process launched with PID 65432
 ---------------------------------------------------------------------------------
-Starting Synthesize : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 2607.562 ; gain = 0.000 ; free physical = 6870 ; free virtual = 29926
+Starting Synthesize : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 2607.566 ; gain = 0.000 ; free physical = 6876 ; free virtual = 29925
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-638] synthesizing module 'project_reti_logiche' [/home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.srcs/sources_1/new/seconda_implementazione.vhd:195]
 INFO: [Synth 8-3491] module 'controller' declared at '/home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.srcs/sources_1/new/seconda_implementazione.vhd:103' bound to instance 'cont' of component 'controller' [/home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.srcs/sources_1/new/seconda_implementazione.vhd:237]
@@ -40,10 +40,10 @@ INFO: [Synth 8-638] synthesizing module 'string_manager' [/home/davide/git/Proge
 INFO: [Synth 8-256] done synthesizing module 'string_manager' (4#1) [/home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.srcs/sources_1/new/seconda_implementazione.vhd:84]
 INFO: [Synth 8-256] done synthesizing module 'project_reti_logiche' (5#1) [/home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.srcs/sources_1/new/seconda_implementazione.vhd:195]
 ---------------------------------------------------------------------------------
-Finished Synthesize : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 2607.562 ; gain = 0.000 ; free physical = 6736 ; free virtual = 29792
+Finished Synthesize : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 2607.566 ; gain = 0.000 ; free physical = 6745 ; free virtual = 29795
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 2607.562 ; gain = 0.000 ; free physical = 6764 ; free virtual = 29820
+Finished Constraint Validation : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 2607.566 ; gain = 0.000 ; free physical = 6740 ; free virtual = 29789
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
@@ -51,7 +51,7 @@ Start Loading Part and Timing Information
 Loading part: xc7a200tfbg484-1
 INFO: [Device 21-403] Loading part xc7a200tfbg484-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 2615.379 ; gain = 7.816 ; free physical = 6762 ; free virtual = 29818
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 2615.383 ; gain = 7.816 ; free physical = 6738 ; free virtual = 29787
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-327] inferring latch for variable 'done_reg' [/home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.srcs/sources_1/new/seconda_implementazione.vhd:130]
 WARNING: [Synth 8-327] inferring latch for variable 'mem_address_reg' [/home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.srcs/sources_1/new/seconda_implementazione.vhd:164]
@@ -60,7 +60,7 @@ WARNING: [Synth 8-327] inferring latch for variable 'mem_inout_reg' [/home/david
 WARNING: [Synth 8-327] inferring latch for variable 'p2k_reg' [/home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.srcs/sources_1/new/seconda_implementazione.vhd:63]
 WARNING: [Synth 8-327] inferring latch for variable 'p1k_reg' [/home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.srcs/sources_1/new/seconda_implementazione.vhd:62]
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 2615.379 ; gain = 7.816 ; free physical = 6734 ; free virtual = 29791
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 2615.383 ; gain = 7.816 ; free physical = 6711 ; free virtual = 29761
 ---------------------------------------------------------------------------------
 No constraint files found.
 ---------------------------------------------------------------------------------
@@ -69,19 +69,22 @@ Start RTL Component Statistics
 Detailed RTL Component Info : 
 +---Adders : 
 	   2 Input   32 Bit       Adders := 1     
+	   2 Input   11 Bit       Adders := 1     
+	   2 Input    8 Bit       Adders := 1     
 +---XORs : 
 	   2 Input      1 Bit         XORs := 2     
 +---Registers : 
 	               32 Bit    Registers := 1     
-	                8 Bit    Registers := 1     
+	               11 Bit    Registers := 1     
+	                8 Bit    Registers := 2     
 	                4 Bit    Registers := 1     
 	                1 Bit    Registers := 4     
 +---Muxes : 
 	   3 Input   32 Bit        Muxes := 1     
 	   2 Input   32 Bit        Muxes := 1     
-	   2 Input   16 Bit        Muxes := 1     
+	   2 Input   11 Bit        Muxes := 1     
 	   2 Input    4 Bit        Muxes := 3     
-	   2 Input    1 Bit        Muxes := 11    
+	   2 Input    1 Bit        Muxes := 12    
 	   9 Input    1 Bit        Muxes := 1     
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
@@ -100,21 +103,22 @@ No constraint files found.
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+WARNING: [Synth 8-3332] Sequential element (cont/mem_address_reg[15]) is unused and will be removed from module project_reti_logiche.
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 2615.379 ; gain = 7.816 ; free physical = 7379 ; free virtual = 30439
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 2615.383 ; gain = 7.816 ; free physical = 7349 ; free virtual = 30402
 ---------------------------------------------------------------------------------
 No constraint files found.
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 2615.379 ; gain = 7.816 ; free physical = 7378 ; free virtual = 30438
+Finished Timing Optimization : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 2615.383 ; gain = 7.816 ; free physical = 7347 ; free virtual = 30399
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 2615.379 ; gain = 7.816 ; free physical = 7378 ; free virtual = 30438
+Finished Technology Mapping : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 2615.383 ; gain = 7.816 ; free physical = 7347 ; free virtual = 30400
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -132,37 +136,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 2615.379 ; gain = 7.816 ; free physical = 7376 ; free virtual = 30436
+Finished IO Insertion : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 2615.383 ; gain = 7.816 ; free physical = 7350 ; free virtual = 30402
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 2615.379 ; gain = 7.816 ; free physical = 7376 ; free virtual = 30436
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 2615.383 ; gain = 7.816 ; free physical = 7350 ; free virtual = 30402
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 2615.379 ; gain = 7.816 ; free physical = 7376 ; free virtual = 30436
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 2615.383 ; gain = 7.816 ; free physical = 7350 ; free virtual = 30402
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 2615.379 ; gain = 7.816 ; free physical = 7376 ; free virtual = 30436
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 2615.383 ; gain = 7.816 ; free physical = 7350 ; free virtual = 30402
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 2615.379 ; gain = 7.816 ; free physical = 7376 ; free virtual = 30436
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 2615.383 ; gain = 7.816 ; free physical = 7350 ; free virtual = 30402
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 2615.379 ; gain = 7.816 ; free physical = 7376 ; free virtual = 30436
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 2615.383 ; gain = 7.816 ; free physical = 7350 ; free virtual = 30402
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -178,19 +182,19 @@ Report Cell Usage:
 +------+-------+------+
 |      |Cell   |Count |
 +------+-------+------+
-|1     |BUFG   |     2|
-|2     |CARRY4 |    16|
+|1     |BUFG   |     1|
+|2     |CARRY4 |     8|
 |3     |LUT1   |     3|
-|4     |LUT2   |     3|
-|5     |LUT3   |   107|
-|6     |LUT4   |     7|
-|7     |LUT5   |    20|
-|8     |LUT6   |    25|
-|9     |FDCE   |    65|
+|4     |LUT2   |     9|
+|5     |LUT3   |   102|
+|6     |LUT4   |    12|
+|7     |LUT5   |    24|
+|8     |LUT6   |    29|
+|9     |FDCE   |    52|
 |10    |FDPE   |    39|
 |11    |FDRE   |     6|
-|12    |LD     |    30|
-|13    |LDC    |     9|
+|12    |LD     |    22|
+|13    |LDC    |    12|
 |14    |LDP    |     1|
 |15    |IBUF   |    11|
 |16    |OBUF   |    27|
@@ -200,37 +204,37 @@ Report Instance Areas:
 +------+----------+----------------------+------+
 |      |Instance  |Module                |Cells |
 +------+----------+----------------------+------+
-|1     |top       |                      |   371|
-|2     |  cont    |controller            |   313|
+|1     |top       |                      |   358|
+|2     |  cont    |controller            |   301|
 |3     |  encoder |convolutional_encoder |     6|
 |4     |    FF1   |FF_D                  |     1|
 |5     |    FF2   |FF_D_0                |     1|
 |6     |  str_mng |string_manager        |    12|
 +------+----------+----------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 2615.379 ; gain = 7.816 ; free physical = 7376 ; free virtual = 30436
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 2615.383 ; gain = 7.816 ; free physical = 7350 ; free virtual = 30402
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 7 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 2615.379 ; gain = 7.816 ; free physical = 7377 ; free virtual = 30437
-Synthesis Optimization Complete : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 2615.387 ; gain = 7.816 ; free physical = 7377 ; free virtual = 30437
+Synthesis finished with 0 errors, 0 critical warnings and 8 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 2615.383 ; gain = 7.816 ; free physical = 7352 ; free virtual = 30405
+Synthesis Optimization Complete : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 2615.391 ; gain = 7.816 ; free physical = 7352 ; free virtual = 30405
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2615.387 ; gain = 0.000 ; free physical = 7464 ; free virtual = 30524
-INFO: [Netlist 29-17] Analyzing 56 Unisim elements for replacement
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 2615.391 ; gain = 0.000 ; free physical = 7437 ; free virtual = 30490
+INFO: [Netlist 29-17] Analyzing 43 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2671.406 ; gain = 0.000 ; free physical = 7372 ; free virtual = 30432
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2671.410 ; gain = 0.000 ; free physical = 7343 ; free virtual = 30396
 INFO: [Project 1-111] Unisim Transformation Summary:
-  A total of 40 instances were transformed.
-  LD => LDCE: 30 instances
-  LDC => LDCE: 9 instances
+  A total of 35 instances were transformed.
+  LD => LDCE: 22 instances
+  LDC => LDCE: 12 instances
   LDP => LDPE: 1 instance 
 
-Synth Design complete, checksum: d2d347c1
+Synth Design complete, checksum: 350245ff
 INFO: [Common 17-83] Releasing license: Synthesis
-30 Infos, 8 Warnings, 0 Critical Warnings and 0 Errors encountered.
+30 Infos, 9 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:11 ; elapsed = 00:00:09 . Memory (MB): peak = 2671.406 ; gain = 64.031 ; free physical = 7576 ; free virtual = 30636
+synth_design: Time (s): cpu = 00:00:11 ; elapsed = 00:00:09 . Memory (MB): peak = 2671.410 ; gain = 64.031 ; free physical = 7548 ; free virtual = 30600
 INFO: [Common 17-1381] The checkpoint '/home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.runs/synth_1/project_reti_logiche.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file project_reti_logiche_utilization_synth.rpt -pb project_reti_logiche_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Sat Jul 23 13:24:21 2022...
+INFO: [Common 17-206] Exiting Vivado at Sun Jul 24 11:40:18 2022...

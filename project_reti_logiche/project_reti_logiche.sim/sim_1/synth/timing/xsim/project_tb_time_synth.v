@@ -1,7 +1,7 @@
 // Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2021.2 (lin64) Build 3367213 Tue Oct 19 02:47:39 MDT 2021
-// Date        : Sun Jul 24 10:00:10 2022
+// Date        : Sun Jul 24 11:41:40 2022
 // Host        : dgraz running 64-bit Manjaro Linux
 // Command     : write_verilog -mode timesim -nolib -sdf_anno true -force -file
 //               /home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.sim/sim_1/synth/timing/xsim/project_tb_time_synth.v
@@ -17,13 +17,13 @@ module FF_D
    (\output ,
     u,
     output_reg_0,
-    controller_rst_BUFG);
+    controller_rst);
   output \output ;
   input u;
   input output_reg_0;
-  input controller_rst_BUFG;
+  input controller_rst;
 
-  wire controller_rst_BUFG;
+  wire controller_rst;
   wire \output ;
   wire output_reg_0;
   wire u;
@@ -34,7 +34,7 @@ module FF_D
     output_reg
        (.C(output_reg_0),
         .CE(1'b1),
-        .CLR(controller_rst_BUFG),
+        .CLR(controller_rst),
         .D(u),
         .Q(\output ));
 endmodule
@@ -44,14 +44,14 @@ module FF_D_0
    (FF2_signal,
     \output ,
     output_reg_0,
-    controller_rst_BUFG);
+    controller_rst);
   output FF2_signal;
   input \output ;
   input output_reg_0;
-  input controller_rst_BUFG;
+  input controller_rst;
 
   wire FF2_signal;
-  wire controller_rst_BUFG;
+  wire controller_rst;
   wire \output ;
   wire output_reg_0;
 
@@ -61,7 +61,7 @@ module FF_D_0
     output_reg
        (.C(output_reg_0),
         .CE(1'b1),
-        .CLR(controller_rst_BUFG),
+        .CLR(controller_rst),
         .D(\output ),
         .Q(FF2_signal));
 endmodule
@@ -76,7 +76,6 @@ module controller
     p1k0,
     Q,
     controller_clk_reg_0,
-    controller_rst_BUFG,
     i_clk_IBUF_BUFG,
     i_start_IBUF,
     i_clk_IBUF,
@@ -91,9 +90,8 @@ module controller
   output o_we_OBUF;
   output p2k0;
   output p1k0;
-  output [15:0]Q;
+  output [10:0]Q;
   output controller_clk_reg_0;
-  input controller_rst_BUFG;
   input i_clk_IBUF_BUFG;
   input i_start_IBUF;
   input i_clk_IBUF;
@@ -104,107 +102,39 @@ module controller
 
   wire [7:0]D;
   wire FF2_signal;
-  wire [15:0]Q;
-  wire \base_read[0]_i_2_n_0 ;
-  wire [15:0]base_read_reg;
-  wire \base_read_reg[0]_i_1_n_0 ;
-  wire \base_read_reg[0]_i_1_n_1 ;
-  wire \base_read_reg[0]_i_1_n_2 ;
-  wire \base_read_reg[0]_i_1_n_3 ;
-  wire \base_read_reg[0]_i_1_n_4 ;
-  wire \base_read_reg[0]_i_1_n_5 ;
-  wire \base_read_reg[0]_i_1_n_6 ;
-  wire \base_read_reg[0]_i_1_n_7 ;
-  wire \base_read_reg[12]_i_1_n_1 ;
-  wire \base_read_reg[12]_i_1_n_2 ;
-  wire \base_read_reg[12]_i_1_n_3 ;
-  wire \base_read_reg[12]_i_1_n_4 ;
-  wire \base_read_reg[12]_i_1_n_5 ;
-  wire \base_read_reg[12]_i_1_n_6 ;
-  wire \base_read_reg[12]_i_1_n_7 ;
-  wire \base_read_reg[4]_i_1_n_0 ;
-  wire \base_read_reg[4]_i_1_n_1 ;
-  wire \base_read_reg[4]_i_1_n_2 ;
-  wire \base_read_reg[4]_i_1_n_3 ;
-  wire \base_read_reg[4]_i_1_n_4 ;
-  wire \base_read_reg[4]_i_1_n_5 ;
-  wire \base_read_reg[4]_i_1_n_6 ;
-  wire \base_read_reg[4]_i_1_n_7 ;
-  wire \base_read_reg[8]_i_1_n_0 ;
-  wire \base_read_reg[8]_i_1_n_1 ;
-  wire \base_read_reg[8]_i_1_n_2 ;
-  wire \base_read_reg[8]_i_1_n_3 ;
-  wire \base_read_reg[8]_i_1_n_4 ;
-  wire \base_read_reg[8]_i_1_n_5 ;
-  wire \base_read_reg[8]_i_1_n_6 ;
-  wire \base_read_reg[8]_i_1_n_7 ;
-  wire \base_write[0]_i_3_n_0 ;
-  wire [15:0]base_write_reg;
-  wire \base_write_reg[0]_i_2_n_0 ;
-  wire \base_write_reg[0]_i_2_n_1 ;
-  wire \base_write_reg[0]_i_2_n_2 ;
-  wire \base_write_reg[0]_i_2_n_3 ;
-  wire \base_write_reg[0]_i_2_n_4 ;
-  wire \base_write_reg[0]_i_2_n_5 ;
-  wire \base_write_reg[0]_i_2_n_6 ;
-  wire \base_write_reg[0]_i_2_n_7 ;
-  wire \base_write_reg[12]_i_1_n_1 ;
-  wire \base_write_reg[12]_i_1_n_2 ;
-  wire \base_write_reg[12]_i_1_n_3 ;
-  wire \base_write_reg[12]_i_1_n_4 ;
-  wire \base_write_reg[12]_i_1_n_5 ;
-  wire \base_write_reg[12]_i_1_n_6 ;
-  wire \base_write_reg[12]_i_1_n_7 ;
-  wire \base_write_reg[4]_i_1_n_0 ;
-  wire \base_write_reg[4]_i_1_n_1 ;
-  wire \base_write_reg[4]_i_1_n_2 ;
-  wire \base_write_reg[4]_i_1_n_3 ;
-  wire \base_write_reg[4]_i_1_n_4 ;
-  wire \base_write_reg[4]_i_1_n_5 ;
-  wire \base_write_reg[4]_i_1_n_6 ;
-  wire \base_write_reg[4]_i_1_n_7 ;
-  wire \base_write_reg[8]_i_1_n_0 ;
-  wire \base_write_reg[8]_i_1_n_1 ;
-  wire \base_write_reg[8]_i_1_n_2 ;
-  wire \base_write_reg[8]_i_1_n_3 ;
-  wire \base_write_reg[8]_i_1_n_4 ;
-  wire \base_write_reg[8]_i_1_n_5 ;
-  wire \base_write_reg[8]_i_1_n_6 ;
-  wire \base_write_reg[8]_i_1_n_7 ;
+  wire [10:0]Q;
+  wire \base_read[7]_i_2_n_0 ;
+  wire [7:0]base_read_reg;
+  wire \base_write[10]_i_3_n_0 ;
+  wire [10:0]base_write_reg;
   wire component_enable;
   wire component_enable0;
   wire controller_clk_i_1_n_0;
   wire controller_clk_reg_0;
   wire controller_rst;
-  wire controller_rst_BUFG;
   wire [3:0]current_state;
   wire done0;
-  wire done_reg_i_25_n_0;
   wire done_reg_i_26_n_0;
-  wire done_reg_i_2_n_0;
-  wire done_reg_i_31_n_0;
+  wire done_reg_i_27_n_0;
   wire done_reg_i_32_n_0;
+  wire done_reg_i_33_n_0;
   wire done_reg_i_3_n_0;
   wire done_reg_i_4_n_0;
   wire done_reg_i_5_n_0;
   wire done_reg_i_6_n_0;
   wire done_reg_i_7_n_0;
   wire done_reg_i_8_n_0;
+  wire done_reg_i_9_n_0;
   wire i_clk_IBUF;
   wire i_clk_IBUF_BUFG;
   wire i_rst_IBUF;
   wire i_start_IBUF;
+  wire mem_address1;
   wire \mem_address_reg[0]_i_1_n_0 ;
   wire \mem_address_reg[10]_i_1_n_0 ;
-  wire \mem_address_reg[11]_i_1_n_0 ;
-  wire \mem_address_reg[12]_i_1_n_0 ;
-  wire \mem_address_reg[13]_i_1_n_0 ;
-  wire \mem_address_reg[14]_i_1_n_0 ;
-  wire \mem_address_reg[15]_i_1_n_0 ;
-  wire \mem_address_reg[15]_i_2_n_0 ;
-  wire \mem_address_reg[15]_i_3_n_0 ;
-  wire \mem_address_reg[15]_i_4_n_0 ;
-  wire \mem_address_reg[15]_i_5_n_0 ;
+  wire \mem_address_reg[10]_i_2_n_0 ;
+  wire \mem_address_reg[10]_i_4_n_0 ;
+  wire \mem_address_reg[10]_i_5_n_0 ;
   wire \mem_address_reg[1]_i_1_n_0 ;
   wire \mem_address_reg[2]_i_1_n_0 ;
   wire \mem_address_reg[3]_i_1_n_0 ;
@@ -227,7 +157,6 @@ module controller
   wire \next_state_reg[3]_i_1_n_0 ;
   wire \next_state_reg[3]_i_2_n_0 ;
   wire [30:0]number_of_words;
-  wire number_of_words0;
   wire [31:0]number_of_words02_in;
   wire \number_of_words[0]_C_i_1_n_0 ;
   wire \number_of_words[12]_C_i_3_n_0 ;
@@ -264,6 +193,7 @@ module controller
   wire \number_of_words[28]_C_i_7_n_0 ;
   wire \number_of_words[28]_C_i_8_n_0 ;
   wire \number_of_words[28]_C_i_9_n_0 ;
+  wire \number_of_words[31]_C_i_1_n_0 ;
   wire \number_of_words[31]_C_i_5_n_0 ;
   wire \number_of_words[31]_C_i_6_n_0 ;
   wire \number_of_words[31]_C_i_7_n_0 ;
@@ -416,288 +346,299 @@ module controller
   wire p_3_in;
   wire p_4_in;
   wire p_5_in;
+  wire [10:0]plusOp;
+  wire [7:0]plusOp__0;
   wire sel;
   wire u;
-  wire [3:3]\NLW_base_read_reg[12]_i_1_CO_UNCONNECTED ;
-  wire [3:3]\NLW_base_write_reg[12]_i_1_CO_UNCONNECTED ;
   wire [3:2]\NLW_number_of_words_reg[31]_C_i_2_CO_UNCONNECTED ;
   wire [3:3]\NLW_number_of_words_reg[31]_C_i_2_O_UNCONNECTED ;
 
   LUT1 #(
     .INIT(2'h1)) 
-    \base_read[0]_i_2 
+    \base_read[0]_i_1 
        (.I0(base_read_reg[0]),
-        .O(\base_read[0]_i_2_n_0 ));
+        .O(plusOp__0[0]));
+  (* SOFT_HLUTNM = "soft_lutpair14" *) 
+  LUT2 #(
+    .INIT(4'h6)) 
+    \base_read[1]_i_1 
+       (.I0(base_read_reg[0]),
+        .I1(base_read_reg[1]),
+        .O(plusOp__0[1]));
+  (* SOFT_HLUTNM = "soft_lutpair8" *) 
+  LUT3 #(
+    .INIT(8'h78)) 
+    \base_read[2]_i_1 
+       (.I0(base_read_reg[1]),
+        .I1(base_read_reg[0]),
+        .I2(base_read_reg[2]),
+        .O(plusOp__0[2]));
+  (* SOFT_HLUTNM = "soft_lutpair8" *) 
+  LUT4 #(
+    .INIT(16'h7F80)) 
+    \base_read[3]_i_1 
+       (.I0(base_read_reg[2]),
+        .I1(base_read_reg[0]),
+        .I2(base_read_reg[1]),
+        .I3(base_read_reg[3]),
+        .O(plusOp__0[3]));
+  (* SOFT_HLUTNM = "soft_lutpair5" *) 
+  LUT5 #(
+    .INIT(32'h7FFF8000)) 
+    \base_read[4]_i_1 
+       (.I0(base_read_reg[3]),
+        .I1(base_read_reg[1]),
+        .I2(base_read_reg[0]),
+        .I3(base_read_reg[2]),
+        .I4(base_read_reg[4]),
+        .O(plusOp__0[4]));
+  LUT6 #(
+    .INIT(64'h7FFFFFFF80000000)) 
+    \base_read[5]_i_1 
+       (.I0(base_read_reg[4]),
+        .I1(base_read_reg[2]),
+        .I2(base_read_reg[0]),
+        .I3(base_read_reg[1]),
+        .I4(base_read_reg[3]),
+        .I5(base_read_reg[5]),
+        .O(plusOp__0[5]));
+  (* SOFT_HLUTNM = "soft_lutpair4" *) 
+  LUT4 #(
+    .INIT(16'h7F80)) 
+    \base_read[6]_i_1 
+       (.I0(\base_read[7]_i_2_n_0 ),
+        .I1(base_read_reg[4]),
+        .I2(base_read_reg[5]),
+        .I3(base_read_reg[6]),
+        .O(plusOp__0[6]));
+  (* SOFT_HLUTNM = "soft_lutpair4" *) 
+  LUT5 #(
+    .INIT(32'h7FFF8000)) 
+    \base_read[7]_i_1 
+       (.I0(\base_read[7]_i_2_n_0 ),
+        .I1(base_read_reg[6]),
+        .I2(base_read_reg[5]),
+        .I3(base_read_reg[4]),
+        .I4(base_read_reg[7]),
+        .O(plusOp__0[7]));
+  (* SOFT_HLUTNM = "soft_lutpair5" *) 
+  LUT4 #(
+    .INIT(16'h8000)) 
+    \base_read[7]_i_2 
+       (.I0(base_read_reg[2]),
+        .I1(base_read_reg[0]),
+        .I2(base_read_reg[1]),
+        .I3(base_read_reg[3]),
+        .O(\base_read[7]_i_2_n_0 ));
   FDCE #(
     .INIT(1'b0),
     .IS_C_INVERTED(1'b1)) 
     \base_read_reg[0] 
        (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
-        .CLR(controller_rst_BUFG),
-        .D(\base_read_reg[0]_i_1_n_7 ),
+        .CE(\number_of_words[31]_C_i_1_n_0 ),
+        .CLR(controller_rst),
+        .D(plusOp__0[0]),
         .Q(base_read_reg[0]));
-  CARRY4 \base_read_reg[0]_i_1 
-       (.CI(1'b0),
-        .CO({\base_read_reg[0]_i_1_n_0 ,\base_read_reg[0]_i_1_n_1 ,\base_read_reg[0]_i_1_n_2 ,\base_read_reg[0]_i_1_n_3 }),
-        .CYINIT(1'b0),
-        .DI({1'b0,1'b0,1'b0,1'b1}),
-        .O({\base_read_reg[0]_i_1_n_4 ,\base_read_reg[0]_i_1_n_5 ,\base_read_reg[0]_i_1_n_6 ,\base_read_reg[0]_i_1_n_7 }),
-        .S({base_read_reg[3:1],\base_read[0]_i_2_n_0 }));
-  FDCE #(
-    .INIT(1'b0),
-    .IS_C_INVERTED(1'b1)) 
-    \base_read_reg[10] 
-       (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
-        .CLR(controller_rst_BUFG),
-        .D(\base_read_reg[8]_i_1_n_5 ),
-        .Q(base_read_reg[10]));
-  FDCE #(
-    .INIT(1'b0),
-    .IS_C_INVERTED(1'b1)) 
-    \base_read_reg[11] 
-       (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
-        .CLR(controller_rst_BUFG),
-        .D(\base_read_reg[8]_i_1_n_4 ),
-        .Q(base_read_reg[11]));
-  FDCE #(
-    .INIT(1'b0),
-    .IS_C_INVERTED(1'b1)) 
-    \base_read_reg[12] 
-       (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
-        .CLR(controller_rst_BUFG),
-        .D(\base_read_reg[12]_i_1_n_7 ),
-        .Q(base_read_reg[12]));
-  CARRY4 \base_read_reg[12]_i_1 
-       (.CI(\base_read_reg[8]_i_1_n_0 ),
-        .CO({\NLW_base_read_reg[12]_i_1_CO_UNCONNECTED [3],\base_read_reg[12]_i_1_n_1 ,\base_read_reg[12]_i_1_n_2 ,\base_read_reg[12]_i_1_n_3 }),
-        .CYINIT(1'b0),
-        .DI({1'b0,1'b0,1'b0,1'b0}),
-        .O({\base_read_reg[12]_i_1_n_4 ,\base_read_reg[12]_i_1_n_5 ,\base_read_reg[12]_i_1_n_6 ,\base_read_reg[12]_i_1_n_7 }),
-        .S(base_read_reg[15:12]));
-  FDCE #(
-    .INIT(1'b0),
-    .IS_C_INVERTED(1'b1)) 
-    \base_read_reg[13] 
-       (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
-        .CLR(controller_rst_BUFG),
-        .D(\base_read_reg[12]_i_1_n_6 ),
-        .Q(base_read_reg[13]));
-  FDCE #(
-    .INIT(1'b0),
-    .IS_C_INVERTED(1'b1)) 
-    \base_read_reg[14] 
-       (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
-        .CLR(controller_rst_BUFG),
-        .D(\base_read_reg[12]_i_1_n_5 ),
-        .Q(base_read_reg[14]));
-  FDCE #(
-    .INIT(1'b0),
-    .IS_C_INVERTED(1'b1)) 
-    \base_read_reg[15] 
-       (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
-        .CLR(controller_rst_BUFG),
-        .D(\base_read_reg[12]_i_1_n_4 ),
-        .Q(base_read_reg[15]));
   FDCE #(
     .INIT(1'b0),
     .IS_C_INVERTED(1'b1)) 
     \base_read_reg[1] 
        (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
-        .CLR(controller_rst_BUFG),
-        .D(\base_read_reg[0]_i_1_n_6 ),
+        .CE(\number_of_words[31]_C_i_1_n_0 ),
+        .CLR(controller_rst),
+        .D(plusOp__0[1]),
         .Q(base_read_reg[1]));
   FDCE #(
     .INIT(1'b0),
     .IS_C_INVERTED(1'b1)) 
     \base_read_reg[2] 
        (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
-        .CLR(controller_rst_BUFG),
-        .D(\base_read_reg[0]_i_1_n_5 ),
+        .CE(\number_of_words[31]_C_i_1_n_0 ),
+        .CLR(controller_rst),
+        .D(plusOp__0[2]),
         .Q(base_read_reg[2]));
   FDCE #(
     .INIT(1'b0),
     .IS_C_INVERTED(1'b1)) 
     \base_read_reg[3] 
        (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
-        .CLR(controller_rst_BUFG),
-        .D(\base_read_reg[0]_i_1_n_4 ),
+        .CE(\number_of_words[31]_C_i_1_n_0 ),
+        .CLR(controller_rst),
+        .D(plusOp__0[3]),
         .Q(base_read_reg[3]));
   FDCE #(
     .INIT(1'b0),
     .IS_C_INVERTED(1'b1)) 
     \base_read_reg[4] 
        (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
-        .CLR(controller_rst_BUFG),
-        .D(\base_read_reg[4]_i_1_n_7 ),
+        .CE(\number_of_words[31]_C_i_1_n_0 ),
+        .CLR(controller_rst),
+        .D(plusOp__0[4]),
         .Q(base_read_reg[4]));
-  CARRY4 \base_read_reg[4]_i_1 
-       (.CI(\base_read_reg[0]_i_1_n_0 ),
-        .CO({\base_read_reg[4]_i_1_n_0 ,\base_read_reg[4]_i_1_n_1 ,\base_read_reg[4]_i_1_n_2 ,\base_read_reg[4]_i_1_n_3 }),
-        .CYINIT(1'b0),
-        .DI({1'b0,1'b0,1'b0,1'b0}),
-        .O({\base_read_reg[4]_i_1_n_4 ,\base_read_reg[4]_i_1_n_5 ,\base_read_reg[4]_i_1_n_6 ,\base_read_reg[4]_i_1_n_7 }),
-        .S(base_read_reg[7:4]));
   FDCE #(
     .INIT(1'b0),
     .IS_C_INVERTED(1'b1)) 
     \base_read_reg[5] 
        (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
-        .CLR(controller_rst_BUFG),
-        .D(\base_read_reg[4]_i_1_n_6 ),
+        .CE(\number_of_words[31]_C_i_1_n_0 ),
+        .CLR(controller_rst),
+        .D(plusOp__0[5]),
         .Q(base_read_reg[5]));
   FDCE #(
     .INIT(1'b0),
     .IS_C_INVERTED(1'b1)) 
     \base_read_reg[6] 
        (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
-        .CLR(controller_rst_BUFG),
-        .D(\base_read_reg[4]_i_1_n_5 ),
+        .CE(\number_of_words[31]_C_i_1_n_0 ),
+        .CLR(controller_rst),
+        .D(plusOp__0[6]),
         .Q(base_read_reg[6]));
   FDCE #(
     .INIT(1'b0),
     .IS_C_INVERTED(1'b1)) 
     \base_read_reg[7] 
        (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
-        .CLR(controller_rst_BUFG),
-        .D(\base_read_reg[4]_i_1_n_4 ),
+        .CE(\number_of_words[31]_C_i_1_n_0 ),
+        .CLR(controller_rst),
+        .D(plusOp__0[7]),
         .Q(base_read_reg[7]));
-  FDCE #(
-    .INIT(1'b0),
-    .IS_C_INVERTED(1'b1)) 
-    \base_read_reg[8] 
-       (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
-        .CLR(controller_rst_BUFG),
-        .D(\base_read_reg[8]_i_1_n_7 ),
-        .Q(base_read_reg[8]));
-  CARRY4 \base_read_reg[8]_i_1 
-       (.CI(\base_read_reg[4]_i_1_n_0 ),
-        .CO({\base_read_reg[8]_i_1_n_0 ,\base_read_reg[8]_i_1_n_1 ,\base_read_reg[8]_i_1_n_2 ,\base_read_reg[8]_i_1_n_3 }),
-        .CYINIT(1'b0),
-        .DI({1'b0,1'b0,1'b0,1'b0}),
-        .O({\base_read_reg[8]_i_1_n_4 ,\base_read_reg[8]_i_1_n_5 ,\base_read_reg[8]_i_1_n_6 ,\base_read_reg[8]_i_1_n_7 }),
-        .S(base_read_reg[11:8]));
-  FDCE #(
-    .INIT(1'b0),
-    .IS_C_INVERTED(1'b1)) 
-    \base_read_reg[9] 
-       (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
-        .CLR(controller_rst_BUFG),
-        .D(\base_read_reg[8]_i_1_n_6 ),
-        .Q(base_read_reg[9]));
+  (* SOFT_HLUTNM = "soft_lutpair23" *) 
+  LUT1 #(
+    .INIT(2'h1)) 
+    \base_write[0]_i_1 
+       (.I0(base_write_reg[0]),
+        .O(plusOp[0]));
   LUT4 #(
     .INIT(16'h4080)) 
-    \base_write[0]_i_1 
+    \base_write[10]_i_1 
        (.I0(current_state[3]),
         .I1(current_state[0]),
         .I2(current_state[1]),
         .I3(current_state[2]),
         .O(sel));
-  LUT1 #(
-    .INIT(2'h1)) 
-    \base_write[0]_i_3 
+  LUT6 #(
+    .INIT(64'h7FFFFFFF80000000)) 
+    \base_write[10]_i_2 
+       (.I0(\base_write[10]_i_3_n_0 ),
+        .I1(base_write_reg[6]),
+        .I2(base_write_reg[9]),
+        .I3(base_write_reg[8]),
+        .I4(base_write_reg[7]),
+        .I5(base_write_reg[10]),
+        .O(plusOp[10]));
+  LUT6 #(
+    .INIT(64'h8000000000000000)) 
+    \base_write[10]_i_3 
+       (.I0(base_write_reg[4]),
+        .I1(base_write_reg[2]),
+        .I2(base_write_reg[0]),
+        .I3(base_write_reg[1]),
+        .I4(base_write_reg[3]),
+        .I5(base_write_reg[5]),
+        .O(\base_write[10]_i_3_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair23" *) 
+  LUT2 #(
+    .INIT(4'h6)) 
+    \base_write[1]_i_1 
        (.I0(base_write_reg[0]),
-        .O(\base_write[0]_i_3_n_0 ));
+        .I1(base_write_reg[1]),
+        .O(plusOp[1]));
+  (* SOFT_HLUTNM = "soft_lutpair3" *) 
+  LUT3 #(
+    .INIT(8'h78)) 
+    \base_write[2]_i_1 
+       (.I0(base_write_reg[1]),
+        .I1(base_write_reg[0]),
+        .I2(base_write_reg[2]),
+        .O(plusOp[2]));
+  LUT4 #(
+    .INIT(16'h7F80)) 
+    \base_write[3]_i_1 
+       (.I0(base_write_reg[2]),
+        .I1(base_write_reg[0]),
+        .I2(base_write_reg[1]),
+        .I3(base_write_reg[3]),
+        .O(plusOp[3]));
+  (* SOFT_HLUTNM = "soft_lutpair3" *) 
+  LUT5 #(
+    .INIT(32'h7FFF8000)) 
+    \base_write[4]_i_1 
+       (.I0(base_write_reg[3]),
+        .I1(base_write_reg[1]),
+        .I2(base_write_reg[0]),
+        .I3(base_write_reg[2]),
+        .I4(base_write_reg[4]),
+        .O(plusOp[4]));
+  LUT6 #(
+    .INIT(64'h7FFFFFFF80000000)) 
+    \base_write[5]_i_1 
+       (.I0(base_write_reg[4]),
+        .I1(base_write_reg[2]),
+        .I2(base_write_reg[0]),
+        .I3(base_write_reg[1]),
+        .I4(base_write_reg[3]),
+        .I5(base_write_reg[5]),
+        .O(plusOp[5]));
+  (* SOFT_HLUTNM = "soft_lutpair22" *) 
+  LUT2 #(
+    .INIT(4'h6)) 
+    \base_write[6]_i_1 
+       (.I0(\base_write[10]_i_3_n_0 ),
+        .I1(base_write_reg[6]),
+        .O(plusOp[6]));
+  (* SOFT_HLUTNM = "soft_lutpair22" *) 
+  LUT3 #(
+    .INIT(8'h78)) 
+    \base_write[7]_i_1 
+       (.I0(\base_write[10]_i_3_n_0 ),
+        .I1(base_write_reg[6]),
+        .I2(base_write_reg[7]),
+        .O(plusOp[7]));
+  (* SOFT_HLUTNM = "soft_lutpair7" *) 
+  LUT4 #(
+    .INIT(16'h7F80)) 
+    \base_write[8]_i_1 
+       (.I0(\base_write[10]_i_3_n_0 ),
+        .I1(base_write_reg[6]),
+        .I2(base_write_reg[7]),
+        .I3(base_write_reg[8]),
+        .O(plusOp[8]));
+  (* SOFT_HLUTNM = "soft_lutpair7" *) 
+  LUT5 #(
+    .INIT(32'h7FFF8000)) 
+    \base_write[9]_i_1 
+       (.I0(\base_write[10]_i_3_n_0 ),
+        .I1(base_write_reg[6]),
+        .I2(base_write_reg[7]),
+        .I3(base_write_reg[8]),
+        .I4(base_write_reg[9]),
+        .O(plusOp[9]));
   FDCE #(
     .INIT(1'b0),
     .IS_C_INVERTED(1'b1)) 
     \base_write_reg[0] 
        (.C(i_clk_IBUF_BUFG),
         .CE(sel),
-        .CLR(controller_rst_BUFG),
-        .D(\base_write_reg[0]_i_2_n_7 ),
+        .CLR(controller_rst),
+        .D(plusOp[0]),
         .Q(base_write_reg[0]));
-  CARRY4 \base_write_reg[0]_i_2 
-       (.CI(1'b0),
-        .CO({\base_write_reg[0]_i_2_n_0 ,\base_write_reg[0]_i_2_n_1 ,\base_write_reg[0]_i_2_n_2 ,\base_write_reg[0]_i_2_n_3 }),
-        .CYINIT(1'b0),
-        .DI({1'b0,1'b0,1'b0,1'b1}),
-        .O({\base_write_reg[0]_i_2_n_4 ,\base_write_reg[0]_i_2_n_5 ,\base_write_reg[0]_i_2_n_6 ,\base_write_reg[0]_i_2_n_7 }),
-        .S({base_write_reg[3:1],\base_write[0]_i_3_n_0 }));
   FDCE #(
     .INIT(1'b0),
     .IS_C_INVERTED(1'b1)) 
     \base_write_reg[10] 
        (.C(i_clk_IBUF_BUFG),
         .CE(sel),
-        .CLR(controller_rst_BUFG),
-        .D(\base_write_reg[8]_i_1_n_5 ),
+        .CLR(controller_rst),
+        .D(plusOp[10]),
         .Q(base_write_reg[10]));
-  FDCE #(
-    .INIT(1'b0),
-    .IS_C_INVERTED(1'b1)) 
-    \base_write_reg[11] 
-       (.C(i_clk_IBUF_BUFG),
-        .CE(sel),
-        .CLR(controller_rst_BUFG),
-        .D(\base_write_reg[8]_i_1_n_4 ),
-        .Q(base_write_reg[11]));
-  FDCE #(
-    .INIT(1'b0),
-    .IS_C_INVERTED(1'b1)) 
-    \base_write_reg[12] 
-       (.C(i_clk_IBUF_BUFG),
-        .CE(sel),
-        .CLR(controller_rst_BUFG),
-        .D(\base_write_reg[12]_i_1_n_7 ),
-        .Q(base_write_reg[12]));
-  CARRY4 \base_write_reg[12]_i_1 
-       (.CI(\base_write_reg[8]_i_1_n_0 ),
-        .CO({\NLW_base_write_reg[12]_i_1_CO_UNCONNECTED [3],\base_write_reg[12]_i_1_n_1 ,\base_write_reg[12]_i_1_n_2 ,\base_write_reg[12]_i_1_n_3 }),
-        .CYINIT(1'b0),
-        .DI({1'b0,1'b0,1'b0,1'b0}),
-        .O({\base_write_reg[12]_i_1_n_4 ,\base_write_reg[12]_i_1_n_5 ,\base_write_reg[12]_i_1_n_6 ,\base_write_reg[12]_i_1_n_7 }),
-        .S(base_write_reg[15:12]));
-  FDCE #(
-    .INIT(1'b0),
-    .IS_C_INVERTED(1'b1)) 
-    \base_write_reg[13] 
-       (.C(i_clk_IBUF_BUFG),
-        .CE(sel),
-        .CLR(controller_rst_BUFG),
-        .D(\base_write_reg[12]_i_1_n_6 ),
-        .Q(base_write_reg[13]));
-  FDCE #(
-    .INIT(1'b0),
-    .IS_C_INVERTED(1'b1)) 
-    \base_write_reg[14] 
-       (.C(i_clk_IBUF_BUFG),
-        .CE(sel),
-        .CLR(controller_rst_BUFG),
-        .D(\base_write_reg[12]_i_1_n_5 ),
-        .Q(base_write_reg[14]));
-  FDCE #(
-    .INIT(1'b0),
-    .IS_C_INVERTED(1'b1)) 
-    \base_write_reg[15] 
-       (.C(i_clk_IBUF_BUFG),
-        .CE(sel),
-        .CLR(controller_rst_BUFG),
-        .D(\base_write_reg[12]_i_1_n_4 ),
-        .Q(base_write_reg[15]));
   FDCE #(
     .INIT(1'b0),
     .IS_C_INVERTED(1'b1)) 
     \base_write_reg[1] 
        (.C(i_clk_IBUF_BUFG),
         .CE(sel),
-        .CLR(controller_rst_BUFG),
-        .D(\base_write_reg[0]_i_2_n_6 ),
+        .CLR(controller_rst),
+        .D(plusOp[1]),
         .Q(base_write_reg[1]));
   FDCE #(
     .INIT(1'b0),
@@ -705,8 +646,8 @@ module controller
     \base_write_reg[2] 
        (.C(i_clk_IBUF_BUFG),
         .CE(sel),
-        .CLR(controller_rst_BUFG),
-        .D(\base_write_reg[0]_i_2_n_5 ),
+        .CLR(controller_rst),
+        .D(plusOp[2]),
         .Q(base_write_reg[2]));
   FDPE #(
     .INIT(1'b1),
@@ -714,8 +655,8 @@ module controller
     \base_write_reg[3] 
        (.C(i_clk_IBUF_BUFG),
         .CE(sel),
-        .D(\base_write_reg[0]_i_2_n_4 ),
-        .PRE(controller_rst_BUFG),
+        .D(plusOp[3]),
+        .PRE(controller_rst),
         .Q(base_write_reg[3]));
   FDCE #(
     .INIT(1'b0),
@@ -723,24 +664,17 @@ module controller
     \base_write_reg[4] 
        (.C(i_clk_IBUF_BUFG),
         .CE(sel),
-        .CLR(controller_rst_BUFG),
-        .D(\base_write_reg[4]_i_1_n_7 ),
+        .CLR(controller_rst),
+        .D(plusOp[4]),
         .Q(base_write_reg[4]));
-  CARRY4 \base_write_reg[4]_i_1 
-       (.CI(\base_write_reg[0]_i_2_n_0 ),
-        .CO({\base_write_reg[4]_i_1_n_0 ,\base_write_reg[4]_i_1_n_1 ,\base_write_reg[4]_i_1_n_2 ,\base_write_reg[4]_i_1_n_3 }),
-        .CYINIT(1'b0),
-        .DI({1'b0,1'b0,1'b0,1'b0}),
-        .O({\base_write_reg[4]_i_1_n_4 ,\base_write_reg[4]_i_1_n_5 ,\base_write_reg[4]_i_1_n_6 ,\base_write_reg[4]_i_1_n_7 }),
-        .S(base_write_reg[7:4]));
   FDPE #(
     .INIT(1'b1),
     .IS_C_INVERTED(1'b1)) 
     \base_write_reg[5] 
        (.C(i_clk_IBUF_BUFG),
         .CE(sel),
-        .D(\base_write_reg[4]_i_1_n_6 ),
-        .PRE(controller_rst_BUFG),
+        .D(plusOp[5]),
+        .PRE(controller_rst),
         .Q(base_write_reg[5]));
   FDPE #(
     .INIT(1'b1),
@@ -748,8 +682,8 @@ module controller
     \base_write_reg[6] 
        (.C(i_clk_IBUF_BUFG),
         .CE(sel),
-        .D(\base_write_reg[4]_i_1_n_5 ),
-        .PRE(controller_rst_BUFG),
+        .D(plusOp[6]),
+        .PRE(controller_rst),
         .Q(base_write_reg[6]));
   FDPE #(
     .INIT(1'b1),
@@ -757,8 +691,8 @@ module controller
     \base_write_reg[7] 
        (.C(i_clk_IBUF_BUFG),
         .CE(sel),
-        .D(\base_write_reg[4]_i_1_n_4 ),
-        .PRE(controller_rst_BUFG),
+        .D(plusOp[7]),
+        .PRE(controller_rst),
         .Q(base_write_reg[7]));
   FDPE #(
     .INIT(1'b1),
@@ -766,24 +700,17 @@ module controller
     \base_write_reg[8] 
        (.C(i_clk_IBUF_BUFG),
         .CE(sel),
-        .D(\base_write_reg[8]_i_1_n_7 ),
-        .PRE(controller_rst_BUFG),
+        .D(plusOp[8]),
+        .PRE(controller_rst),
         .Q(base_write_reg[8]));
-  CARRY4 \base_write_reg[8]_i_1 
-       (.CI(\base_write_reg[4]_i_1_n_0 ),
-        .CO({\base_write_reg[8]_i_1_n_0 ,\base_write_reg[8]_i_1_n_1 ,\base_write_reg[8]_i_1_n_2 ,\base_write_reg[8]_i_1_n_3 }),
-        .CYINIT(1'b0),
-        .DI({1'b0,1'b0,1'b0,1'b0}),
-        .O({\base_write_reg[8]_i_1_n_4 ,\base_write_reg[8]_i_1_n_5 ,\base_write_reg[8]_i_1_n_6 ,\base_write_reg[8]_i_1_n_7 }),
-        .S(base_write_reg[11:8]));
   FDPE #(
     .INIT(1'b1),
     .IS_C_INVERTED(1'b1)) 
     \base_write_reg[9] 
        (.C(i_clk_IBUF_BUFG),
         .CE(sel),
-        .D(\base_write_reg[8]_i_1_n_6 ),
-        .PRE(controller_rst_BUFG),
+        .D(plusOp[9]),
+        .PRE(controller_rst),
         .Q(base_write_reg[9]));
   LUT5 #(
     .INIT(32'h00FF0078)) 
@@ -816,12 +743,6 @@ module controller
         .CLR(controller_clk_i_1_n_0),
         .D(1'b1),
         .Q(controller_clk_reg_0));
-  LUT2 #(
-    .INIT(4'hB)) 
-    controller_rst_BUFG_inst_i_1
-       (.I0(i_rst_IBUF),
-        .I1(i_start_IBUF),
-        .O(controller_rst));
   FDCE #(
     .INIT(1'b0)) 
     \current_state_reg[0] 
@@ -860,280 +781,286 @@ module controller
     .INIT(1'b1)) 
     done_reg
        (.D(1'b0),
-        .G(controller_rst_BUFG),
+        .G(controller_rst),
         .GE(1'b1),
         .PRE(done0),
         .Q(o_done_OBUF));
-  LUT6 #(
-    .INIT(64'h0000000000000800)) 
+  LUT2 #(
+    .INIT(4'hB)) 
     done_reg_i_1
-       (.I0(current_state[0]),
-        .I1(current_state[3]),
-        .I2(controller_rst),
-        .I3(current_state[1]),
-        .I4(current_state[2]),
-        .I5(done_reg_i_2_n_0),
-        .O(done0));
-  (* SOFT_HLUTNM = "soft_lutpair17" *) 
+       (.I0(i_rst_IBUF),
+        .I1(i_start_IBUF),
+        .O(controller_rst));
+  (* SOFT_HLUTNM = "soft_lutpair21" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     done_reg_i_10
+       (.I0(\number_of_words_reg[9]_P_n_0 ),
+        .I1(\number_of_words_reg[31]_LDC_n_0 ),
+        .I2(\number_of_words_reg[9]_C_n_0 ),
+        .O(number_of_words[9]));
+  (* SOFT_HLUTNM = "soft_lutpair20" *) 
+  LUT3 #(
+    .INIT(8'hB8)) 
+    done_reg_i_11
        (.I0(\number_of_words_reg[11]_P_n_0 ),
         .I1(\number_of_words_reg[31]_LDC_n_0 ),
         .I2(\number_of_words_reg[11]_C_n_0 ),
         .O(number_of_words[11]));
-  (* SOFT_HLUTNM = "soft_lutpair18" *) 
+  (* SOFT_HLUTNM = "soft_lutpair21" *) 
   LUT3 #(
     .INIT(8'hB8)) 
-    done_reg_i_11
+    done_reg_i_12
        (.I0(\number_of_words_reg[10]_P_n_0 ),
         .I1(\number_of_words_reg[31]_LDC_n_0 ),
         .I2(\number_of_words_reg[10]_C_n_0 ),
         .O(number_of_words[10]));
-  (* SOFT_HLUTNM = "soft_lutpair17" *) 
+  (* SOFT_HLUTNM = "soft_lutpair20" *) 
   LUT3 #(
     .INIT(8'hB8)) 
-    done_reg_i_12
+    done_reg_i_13
        (.I0(\number_of_words_reg[13]_P_n_0 ),
         .I1(\number_of_words_reg[31]_LDC_n_0 ),
         .I2(\number_of_words_reg[13]_C_n_0 ),
         .O(number_of_words[13]));
-  (* SOFT_HLUTNM = "soft_lutpair16" *) 
+  (* SOFT_HLUTNM = "soft_lutpair19" *) 
   LUT3 #(
     .INIT(8'hB8)) 
-    done_reg_i_13
+    done_reg_i_14
        (.I0(\number_of_words_reg[15]_P_n_0 ),
         .I1(\number_of_words_reg[31]_LDC_n_0 ),
         .I2(\number_of_words_reg[15]_C_n_0 ),
         .O(number_of_words[15]));
-  (* SOFT_HLUTNM = "soft_lutpair16" *) 
+  (* SOFT_HLUTNM = "soft_lutpair19" *) 
   LUT3 #(
     .INIT(8'hB8)) 
-    done_reg_i_14
+    done_reg_i_15
        (.I0(\number_of_words_reg[14]_P_n_0 ),
         .I1(\number_of_words_reg[31]_LDC_n_0 ),
         .I2(\number_of_words_reg[14]_C_n_0 ),
         .O(number_of_words[14]));
   LUT3 #(
     .INIT(8'hB8)) 
-    done_reg_i_15
+    done_reg_i_16
        (.I0(\number_of_words_reg[1]_P_n_0 ),
         .I1(\number_of_words_reg[1]_LDC_n_0 ),
         .I2(\number_of_words_reg[1]_C_n_0 ),
         .O(number_of_words[1]));
   LUT3 #(
     .INIT(8'hB8)) 
-    done_reg_i_16
+    done_reg_i_17
        (.I0(\number_of_words_reg[3]_P_n_0 ),
         .I1(\number_of_words_reg[3]_LDC_n_0 ),
         .I2(\number_of_words_reg[3]_C_n_0 ),
         .O(number_of_words[3]));
   LUT3 #(
     .INIT(8'hB8)) 
-    done_reg_i_17
+    done_reg_i_18
        (.I0(\number_of_words_reg[2]_P_n_0 ),
         .I1(\number_of_words_reg[2]_LDC_n_0 ),
         .I2(\number_of_words_reg[2]_C_n_0 ),
         .O(number_of_words[2]));
   LUT3 #(
     .INIT(8'hB8)) 
-    done_reg_i_18
+    done_reg_i_19
        (.I0(\number_of_words_reg[5]_P_n_0 ),
         .I1(\number_of_words_reg[5]_LDC_n_0 ),
         .I2(\number_of_words_reg[5]_C_n_0 ),
         .O(number_of_words[5]));
+  LUT6 #(
+    .INIT(64'h0000000000000800)) 
+    done_reg_i_2
+       (.I0(current_state[0]),
+        .I1(current_state[3]),
+        .I2(controller_rst),
+        .I3(current_state[1]),
+        .I4(current_state[2]),
+        .I5(done_reg_i_3_n_0),
+        .O(done0));
   LUT3 #(
     .INIT(8'hB8)) 
-    done_reg_i_19
+    done_reg_i_20
        (.I0(\number_of_words_reg[7]_P_n_0 ),
         .I1(\number_of_words_reg[7]_LDC_n_0 ),
         .I2(\number_of_words_reg[7]_C_n_0 ),
         .O(number_of_words[7]));
-  LUT6 #(
-    .INIT(64'hFFFFFFFFFFFFFFFE)) 
-    done_reg_i_2
-       (.I0(done_reg_i_3_n_0),
-        .I1(done_reg_i_4_n_0),
-        .I2(done_reg_i_5_n_0),
-        .I3(done_reg_i_6_n_0),
-        .I4(done_reg_i_7_n_0),
-        .I5(done_reg_i_8_n_0),
-        .O(done_reg_i_2_n_0));
   LUT3 #(
     .INIT(8'hB8)) 
-    done_reg_i_20
+    done_reg_i_21
        (.I0(\number_of_words_reg[6]_P_n_0 ),
         .I1(\number_of_words_reg[6]_LDC_n_0 ),
         .I2(\number_of_words_reg[6]_C_n_0 ),
         .O(number_of_words[6]));
-  (* SOFT_HLUTNM = "soft_lutpair12" *) 
+  (* SOFT_HLUTNM = "soft_lutpair15" *) 
   LUT3 #(
     .INIT(8'hB8)) 
-    done_reg_i_21
+    done_reg_i_22
        (.I0(\number_of_words_reg[26]_P_n_0 ),
         .I1(\number_of_words_reg[31]_LDC_n_0 ),
         .I2(\number_of_words_reg[26]_C_n_0 ),
         .O(number_of_words[26]));
-  (* SOFT_HLUTNM = "soft_lutpair12" *) 
+  (* SOFT_HLUTNM = "soft_lutpair15" *) 
   LUT3 #(
     .INIT(8'hB8)) 
-    done_reg_i_22
+    done_reg_i_23
        (.I0(\number_of_words_reg[27]_P_n_0 ),
         .I1(\number_of_words_reg[31]_LDC_n_0 ),
         .I2(\number_of_words_reg[27]_C_n_0 ),
         .O(number_of_words[27]));
-  (* SOFT_HLUTNM = "soft_lutpair13" *) 
+  (* SOFT_HLUTNM = "soft_lutpair16" *) 
   LUT3 #(
     .INIT(8'hB8)) 
-    done_reg_i_23
+    done_reg_i_24
        (.I0(\number_of_words_reg[24]_P_n_0 ),
         .I1(\number_of_words_reg[31]_LDC_n_0 ),
         .I2(\number_of_words_reg[24]_C_n_0 ),
         .O(number_of_words[24]));
-  (* SOFT_HLUTNM = "soft_lutpair13" *) 
+  (* SOFT_HLUTNM = "soft_lutpair16" *) 
   LUT3 #(
     .INIT(8'hB8)) 
-    done_reg_i_24
+    done_reg_i_25
        (.I0(\number_of_words_reg[25]_P_n_0 ),
         .I1(\number_of_words_reg[31]_LDC_n_0 ),
         .I2(\number_of_words_reg[25]_C_n_0 ),
         .O(number_of_words[25]));
   LUT5 #(
     .INIT(32'hFFFACCFA)) 
-    done_reg_i_25
+    done_reg_i_26
        (.I0(\number_of_words_reg[30]_C_n_0 ),
         .I1(\number_of_words_reg[30]_P_n_0 ),
         .I2(\number_of_words_reg[31]_C_n_0 ),
         .I3(\number_of_words_reg[31]_LDC_n_0 ),
         .I4(\number_of_words_reg[31]_P_n_0 ),
-        .O(done_reg_i_25_n_0));
+        .O(done_reg_i_26_n_0));
   LUT5 #(
     .INIT(32'hFFFACCFA)) 
-    done_reg_i_26
+    done_reg_i_27
        (.I0(\number_of_words_reg[28]_C_n_0 ),
         .I1(\number_of_words_reg[28]_P_n_0 ),
         .I2(\number_of_words_reg[29]_C_n_0 ),
         .I3(\number_of_words_reg[31]_LDC_n_0 ),
         .I4(\number_of_words_reg[29]_P_n_0 ),
-        .O(done_reg_i_26_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair14" *) 
+        .O(done_reg_i_27_n_0));
+  (* SOFT_HLUTNM = "soft_lutpair17" *) 
   LUT3 #(
     .INIT(8'hB8)) 
-    done_reg_i_27
+    done_reg_i_28
        (.I0(\number_of_words_reg[18]_P_n_0 ),
         .I1(\number_of_words_reg[31]_LDC_n_0 ),
         .I2(\number_of_words_reg[18]_C_n_0 ),
         .O(number_of_words[18]));
-  (* SOFT_HLUTNM = "soft_lutpair14" *) 
+  (* SOFT_HLUTNM = "soft_lutpair17" *) 
   LUT3 #(
     .INIT(8'hB8)) 
-    done_reg_i_28
+    done_reg_i_29
        (.I0(\number_of_words_reg[19]_P_n_0 ),
         .I1(\number_of_words_reg[31]_LDC_n_0 ),
         .I2(\number_of_words_reg[19]_C_n_0 ),
         .O(number_of_words[19]));
-  (* SOFT_HLUTNM = "soft_lutpair15" *) 
+  LUT6 #(
+    .INIT(64'hFFFFFFFFFFFFFFFE)) 
+    done_reg_i_3
+       (.I0(done_reg_i_4_n_0),
+        .I1(done_reg_i_5_n_0),
+        .I2(done_reg_i_6_n_0),
+        .I3(done_reg_i_7_n_0),
+        .I4(done_reg_i_8_n_0),
+        .I5(done_reg_i_9_n_0),
+        .O(done_reg_i_3_n_0));
+  (* SOFT_HLUTNM = "soft_lutpair18" *) 
   LUT3 #(
     .INIT(8'hB8)) 
-    done_reg_i_29
+    done_reg_i_30
        (.I0(\number_of_words_reg[16]_P_n_0 ),
         .I1(\number_of_words_reg[31]_LDC_n_0 ),
         .I2(\number_of_words_reg[16]_C_n_0 ),
         .O(number_of_words[16]));
-  LUT6 #(
-    .INIT(64'hFFFFFFFFFFFFEFEA)) 
-    done_reg_i_3
-       (.I0(number_of_words[9]),
-        .I1(\number_of_words_reg[8]_P_n_0 ),
-        .I2(\number_of_words_reg[31]_LDC_n_0 ),
-        .I3(\number_of_words_reg[8]_C_n_0 ),
-        .I4(number_of_words[11]),
-        .I5(number_of_words[10]),
-        .O(done_reg_i_3_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair15" *) 
+  (* SOFT_HLUTNM = "soft_lutpair18" *) 
   LUT3 #(
     .INIT(8'hB8)) 
-    done_reg_i_30
+    done_reg_i_31
        (.I0(\number_of_words_reg[17]_P_n_0 ),
         .I1(\number_of_words_reg[31]_LDC_n_0 ),
         .I2(\number_of_words_reg[17]_C_n_0 ),
         .O(number_of_words[17]));
   LUT5 #(
     .INIT(32'hFFFACCFA)) 
-    done_reg_i_31
+    done_reg_i_32
        (.I0(\number_of_words_reg[22]_C_n_0 ),
         .I1(\number_of_words_reg[22]_P_n_0 ),
         .I2(\number_of_words_reg[23]_C_n_0 ),
         .I3(\number_of_words_reg[31]_LDC_n_0 ),
         .I4(\number_of_words_reg[23]_P_n_0 ),
-        .O(done_reg_i_31_n_0));
+        .O(done_reg_i_32_n_0));
   LUT5 #(
     .INIT(32'hFFFACCFA)) 
-    done_reg_i_32
+    done_reg_i_33
        (.I0(\number_of_words_reg[20]_C_n_0 ),
         .I1(\number_of_words_reg[20]_P_n_0 ),
         .I2(\number_of_words_reg[21]_C_n_0 ),
         .I3(\number_of_words_reg[31]_LDC_n_0 ),
         .I4(\number_of_words_reg[21]_P_n_0 ),
-        .O(done_reg_i_32_n_0));
+        .O(done_reg_i_33_n_0));
   LUT6 #(
     .INIT(64'hFFFFFFFFFFFFEFEA)) 
     done_reg_i_4
+       (.I0(number_of_words[9]),
+        .I1(\number_of_words_reg[8]_P_n_0 ),
+        .I2(\number_of_words_reg[31]_LDC_n_0 ),
+        .I3(\number_of_words_reg[8]_C_n_0 ),
+        .I4(number_of_words[11]),
+        .I5(number_of_words[10]),
+        .O(done_reg_i_4_n_0));
+  LUT6 #(
+    .INIT(64'hFFFFFFFFFFFFEFEA)) 
+    done_reg_i_5
        (.I0(number_of_words[13]),
         .I1(\number_of_words_reg[12]_P_n_0 ),
         .I2(\number_of_words_reg[31]_LDC_n_0 ),
         .I3(\number_of_words_reg[12]_C_n_0 ),
         .I4(number_of_words[15]),
         .I5(number_of_words[14]),
-        .O(done_reg_i_4_n_0));
+        .O(done_reg_i_5_n_0));
   LUT6 #(
     .INIT(64'hFFFFFFFFFFFFEFEA)) 
-    done_reg_i_5
+    done_reg_i_6
        (.I0(number_of_words[1]),
         .I1(\number_of_words_reg[0]_P_n_0 ),
         .I2(\number_of_words_reg[0]_LDC_n_0 ),
         .I3(\number_of_words_reg[0]_C_n_0 ),
         .I4(number_of_words[3]),
         .I5(number_of_words[2]),
-        .O(done_reg_i_5_n_0));
+        .O(done_reg_i_6_n_0));
   LUT6 #(
     .INIT(64'hFFFFFFFFFFFFEFEA)) 
-    done_reg_i_6
+    done_reg_i_7
        (.I0(number_of_words[5]),
         .I1(\number_of_words_reg[4]_P_n_0 ),
         .I2(\number_of_words_reg[4]_LDC_n_0 ),
         .I3(\number_of_words_reg[4]_C_n_0 ),
         .I4(number_of_words[7]),
         .I5(number_of_words[6]),
-        .O(done_reg_i_6_n_0));
-  LUT6 #(
-    .INIT(64'hFFFFFFFFFFFFFFFE)) 
-    done_reg_i_7
-       (.I0(number_of_words[26]),
-        .I1(number_of_words[27]),
-        .I2(number_of_words[24]),
-        .I3(number_of_words[25]),
-        .I4(done_reg_i_25_n_0),
-        .I5(done_reg_i_26_n_0),
         .O(done_reg_i_7_n_0));
   LUT6 #(
     .INIT(64'hFFFFFFFFFFFFFFFE)) 
     done_reg_i_8
+       (.I0(number_of_words[26]),
+        .I1(number_of_words[27]),
+        .I2(number_of_words[24]),
+        .I3(number_of_words[25]),
+        .I4(done_reg_i_26_n_0),
+        .I5(done_reg_i_27_n_0),
+        .O(done_reg_i_8_n_0));
+  LUT6 #(
+    .INIT(64'hFFFFFFFFFFFFFFFE)) 
+    done_reg_i_9
        (.I0(number_of_words[18]),
         .I1(number_of_words[19]),
         .I2(number_of_words[16]),
         .I3(number_of_words[17]),
-        .I4(done_reg_i_31_n_0),
-        .I5(done_reg_i_32_n_0),
-        .O(done_reg_i_8_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair18" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    done_reg_i_9
-       (.I0(\number_of_words_reg[9]_P_n_0 ),
-        .I1(\number_of_words_reg[31]_LDC_n_0 ),
-        .I2(\number_of_words_reg[9]_C_n_0 ),
-        .O(number_of_words[9]));
+        .I4(done_reg_i_32_n_0),
+        .I5(done_reg_i_33_n_0),
+        .O(done_reg_i_9_n_0));
   (* XILINX_LEGACY_PRIM = "LD" *) 
   (* XILINX_TRANSFORM_PINMAP = "VCC:GE GND:CLR" *) 
   LDCE #(
@@ -1141,157 +1068,66 @@ module controller
     \mem_address_reg[0] 
        (.CLR(1'b0),
         .D(\mem_address_reg[0]_i_1_n_0 ),
-        .G(\mem_address_reg[15]_i_2_n_0 ),
+        .G(\mem_address_reg[10]_i_2_n_0 ),
         .GE(1'b1),
         .Q(Q[0]));
-  (* SOFT_HLUTNM = "soft_lutpair4" *) 
+  (* SOFT_HLUTNM = "soft_lutpair14" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \mem_address_reg[0]_i_1 
        (.I0(base_read_reg[0]),
-        .I1(\mem_address_reg[15]_i_3_n_0 ),
+        .I1(mem_address1),
         .I2(base_write_reg[0]),
         .O(\mem_address_reg[0]_i_1_n_0 ));
-  (* XILINX_LEGACY_PRIM = "LD" *) 
-  (* XILINX_TRANSFORM_PINMAP = "VCC:GE GND:CLR" *) 
+  (* XILINX_LEGACY_PRIM = "LDC" *) 
+  (* XILINX_TRANSFORM_PINMAP = "VCC:GE" *) 
   LDCE #(
     .INIT(1'b0)) 
     \mem_address_reg[10] 
-       (.CLR(1'b0),
+       (.CLR(mem_address1),
         .D(\mem_address_reg[10]_i_1_n_0 ),
-        .G(\mem_address_reg[15]_i_2_n_0 ),
+        .G(\mem_address_reg[10]_i_2_n_0 ),
         .GE(1'b1),
         .Q(Q[10]));
   (* SOFT_HLUTNM = "soft_lutpair9" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
+  LUT2 #(
+    .INIT(4'h2)) 
     \mem_address_reg[10]_i_1 
-       (.I0(base_read_reg[10]),
-        .I1(\mem_address_reg[15]_i_3_n_0 ),
-        .I2(base_write_reg[10]),
+       (.I0(base_write_reg[10]),
+        .I1(mem_address1),
         .O(\mem_address_reg[10]_i_1_n_0 ));
-  (* XILINX_LEGACY_PRIM = "LD" *) 
-  (* XILINX_TRANSFORM_PINMAP = "VCC:GE GND:CLR" *) 
-  LDCE #(
-    .INIT(1'b0)) 
-    \mem_address_reg[11] 
-       (.CLR(1'b0),
-        .D(\mem_address_reg[11]_i_1_n_0 ),
-        .G(\mem_address_reg[15]_i_2_n_0 ),
-        .GE(1'b1),
-        .Q(Q[11]));
-  (* SOFT_HLUTNM = "soft_lutpair9" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    \mem_address_reg[11]_i_1 
-       (.I0(base_read_reg[11]),
-        .I1(\mem_address_reg[15]_i_3_n_0 ),
-        .I2(base_write_reg[11]),
-        .O(\mem_address_reg[11]_i_1_n_0 ));
-  (* XILINX_LEGACY_PRIM = "LD" *) 
-  (* XILINX_TRANSFORM_PINMAP = "VCC:GE GND:CLR" *) 
-  LDCE #(
-    .INIT(1'b0)) 
-    \mem_address_reg[12] 
-       (.CLR(1'b0),
-        .D(\mem_address_reg[12]_i_1_n_0 ),
-        .G(\mem_address_reg[15]_i_2_n_0 ),
-        .GE(1'b1),
-        .Q(Q[12]));
-  (* SOFT_HLUTNM = "soft_lutpair10" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    \mem_address_reg[12]_i_1 
-       (.I0(base_read_reg[12]),
-        .I1(\mem_address_reg[15]_i_3_n_0 ),
-        .I2(base_write_reg[12]),
-        .O(\mem_address_reg[12]_i_1_n_0 ));
-  (* XILINX_LEGACY_PRIM = "LD" *) 
-  (* XILINX_TRANSFORM_PINMAP = "VCC:GE GND:CLR" *) 
-  LDCE #(
-    .INIT(1'b0)) 
-    \mem_address_reg[13] 
-       (.CLR(1'b0),
-        .D(\mem_address_reg[13]_i_1_n_0 ),
-        .G(\mem_address_reg[15]_i_2_n_0 ),
-        .GE(1'b1),
-        .Q(Q[13]));
-  (* SOFT_HLUTNM = "soft_lutpair10" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    \mem_address_reg[13]_i_1 
-       (.I0(base_read_reg[13]),
-        .I1(\mem_address_reg[15]_i_3_n_0 ),
-        .I2(base_write_reg[13]),
-        .O(\mem_address_reg[13]_i_1_n_0 ));
-  (* XILINX_LEGACY_PRIM = "LD" *) 
-  (* XILINX_TRANSFORM_PINMAP = "VCC:GE GND:CLR" *) 
-  LDCE #(
-    .INIT(1'b0)) 
-    \mem_address_reg[14] 
-       (.CLR(1'b0),
-        .D(\mem_address_reg[14]_i_1_n_0 ),
-        .G(\mem_address_reg[15]_i_2_n_0 ),
-        .GE(1'b1),
-        .Q(Q[14]));
-  (* SOFT_HLUTNM = "soft_lutpair11" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    \mem_address_reg[14]_i_1 
-       (.I0(base_read_reg[14]),
-        .I1(\mem_address_reg[15]_i_3_n_0 ),
-        .I2(base_write_reg[14]),
-        .O(\mem_address_reg[14]_i_1_n_0 ));
-  (* XILINX_LEGACY_PRIM = "LD" *) 
-  (* XILINX_TRANSFORM_PINMAP = "VCC:GE GND:CLR" *) 
-  LDCE #(
-    .INIT(1'b0)) 
-    \mem_address_reg[15] 
-       (.CLR(1'b0),
-        .D(\mem_address_reg[15]_i_1_n_0 ),
-        .G(\mem_address_reg[15]_i_2_n_0 ),
-        .GE(1'b1),
-        .Q(Q[15]));
-  (* SOFT_HLUTNM = "soft_lutpair11" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    \mem_address_reg[15]_i_1 
-       (.I0(base_read_reg[15]),
-        .I1(\mem_address_reg[15]_i_3_n_0 ),
-        .I2(base_write_reg[15]),
-        .O(\mem_address_reg[15]_i_1_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair1" *) 
   LUT5 #(
     .INIT(32'h020AFFFF)) 
-    \mem_address_reg[15]_i_2 
+    \mem_address_reg[10]_i_2 
        (.I0(current_state[1]),
         .I1(current_state[2]),
         .I2(current_state[0]),
         .I3(current_state[3]),
         .I4(o_en_OBUF_inst_i_2_n_0),
-        .O(\mem_address_reg[15]_i_2_n_0 ));
+        .O(\mem_address_reg[10]_i_2_n_0 ));
   LUT6 #(
     .INIT(64'h000400040004FFFF)) 
-    \mem_address_reg[15]_i_3 
+    \mem_address_reg[10]_i_3 
        (.I0(next_state[3]),
         .I1(next_state[0]),
         .I2(next_state[1]),
         .I3(next_state[2]),
-        .I4(\mem_address_reg[15]_i_4_n_0 ),
-        .I5(\mem_address_reg[15]_i_5_n_0 ),
-        .O(\mem_address_reg[15]_i_3_n_0 ));
+        .I4(\mem_address_reg[10]_i_4_n_0 ),
+        .I5(\mem_address_reg[10]_i_5_n_0 ),
+        .O(mem_address1));
   LUT2 #(
     .INIT(4'hB)) 
-    \mem_address_reg[15]_i_4 
+    \mem_address_reg[10]_i_4 
        (.I0(current_state[2]),
         .I1(current_state[1]),
-        .O(\mem_address_reg[15]_i_4_n_0 ));
+        .O(\mem_address_reg[10]_i_4_n_0 ));
   LUT2 #(
     .INIT(4'hE)) 
-    \mem_address_reg[15]_i_5 
+    \mem_address_reg[10]_i_5 
        (.I0(current_state[0]),
         .I1(current_state[3]),
-        .O(\mem_address_reg[15]_i_5_n_0 ));
+        .O(\mem_address_reg[10]_i_5_n_0 ));
   (* XILINX_LEGACY_PRIM = "LD" *) 
   (* XILINX_TRANSFORM_PINMAP = "VCC:GE GND:CLR" *) 
   LDCE #(
@@ -1299,15 +1135,15 @@ module controller
     \mem_address_reg[1] 
        (.CLR(1'b0),
         .D(\mem_address_reg[1]_i_1_n_0 ),
-        .G(\mem_address_reg[15]_i_2_n_0 ),
+        .G(\mem_address_reg[10]_i_2_n_0 ),
         .GE(1'b1),
         .Q(Q[1]));
-  (* SOFT_HLUTNM = "soft_lutpair4" *) 
+  (* SOFT_HLUTNM = "soft_lutpair13" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \mem_address_reg[1]_i_1 
        (.I0(base_read_reg[1]),
-        .I1(\mem_address_reg[15]_i_3_n_0 ),
+        .I1(mem_address1),
         .I2(base_write_reg[1]),
         .O(\mem_address_reg[1]_i_1_n_0 ));
   (* XILINX_LEGACY_PRIM = "LD" *) 
@@ -1317,15 +1153,15 @@ module controller
     \mem_address_reg[2] 
        (.CLR(1'b0),
         .D(\mem_address_reg[2]_i_1_n_0 ),
-        .G(\mem_address_reg[15]_i_2_n_0 ),
+        .G(\mem_address_reg[10]_i_2_n_0 ),
         .GE(1'b1),
         .Q(Q[2]));
-  (* SOFT_HLUTNM = "soft_lutpair5" *) 
+  (* SOFT_HLUTNM = "soft_lutpair13" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \mem_address_reg[2]_i_1 
        (.I0(base_read_reg[2]),
-        .I1(\mem_address_reg[15]_i_3_n_0 ),
+        .I1(mem_address1),
         .I2(base_write_reg[2]),
         .O(\mem_address_reg[2]_i_1_n_0 ));
   (* XILINX_LEGACY_PRIM = "LD" *) 
@@ -1335,15 +1171,15 @@ module controller
     \mem_address_reg[3] 
        (.CLR(1'b0),
         .D(\mem_address_reg[3]_i_1_n_0 ),
-        .G(\mem_address_reg[15]_i_2_n_0 ),
+        .G(\mem_address_reg[10]_i_2_n_0 ),
         .GE(1'b1),
         .Q(Q[3]));
-  (* SOFT_HLUTNM = "soft_lutpair5" *) 
+  (* SOFT_HLUTNM = "soft_lutpair12" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \mem_address_reg[3]_i_1 
        (.I0(base_read_reg[3]),
-        .I1(\mem_address_reg[15]_i_3_n_0 ),
+        .I1(mem_address1),
         .I2(base_write_reg[3]),
         .O(\mem_address_reg[3]_i_1_n_0 ));
   (* XILINX_LEGACY_PRIM = "LD" *) 
@@ -1353,15 +1189,15 @@ module controller
     \mem_address_reg[4] 
        (.CLR(1'b0),
         .D(\mem_address_reg[4]_i_1_n_0 ),
-        .G(\mem_address_reg[15]_i_2_n_0 ),
+        .G(\mem_address_reg[10]_i_2_n_0 ),
         .GE(1'b1),
         .Q(Q[4]));
-  (* SOFT_HLUTNM = "soft_lutpair6" *) 
+  (* SOFT_HLUTNM = "soft_lutpair12" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \mem_address_reg[4]_i_1 
        (.I0(base_read_reg[4]),
-        .I1(\mem_address_reg[15]_i_3_n_0 ),
+        .I1(mem_address1),
         .I2(base_write_reg[4]),
         .O(\mem_address_reg[4]_i_1_n_0 ));
   (* XILINX_LEGACY_PRIM = "LD" *) 
@@ -1371,15 +1207,15 @@ module controller
     \mem_address_reg[5] 
        (.CLR(1'b0),
         .D(\mem_address_reg[5]_i_1_n_0 ),
-        .G(\mem_address_reg[15]_i_2_n_0 ),
+        .G(\mem_address_reg[10]_i_2_n_0 ),
         .GE(1'b1),
         .Q(Q[5]));
-  (* SOFT_HLUTNM = "soft_lutpair6" *) 
+  (* SOFT_HLUTNM = "soft_lutpair11" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \mem_address_reg[5]_i_1 
        (.I0(base_read_reg[5]),
-        .I1(\mem_address_reg[15]_i_3_n_0 ),
+        .I1(mem_address1),
         .I2(base_write_reg[5]),
         .O(\mem_address_reg[5]_i_1_n_0 ));
   (* XILINX_LEGACY_PRIM = "LD" *) 
@@ -1389,15 +1225,15 @@ module controller
     \mem_address_reg[6] 
        (.CLR(1'b0),
         .D(\mem_address_reg[6]_i_1_n_0 ),
-        .G(\mem_address_reg[15]_i_2_n_0 ),
+        .G(\mem_address_reg[10]_i_2_n_0 ),
         .GE(1'b1),
         .Q(Q[6]));
-  (* SOFT_HLUTNM = "soft_lutpair7" *) 
+  (* SOFT_HLUTNM = "soft_lutpair10" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \mem_address_reg[6]_i_1 
        (.I0(base_read_reg[6]),
-        .I1(\mem_address_reg[15]_i_3_n_0 ),
+        .I1(mem_address1),
         .I2(base_write_reg[6]),
         .O(\mem_address_reg[6]_i_1_n_0 ));
   (* XILINX_LEGACY_PRIM = "LD" *) 
@@ -1407,52 +1243,50 @@ module controller
     \mem_address_reg[7] 
        (.CLR(1'b0),
         .D(\mem_address_reg[7]_i_1_n_0 ),
-        .G(\mem_address_reg[15]_i_2_n_0 ),
+        .G(\mem_address_reg[10]_i_2_n_0 ),
         .GE(1'b1),
         .Q(Q[7]));
-  (* SOFT_HLUTNM = "soft_lutpair7" *) 
+  (* SOFT_HLUTNM = "soft_lutpair9" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \mem_address_reg[7]_i_1 
        (.I0(base_read_reg[7]),
-        .I1(\mem_address_reg[15]_i_3_n_0 ),
+        .I1(mem_address1),
         .I2(base_write_reg[7]),
         .O(\mem_address_reg[7]_i_1_n_0 ));
-  (* XILINX_LEGACY_PRIM = "LD" *) 
-  (* XILINX_TRANSFORM_PINMAP = "VCC:GE GND:CLR" *) 
+  (* XILINX_LEGACY_PRIM = "LDC" *) 
+  (* XILINX_TRANSFORM_PINMAP = "VCC:GE" *) 
   LDCE #(
     .INIT(1'b0)) 
     \mem_address_reg[8] 
-       (.CLR(1'b0),
+       (.CLR(mem_address1),
         .D(\mem_address_reg[8]_i_1_n_0 ),
-        .G(\mem_address_reg[15]_i_2_n_0 ),
+        .G(\mem_address_reg[10]_i_2_n_0 ),
         .GE(1'b1),
         .Q(Q[8]));
-  (* SOFT_HLUTNM = "soft_lutpair8" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
+  (* SOFT_HLUTNM = "soft_lutpair11" *) 
+  LUT2 #(
+    .INIT(4'h2)) 
     \mem_address_reg[8]_i_1 
-       (.I0(base_read_reg[8]),
-        .I1(\mem_address_reg[15]_i_3_n_0 ),
-        .I2(base_write_reg[8]),
+       (.I0(base_write_reg[8]),
+        .I1(mem_address1),
         .O(\mem_address_reg[8]_i_1_n_0 ));
-  (* XILINX_LEGACY_PRIM = "LD" *) 
-  (* XILINX_TRANSFORM_PINMAP = "VCC:GE GND:CLR" *) 
+  (* XILINX_LEGACY_PRIM = "LDC" *) 
+  (* XILINX_TRANSFORM_PINMAP = "VCC:GE" *) 
   LDCE #(
     .INIT(1'b0)) 
     \mem_address_reg[9] 
-       (.CLR(1'b0),
+       (.CLR(mem_address1),
         .D(\mem_address_reg[9]_i_1_n_0 ),
-        .G(\mem_address_reg[15]_i_2_n_0 ),
+        .G(\mem_address_reg[10]_i_2_n_0 ),
         .GE(1'b1),
         .Q(Q[9]));
-  (* SOFT_HLUTNM = "soft_lutpair8" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
+  (* SOFT_HLUTNM = "soft_lutpair10" *) 
+  LUT2 #(
+    .INIT(4'h2)) 
     \mem_address_reg[9]_i_1 
-       (.I0(base_read_reg[9]),
-        .I1(\mem_address_reg[15]_i_3_n_0 ),
-        .I2(base_write_reg[9]),
+       (.I0(base_write_reg[9]),
+        .I1(mem_address1),
         .O(\mem_address_reg[9]_i_1_n_0 ));
   (* XILINX_LEGACY_PRIM = "LD" *) 
   (* XILINX_TRANSFORM_PINMAP = "VCC:GE GND:CLR" *) 
@@ -1560,7 +1394,7 @@ module controller
        (.I0(current_state[3]),
         .I1(current_state[2]),
         .I2(current_state[1]),
-        .I3(done_reg_i_2_n_0),
+        .I3(done_reg_i_3_n_0),
         .I4(current_state[0]),
         .I5(i_start_IBUF),
         .O(\next_state_reg[0]_i_1_n_0 ));
@@ -1618,7 +1452,7 @@ module controller
     .INIT(64'hFAAA2ABA00000000)) 
     \next_state_reg[3]_i_1 
        (.I0(current_state[3]),
-        .I1(done_reg_i_2_n_0),
+        .I1(done_reg_i_3_n_0),
         .I2(current_state[0]),
         .I3(current_state[1]),
         .I4(current_state[2]),
@@ -1632,14 +1466,14 @@ module controller
         .I2(current_state[3]),
         .I3(current_state[2]),
         .I4(current_state[1]),
-        .I5(done_reg_i_2_n_0),
+        .I5(done_reg_i_3_n_0),
         .O(\next_state_reg[3]_i_2_n_0 ));
   LUT4 #(
     .INIT(16'h2F70)) 
     \number_of_words[0]_C_i_1 
        (.I0(\number_of_words_reg[0]_LDC_n_0 ),
         .I1(\number_of_words_reg[0]_P_n_0 ),
-        .I2(number_of_words0),
+        .I2(\number_of_words[31]_C_i_1_n_0 ),
         .I3(\number_of_words_reg[0]_C_n_0 ),
         .O(\number_of_words[0]_C_i_1_n_0 ));
   LUT3 #(
@@ -1936,7 +1770,7 @@ module controller
         .I1(current_state[1]),
         .I2(current_state[0]),
         .I3(current_state[3]),
-        .O(number_of_words0));
+        .O(\number_of_words[31]_C_i_1_n_0 ));
   LUT3 #(
     .INIT(8'hB8)) 
     \number_of_words[31]_C_i_3 
@@ -2134,7 +1968,7 @@ module controller
     .IS_C_INVERTED(1'b1)) 
     \number_of_words_reg[0]_P 
        (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
+        .CE(\number_of_words[31]_C_i_1_n_0 ),
         .D(number_of_words02_in[0]),
         .PRE(\number_of_words_reg[0]_LDC_i_1_n_0 ),
         .Q(\number_of_words_reg[0]_P_n_0 ));
@@ -2143,7 +1977,7 @@ module controller
     .IS_C_INVERTED(1'b1)) 
     \number_of_words_reg[10]_C 
        (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
+        .CE(\number_of_words[31]_C_i_1_n_0 ),
         .CLR(p_1_in),
         .D(number_of_words02_in[10]),
         .Q(\number_of_words_reg[10]_C_n_0 ));
@@ -2152,7 +1986,7 @@ module controller
     .IS_C_INVERTED(1'b1)) 
     \number_of_words_reg[10]_P 
        (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
+        .CE(\number_of_words[31]_C_i_1_n_0 ),
         .D(number_of_words02_in[10]),
         .PRE(\number_of_words_reg[31]_LDC_i_1_n_0 ),
         .Q(\number_of_words_reg[10]_P_n_0 ));
@@ -2161,7 +1995,7 @@ module controller
     .IS_C_INVERTED(1'b1)) 
     \number_of_words_reg[11]_C 
        (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
+        .CE(\number_of_words[31]_C_i_1_n_0 ),
         .CLR(p_1_in),
         .D(number_of_words02_in[11]),
         .Q(\number_of_words_reg[11]_C_n_0 ));
@@ -2170,7 +2004,7 @@ module controller
     .IS_C_INVERTED(1'b1)) 
     \number_of_words_reg[11]_P 
        (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
+        .CE(\number_of_words[31]_C_i_1_n_0 ),
         .D(number_of_words02_in[11]),
         .PRE(\number_of_words_reg[31]_LDC_i_1_n_0 ),
         .Q(\number_of_words_reg[11]_P_n_0 ));
@@ -2179,7 +2013,7 @@ module controller
     .IS_C_INVERTED(1'b1)) 
     \number_of_words_reg[12]_C 
        (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
+        .CE(\number_of_words[31]_C_i_1_n_0 ),
         .CLR(p_1_in),
         .D(number_of_words02_in[12]),
         .Q(\number_of_words_reg[12]_C_n_0 ));
@@ -2196,7 +2030,7 @@ module controller
     .IS_C_INVERTED(1'b1)) 
     \number_of_words_reg[12]_P 
        (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
+        .CE(\number_of_words[31]_C_i_1_n_0 ),
         .D(number_of_words02_in[12]),
         .PRE(\number_of_words_reg[31]_LDC_i_1_n_0 ),
         .Q(\number_of_words_reg[12]_P_n_0 ));
@@ -2205,7 +2039,7 @@ module controller
     .IS_C_INVERTED(1'b1)) 
     \number_of_words_reg[13]_C 
        (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
+        .CE(\number_of_words[31]_C_i_1_n_0 ),
         .CLR(p_1_in),
         .D(number_of_words02_in[13]),
         .Q(\number_of_words_reg[13]_C_n_0 ));
@@ -2214,7 +2048,7 @@ module controller
     .IS_C_INVERTED(1'b1)) 
     \number_of_words_reg[13]_P 
        (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
+        .CE(\number_of_words[31]_C_i_1_n_0 ),
         .D(number_of_words02_in[13]),
         .PRE(\number_of_words_reg[31]_LDC_i_1_n_0 ),
         .Q(\number_of_words_reg[13]_P_n_0 ));
@@ -2223,7 +2057,7 @@ module controller
     .IS_C_INVERTED(1'b1)) 
     \number_of_words_reg[14]_C 
        (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
+        .CE(\number_of_words[31]_C_i_1_n_0 ),
         .CLR(p_1_in),
         .D(number_of_words02_in[14]),
         .Q(\number_of_words_reg[14]_C_n_0 ));
@@ -2232,7 +2066,7 @@ module controller
     .IS_C_INVERTED(1'b1)) 
     \number_of_words_reg[14]_P 
        (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
+        .CE(\number_of_words[31]_C_i_1_n_0 ),
         .D(number_of_words02_in[14]),
         .PRE(\number_of_words_reg[31]_LDC_i_1_n_0 ),
         .Q(\number_of_words_reg[14]_P_n_0 ));
@@ -2241,7 +2075,7 @@ module controller
     .IS_C_INVERTED(1'b1)) 
     \number_of_words_reg[15]_C 
        (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
+        .CE(\number_of_words[31]_C_i_1_n_0 ),
         .CLR(p_1_in),
         .D(number_of_words02_in[15]),
         .Q(\number_of_words_reg[15]_C_n_0 ));
@@ -2250,7 +2084,7 @@ module controller
     .IS_C_INVERTED(1'b1)) 
     \number_of_words_reg[15]_P 
        (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
+        .CE(\number_of_words[31]_C_i_1_n_0 ),
         .D(number_of_words02_in[15]),
         .PRE(\number_of_words_reg[31]_LDC_i_1_n_0 ),
         .Q(\number_of_words_reg[15]_P_n_0 ));
@@ -2259,7 +2093,7 @@ module controller
     .IS_C_INVERTED(1'b1)) 
     \number_of_words_reg[16]_C 
        (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
+        .CE(\number_of_words[31]_C_i_1_n_0 ),
         .CLR(p_1_in),
         .D(number_of_words02_in[16]),
         .Q(\number_of_words_reg[16]_C_n_0 ));
@@ -2276,7 +2110,7 @@ module controller
     .IS_C_INVERTED(1'b1)) 
     \number_of_words_reg[16]_P 
        (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
+        .CE(\number_of_words[31]_C_i_1_n_0 ),
         .D(number_of_words02_in[16]),
         .PRE(\number_of_words_reg[31]_LDC_i_1_n_0 ),
         .Q(\number_of_words_reg[16]_P_n_0 ));
@@ -2285,7 +2119,7 @@ module controller
     .IS_C_INVERTED(1'b1)) 
     \number_of_words_reg[17]_C 
        (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
+        .CE(\number_of_words[31]_C_i_1_n_0 ),
         .CLR(p_1_in),
         .D(number_of_words02_in[17]),
         .Q(\number_of_words_reg[17]_C_n_0 ));
@@ -2294,7 +2128,7 @@ module controller
     .IS_C_INVERTED(1'b1)) 
     \number_of_words_reg[17]_P 
        (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
+        .CE(\number_of_words[31]_C_i_1_n_0 ),
         .D(number_of_words02_in[17]),
         .PRE(\number_of_words_reg[31]_LDC_i_1_n_0 ),
         .Q(\number_of_words_reg[17]_P_n_0 ));
@@ -2303,7 +2137,7 @@ module controller
     .IS_C_INVERTED(1'b1)) 
     \number_of_words_reg[18]_C 
        (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
+        .CE(\number_of_words[31]_C_i_1_n_0 ),
         .CLR(p_1_in),
         .D(number_of_words02_in[18]),
         .Q(\number_of_words_reg[18]_C_n_0 ));
@@ -2312,7 +2146,7 @@ module controller
     .IS_C_INVERTED(1'b1)) 
     \number_of_words_reg[18]_P 
        (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
+        .CE(\number_of_words[31]_C_i_1_n_0 ),
         .D(number_of_words02_in[18]),
         .PRE(\number_of_words_reg[31]_LDC_i_1_n_0 ),
         .Q(\number_of_words_reg[18]_P_n_0 ));
@@ -2321,7 +2155,7 @@ module controller
     .IS_C_INVERTED(1'b1)) 
     \number_of_words_reg[19]_C 
        (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
+        .CE(\number_of_words[31]_C_i_1_n_0 ),
         .CLR(p_1_in),
         .D(number_of_words02_in[19]),
         .Q(\number_of_words_reg[19]_C_n_0 ));
@@ -2330,7 +2164,7 @@ module controller
     .IS_C_INVERTED(1'b1)) 
     \number_of_words_reg[19]_P 
        (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
+        .CE(\number_of_words[31]_C_i_1_n_0 ),
         .D(number_of_words02_in[19]),
         .PRE(\number_of_words_reg[31]_LDC_i_1_n_0 ),
         .Q(\number_of_words_reg[19]_P_n_0 ));
@@ -2339,7 +2173,7 @@ module controller
     .IS_C_INVERTED(1'b1)) 
     \number_of_words_reg[1]_C 
        (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
+        .CE(\number_of_words[31]_C_i_1_n_0 ),
         .CLR(\number_of_words_reg[1]_LDC_i_2_n_0 ),
         .D(number_of_words02_in[1]),
         .Q(\number_of_words_reg[1]_C_n_0 ));
@@ -2377,7 +2211,7 @@ module controller
     .IS_C_INVERTED(1'b1)) 
     \number_of_words_reg[1]_P 
        (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
+        .CE(\number_of_words[31]_C_i_1_n_0 ),
         .D(number_of_words02_in[1]),
         .PRE(\number_of_words_reg[1]_LDC_i_1_n_0 ),
         .Q(\number_of_words_reg[1]_P_n_0 ));
@@ -2386,7 +2220,7 @@ module controller
     .IS_C_INVERTED(1'b1)) 
     \number_of_words_reg[20]_C 
        (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
+        .CE(\number_of_words[31]_C_i_1_n_0 ),
         .CLR(p_1_in),
         .D(number_of_words02_in[20]),
         .Q(\number_of_words_reg[20]_C_n_0 ));
@@ -2403,7 +2237,7 @@ module controller
     .IS_C_INVERTED(1'b1)) 
     \number_of_words_reg[20]_P 
        (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
+        .CE(\number_of_words[31]_C_i_1_n_0 ),
         .D(number_of_words02_in[20]),
         .PRE(\number_of_words_reg[31]_LDC_i_1_n_0 ),
         .Q(\number_of_words_reg[20]_P_n_0 ));
@@ -2412,7 +2246,7 @@ module controller
     .IS_C_INVERTED(1'b1)) 
     \number_of_words_reg[21]_C 
        (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
+        .CE(\number_of_words[31]_C_i_1_n_0 ),
         .CLR(p_1_in),
         .D(number_of_words02_in[21]),
         .Q(\number_of_words_reg[21]_C_n_0 ));
@@ -2421,7 +2255,7 @@ module controller
     .IS_C_INVERTED(1'b1)) 
     \number_of_words_reg[21]_P 
        (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
+        .CE(\number_of_words[31]_C_i_1_n_0 ),
         .D(number_of_words02_in[21]),
         .PRE(\number_of_words_reg[31]_LDC_i_1_n_0 ),
         .Q(\number_of_words_reg[21]_P_n_0 ));
@@ -2430,7 +2264,7 @@ module controller
     .IS_C_INVERTED(1'b1)) 
     \number_of_words_reg[22]_C 
        (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
+        .CE(\number_of_words[31]_C_i_1_n_0 ),
         .CLR(p_1_in),
         .D(number_of_words02_in[22]),
         .Q(\number_of_words_reg[22]_C_n_0 ));
@@ -2439,7 +2273,7 @@ module controller
     .IS_C_INVERTED(1'b1)) 
     \number_of_words_reg[22]_P 
        (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
+        .CE(\number_of_words[31]_C_i_1_n_0 ),
         .D(number_of_words02_in[22]),
         .PRE(\number_of_words_reg[31]_LDC_i_1_n_0 ),
         .Q(\number_of_words_reg[22]_P_n_0 ));
@@ -2448,7 +2282,7 @@ module controller
     .IS_C_INVERTED(1'b1)) 
     \number_of_words_reg[23]_C 
        (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
+        .CE(\number_of_words[31]_C_i_1_n_0 ),
         .CLR(p_1_in),
         .D(number_of_words02_in[23]),
         .Q(\number_of_words_reg[23]_C_n_0 ));
@@ -2457,7 +2291,7 @@ module controller
     .IS_C_INVERTED(1'b1)) 
     \number_of_words_reg[23]_P 
        (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
+        .CE(\number_of_words[31]_C_i_1_n_0 ),
         .D(number_of_words02_in[23]),
         .PRE(\number_of_words_reg[31]_LDC_i_1_n_0 ),
         .Q(\number_of_words_reg[23]_P_n_0 ));
@@ -2466,7 +2300,7 @@ module controller
     .IS_C_INVERTED(1'b1)) 
     \number_of_words_reg[24]_C 
        (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
+        .CE(\number_of_words[31]_C_i_1_n_0 ),
         .CLR(p_1_in),
         .D(number_of_words02_in[24]),
         .Q(\number_of_words_reg[24]_C_n_0 ));
@@ -2483,7 +2317,7 @@ module controller
     .IS_C_INVERTED(1'b1)) 
     \number_of_words_reg[24]_P 
        (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
+        .CE(\number_of_words[31]_C_i_1_n_0 ),
         .D(number_of_words02_in[24]),
         .PRE(\number_of_words_reg[31]_LDC_i_1_n_0 ),
         .Q(\number_of_words_reg[24]_P_n_0 ));
@@ -2492,7 +2326,7 @@ module controller
     .IS_C_INVERTED(1'b1)) 
     \number_of_words_reg[25]_C 
        (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
+        .CE(\number_of_words[31]_C_i_1_n_0 ),
         .CLR(p_1_in),
         .D(number_of_words02_in[25]),
         .Q(\number_of_words_reg[25]_C_n_0 ));
@@ -2501,7 +2335,7 @@ module controller
     .IS_C_INVERTED(1'b1)) 
     \number_of_words_reg[25]_P 
        (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
+        .CE(\number_of_words[31]_C_i_1_n_0 ),
         .D(number_of_words02_in[25]),
         .PRE(\number_of_words_reg[31]_LDC_i_1_n_0 ),
         .Q(\number_of_words_reg[25]_P_n_0 ));
@@ -2510,7 +2344,7 @@ module controller
     .IS_C_INVERTED(1'b1)) 
     \number_of_words_reg[26]_C 
        (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
+        .CE(\number_of_words[31]_C_i_1_n_0 ),
         .CLR(p_1_in),
         .D(number_of_words02_in[26]),
         .Q(\number_of_words_reg[26]_C_n_0 ));
@@ -2519,7 +2353,7 @@ module controller
     .IS_C_INVERTED(1'b1)) 
     \number_of_words_reg[26]_P 
        (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
+        .CE(\number_of_words[31]_C_i_1_n_0 ),
         .D(number_of_words02_in[26]),
         .PRE(\number_of_words_reg[31]_LDC_i_1_n_0 ),
         .Q(\number_of_words_reg[26]_P_n_0 ));
@@ -2528,7 +2362,7 @@ module controller
     .IS_C_INVERTED(1'b1)) 
     \number_of_words_reg[27]_C 
        (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
+        .CE(\number_of_words[31]_C_i_1_n_0 ),
         .CLR(p_1_in),
         .D(number_of_words02_in[27]),
         .Q(\number_of_words_reg[27]_C_n_0 ));
@@ -2537,7 +2371,7 @@ module controller
     .IS_C_INVERTED(1'b1)) 
     \number_of_words_reg[27]_P 
        (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
+        .CE(\number_of_words[31]_C_i_1_n_0 ),
         .D(number_of_words02_in[27]),
         .PRE(\number_of_words_reg[31]_LDC_i_1_n_0 ),
         .Q(\number_of_words_reg[27]_P_n_0 ));
@@ -2546,7 +2380,7 @@ module controller
     .IS_C_INVERTED(1'b1)) 
     \number_of_words_reg[28]_C 
        (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
+        .CE(\number_of_words[31]_C_i_1_n_0 ),
         .CLR(p_1_in),
         .D(number_of_words02_in[28]),
         .Q(\number_of_words_reg[28]_C_n_0 ));
@@ -2563,7 +2397,7 @@ module controller
     .IS_C_INVERTED(1'b1)) 
     \number_of_words_reg[28]_P 
        (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
+        .CE(\number_of_words[31]_C_i_1_n_0 ),
         .D(number_of_words02_in[28]),
         .PRE(\number_of_words_reg[31]_LDC_i_1_n_0 ),
         .Q(\number_of_words_reg[28]_P_n_0 ));
@@ -2572,7 +2406,7 @@ module controller
     .IS_C_INVERTED(1'b1)) 
     \number_of_words_reg[29]_C 
        (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
+        .CE(\number_of_words[31]_C_i_1_n_0 ),
         .CLR(p_1_in),
         .D(number_of_words02_in[29]),
         .Q(\number_of_words_reg[29]_C_n_0 ));
@@ -2581,7 +2415,7 @@ module controller
     .IS_C_INVERTED(1'b1)) 
     \number_of_words_reg[29]_P 
        (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
+        .CE(\number_of_words[31]_C_i_1_n_0 ),
         .D(number_of_words02_in[29]),
         .PRE(\number_of_words_reg[31]_LDC_i_1_n_0 ),
         .Q(\number_of_words_reg[29]_P_n_0 ));
@@ -2590,7 +2424,7 @@ module controller
     .IS_C_INVERTED(1'b1)) 
     \number_of_words_reg[2]_C 
        (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
+        .CE(\number_of_words[31]_C_i_1_n_0 ),
         .CLR(\number_of_words_reg[2]_LDC_i_2_n_0 ),
         .D(number_of_words02_in[2]),
         .Q(\number_of_words_reg[2]_C_n_0 ));
@@ -2628,7 +2462,7 @@ module controller
     .IS_C_INVERTED(1'b1)) 
     \number_of_words_reg[2]_P 
        (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
+        .CE(\number_of_words[31]_C_i_1_n_0 ),
         .D(number_of_words02_in[2]),
         .PRE(\number_of_words_reg[2]_LDC_i_1_n_0 ),
         .Q(\number_of_words_reg[2]_P_n_0 ));
@@ -2637,7 +2471,7 @@ module controller
     .IS_C_INVERTED(1'b1)) 
     \number_of_words_reg[30]_C 
        (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
+        .CE(\number_of_words[31]_C_i_1_n_0 ),
         .CLR(p_1_in),
         .D(number_of_words02_in[30]),
         .Q(\number_of_words_reg[30]_C_n_0 ));
@@ -2646,7 +2480,7 @@ module controller
     .IS_C_INVERTED(1'b1)) 
     \number_of_words_reg[30]_P 
        (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
+        .CE(\number_of_words[31]_C_i_1_n_0 ),
         .D(number_of_words02_in[30]),
         .PRE(\number_of_words_reg[31]_LDC_i_1_n_0 ),
         .Q(\number_of_words_reg[30]_P_n_0 ));
@@ -2655,7 +2489,7 @@ module controller
     .IS_C_INVERTED(1'b1)) 
     \number_of_words_reg[31]_C 
        (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
+        .CE(\number_of_words[31]_C_i_1_n_0 ),
         .CLR(p_1_in),
         .D(number_of_words02_in[31]),
         .Q(\number_of_words_reg[31]_C_n_0 ));
@@ -2699,7 +2533,7 @@ module controller
     .IS_C_INVERTED(1'b1)) 
     \number_of_words_reg[31]_P 
        (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
+        .CE(\number_of_words[31]_C_i_1_n_0 ),
         .D(number_of_words02_in[31]),
         .PRE(\number_of_words_reg[31]_LDC_i_1_n_0 ),
         .Q(\number_of_words_reg[31]_P_n_0 ));
@@ -2708,7 +2542,7 @@ module controller
     .IS_C_INVERTED(1'b1)) 
     \number_of_words_reg[3]_C 
        (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
+        .CE(\number_of_words[31]_C_i_1_n_0 ),
         .CLR(\number_of_words_reg[3]_LDC_i_2_n_0 ),
         .D(number_of_words02_in[3]),
         .Q(\number_of_words_reg[3]_C_n_0 ));
@@ -2746,7 +2580,7 @@ module controller
     .IS_C_INVERTED(1'b1)) 
     \number_of_words_reg[3]_P 
        (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
+        .CE(\number_of_words[31]_C_i_1_n_0 ),
         .D(number_of_words02_in[3]),
         .PRE(\number_of_words_reg[3]_LDC_i_1_n_0 ),
         .Q(\number_of_words_reg[3]_P_n_0 ));
@@ -2755,7 +2589,7 @@ module controller
     .IS_C_INVERTED(1'b1)) 
     \number_of_words_reg[4]_C 
        (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
+        .CE(\number_of_words[31]_C_i_1_n_0 ),
         .CLR(\number_of_words_reg[4]_LDC_i_2_n_0 ),
         .D(number_of_words02_in[4]),
         .Q(\number_of_words_reg[4]_C_n_0 ));
@@ -2801,7 +2635,7 @@ module controller
     .IS_C_INVERTED(1'b1)) 
     \number_of_words_reg[4]_P 
        (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
+        .CE(\number_of_words[31]_C_i_1_n_0 ),
         .D(number_of_words02_in[4]),
         .PRE(\number_of_words_reg[4]_LDC_i_1_n_0 ),
         .Q(\number_of_words_reg[4]_P_n_0 ));
@@ -2810,7 +2644,7 @@ module controller
     .IS_C_INVERTED(1'b1)) 
     \number_of_words_reg[5]_C 
        (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
+        .CE(\number_of_words[31]_C_i_1_n_0 ),
         .CLR(\number_of_words_reg[5]_LDC_i_2_n_0 ),
         .D(number_of_words02_in[5]),
         .Q(\number_of_words_reg[5]_C_n_0 ));
@@ -2848,7 +2682,7 @@ module controller
     .IS_C_INVERTED(1'b1)) 
     \number_of_words_reg[5]_P 
        (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
+        .CE(\number_of_words[31]_C_i_1_n_0 ),
         .D(number_of_words02_in[5]),
         .PRE(\number_of_words_reg[5]_LDC_i_1_n_0 ),
         .Q(\number_of_words_reg[5]_P_n_0 ));
@@ -2857,7 +2691,7 @@ module controller
     .IS_C_INVERTED(1'b1)) 
     \number_of_words_reg[6]_C 
        (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
+        .CE(\number_of_words[31]_C_i_1_n_0 ),
         .CLR(\number_of_words_reg[6]_LDC_i_2_n_0 ),
         .D(number_of_words02_in[6]),
         .Q(\number_of_words_reg[6]_C_n_0 ));
@@ -2895,7 +2729,7 @@ module controller
     .IS_C_INVERTED(1'b1)) 
     \number_of_words_reg[6]_P 
        (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
+        .CE(\number_of_words[31]_C_i_1_n_0 ),
         .D(number_of_words02_in[6]),
         .PRE(\number_of_words_reg[6]_LDC_i_1_n_0 ),
         .Q(\number_of_words_reg[6]_P_n_0 ));
@@ -2904,7 +2738,7 @@ module controller
     .IS_C_INVERTED(1'b1)) 
     \number_of_words_reg[7]_C 
        (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
+        .CE(\number_of_words[31]_C_i_1_n_0 ),
         .CLR(\number_of_words_reg[7]_LDC_i_2_n_0 ),
         .D(number_of_words02_in[7]),
         .Q(\number_of_words_reg[7]_C_n_0 ));
@@ -2942,7 +2776,7 @@ module controller
     .IS_C_INVERTED(1'b1)) 
     \number_of_words_reg[7]_P 
        (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
+        .CE(\number_of_words[31]_C_i_1_n_0 ),
         .D(number_of_words02_in[7]),
         .PRE(\number_of_words_reg[7]_LDC_i_1_n_0 ),
         .Q(\number_of_words_reg[7]_P_n_0 ));
@@ -2951,7 +2785,7 @@ module controller
     .IS_C_INVERTED(1'b1)) 
     \number_of_words_reg[8]_C 
        (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
+        .CE(\number_of_words[31]_C_i_1_n_0 ),
         .CLR(p_1_in),
         .D(number_of_words02_in[8]),
         .Q(\number_of_words_reg[8]_C_n_0 ));
@@ -2968,7 +2802,7 @@ module controller
     .IS_C_INVERTED(1'b1)) 
     \number_of_words_reg[8]_P 
        (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
+        .CE(\number_of_words[31]_C_i_1_n_0 ),
         .D(number_of_words02_in[8]),
         .PRE(\number_of_words_reg[31]_LDC_i_1_n_0 ),
         .Q(\number_of_words_reg[8]_P_n_0 ));
@@ -2977,7 +2811,7 @@ module controller
     .IS_C_INVERTED(1'b1)) 
     \number_of_words_reg[9]_C 
        (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
+        .CE(\number_of_words[31]_C_i_1_n_0 ),
         .CLR(p_1_in),
         .D(number_of_words02_in[9]),
         .Q(\number_of_words_reg[9]_C_n_0 ));
@@ -2986,7 +2820,7 @@ module controller
     .IS_C_INVERTED(1'b1)) 
     \number_of_words_reg[9]_P 
        (.C(i_clk_IBUF_BUFG),
-        .CE(number_of_words0),
+        .CE(\number_of_words[31]_C_i_1_n_0 ),
         .D(number_of_words02_in[9]),
         .PRE(\number_of_words_reg[31]_LDC_i_1_n_0 ),
         .Q(\number_of_words_reg[9]_P_n_0 ));
@@ -3017,7 +2851,7 @@ module controller
         .I2(current_state[1]),
         .I3(current_state[2]),
         .O(o_we_OBUF));
-  (* SOFT_HLUTNM = "soft_lutpair3" *) 
+  (* SOFT_HLUTNM = "soft_lutpair6" *) 
   LUT4 #(
     .INIT(16'hFFFE)) 
     output_i_1
@@ -3026,7 +2860,7 @@ module controller
         .I2(p2k_reg_i_4_n_0),
         .I3(p2k_reg_i_5_n_0),
         .O(u));
-  (* SOFT_HLUTNM = "soft_lutpair3" *) 
+  (* SOFT_HLUTNM = "soft_lutpair6" *) 
   LUT5 #(
     .INIT(32'h0001FFFE)) 
     p1k_reg_i_1
@@ -3097,7 +2931,7 @@ module convolutional_encoder
     output_reg,
     p1k0,
     u,
-    controller_rst_BUFG,
+    controller_rst,
     i_start_IBUF,
     i_rst_IBUF);
   output [1:0]conv_encoder_out;
@@ -3108,12 +2942,12 @@ module convolutional_encoder
   input output_reg;
   input p1k0;
   input u;
-  input controller_rst_BUFG;
+  input controller_rst;
   input i_start_IBUF;
   input i_rst_IBUF;
 
   wire FF2_signal;
-  wire controller_rst_BUFG;
+  wire controller_rst;
   wire [1:0]conv_encoder_out;
   wire i_rst_IBUF;
   wire i_start_IBUF;
@@ -3125,16 +2959,16 @@ module convolutional_encoder
   wire u;
 
   FF_D FF1
-       (.controller_rst_BUFG(controller_rst_BUFG),
+       (.controller_rst(controller_rst),
         .\output (\output ),
         .output_reg_0(output_reg),
         .u(u));
   FF_D_0 FF2
        (.FF2_signal(FF2_signal),
-        .controller_rst_BUFG(controller_rst_BUFG),
+        .controller_rst(controller_rst),
         .\output (\output ),
         .output_reg_0(output_reg));
-  (* SOFT_HLUTNM = "soft_lutpair19" *) 
+  (* SOFT_HLUTNM = "soft_lutpair24" *) 
   LUT3 #(
     .INIT(8'h08)) 
     \o_data_OBUF[0]_inst_i_1 
@@ -3142,7 +2976,7 @@ module convolutional_encoder
         .I1(i_start_IBUF),
         .I2(i_rst_IBUF),
         .O(o_data_OBUF[0]));
-  (* SOFT_HLUTNM = "soft_lutpair19" *) 
+  (* SOFT_HLUTNM = "soft_lutpair24" *) 
   LUT3 #(
     .INIT(8'h08)) 
     \o_data_OBUF[1]_inst_i_1 
@@ -3196,7 +3030,6 @@ module project_reti_logiche
   wire FF2_signal;
   wire controller_clk;
   wire controller_rst;
-  wire controller_rst_BUFG;
   wire [1:0]conv_encoder_out;
   wire i_clk;
   wire i_clk_IBUF;
@@ -3208,7 +3041,7 @@ module project_reti_logiche
   wire i_start;
   wire i_start_IBUF;
   wire [15:0]o_address;
-  wire [15:0]o_address_OBUF;
+  wire [10:0]o_address_OBUF;
   wire [7:0]o_data;
   wire [7:0]o_data_OBUF;
   wire o_done;
@@ -3231,7 +3064,6 @@ end
         .Q(o_address_OBUF),
         .controller_clk_reg_0(controller_clk),
         .controller_rst(controller_rst),
-        .controller_rst_BUFG(controller_rst_BUFG),
         .i_clk_IBUF(i_clk_IBUF),
         .i_clk_IBUF_BUFG(i_clk_IBUF_BUFG),
         .i_rst_IBUF(i_rst_IBUF),
@@ -3243,12 +3075,9 @@ end
         .p1k0(p1k0),
         .p2k0(p2k0),
         .u(u));
-  BUFG controller_rst_BUFG_inst
-       (.I(controller_rst),
-        .O(controller_rst_BUFG));
   convolutional_encoder encoder
        (.FF2_signal(FF2_signal),
-        .controller_rst_BUFG(controller_rst_BUFG),
+        .controller_rst(controller_rst),
         .conv_encoder_out(conv_encoder_out),
         .i_rst_IBUF(i_rst_IBUF),
         .i_start_IBUF(i_start_IBUF),
@@ -3301,19 +3130,19 @@ end
        (.I(o_address_OBUF[10]),
         .O(o_address[10]));
   OBUF \o_address_OBUF[11]_inst 
-       (.I(o_address_OBUF[11]),
+       (.I(1'b0),
         .O(o_address[11]));
   OBUF \o_address_OBUF[12]_inst 
-       (.I(o_address_OBUF[12]),
+       (.I(1'b0),
         .O(o_address[12]));
   OBUF \o_address_OBUF[13]_inst 
-       (.I(o_address_OBUF[13]),
+       (.I(1'b0),
         .O(o_address[13]));
   OBUF \o_address_OBUF[14]_inst 
-       (.I(o_address_OBUF[14]),
+       (.I(1'b0),
         .O(o_address[14]));
   OBUF \o_address_OBUF[15]_inst 
-       (.I(o_address_OBUF[15]),
+       (.I(1'b0),
         .O(o_address[15]));
   OBUF \o_address_OBUF[1]_inst 
        (.I(o_address_OBUF[1]),
@@ -3376,7 +3205,7 @@ end
        (.I(o_we_OBUF),
         .O(o_we));
   string_manager str_mng
-       (.controller_rst_BUFG(controller_rst_BUFG),
+       (.controller_rst(controller_rst),
         .conv_encoder_out(conv_encoder_out),
         .\half_z_inout_shifter_reg[7]_0 (controller_clk),
         .i_rst_IBUF(i_rst_IBUF),
@@ -3388,17 +3217,17 @@ module string_manager
    (o_data_OBUF,
     i_start_IBUF,
     i_rst_IBUF,
-    controller_rst_BUFG,
+    controller_rst,
     \half_z_inout_shifter_reg[7]_0 ,
     conv_encoder_out);
   output [5:0]o_data_OBUF;
   input i_start_IBUF;
   input i_rst_IBUF;
-  input controller_rst_BUFG;
+  input controller_rst;
   input \half_z_inout_shifter_reg[7]_0 ;
   input [1:0]conv_encoder_out;
 
-  wire controller_rst_BUFG;
+  wire controller_rst;
   wire [1:0]conv_encoder_out;
   wire \half_z_inout_shifter_reg[7]_0 ;
   wire i_rst_IBUF;
@@ -3413,7 +3242,7 @@ module string_manager
         .CE(1'b1),
         .D(conv_encoder_out[0]),
         .Q(p_0_in[2]),
-        .R(controller_rst_BUFG));
+        .R(controller_rst));
   FDRE #(
     .INIT(1'b0)) 
     \half_z_inout_shifter_reg[3] 
@@ -3421,7 +3250,7 @@ module string_manager
         .CE(1'b1),
         .D(conv_encoder_out[1]),
         .Q(p_0_in[3]),
-        .R(controller_rst_BUFG));
+        .R(controller_rst));
   FDRE #(
     .INIT(1'b0)) 
     \half_z_inout_shifter_reg[4] 
@@ -3429,7 +3258,7 @@ module string_manager
         .CE(1'b1),
         .D(p_0_in[2]),
         .Q(p_0_in[4]),
-        .R(controller_rst_BUFG));
+        .R(controller_rst));
   FDRE #(
     .INIT(1'b0)) 
     \half_z_inout_shifter_reg[5] 
@@ -3437,7 +3266,7 @@ module string_manager
         .CE(1'b1),
         .D(p_0_in[3]),
         .Q(p_0_in[5]),
-        .R(controller_rst_BUFG));
+        .R(controller_rst));
   FDRE #(
     .INIT(1'b0)) 
     \half_z_inout_shifter_reg[6] 
@@ -3445,7 +3274,7 @@ module string_manager
         .CE(1'b1),
         .D(p_0_in[4]),
         .Q(p_0_in[6]),
-        .R(controller_rst_BUFG));
+        .R(controller_rst));
   FDRE #(
     .INIT(1'b0)) 
     \half_z_inout_shifter_reg[7] 
@@ -3453,8 +3282,8 @@ module string_manager
         .CE(1'b1),
         .D(p_0_in[5]),
         .Q(p_0_in[7]),
-        .R(controller_rst_BUFG));
-  (* SOFT_HLUTNM = "soft_lutpair22" *) 
+        .R(controller_rst));
+  (* SOFT_HLUTNM = "soft_lutpair27" *) 
   LUT3 #(
     .INIT(8'h08)) 
     \o_data_OBUF[2]_inst_i_1 
@@ -3462,7 +3291,7 @@ module string_manager
         .I1(i_start_IBUF),
         .I2(i_rst_IBUF),
         .O(o_data_OBUF[0]));
-  (* SOFT_HLUTNM = "soft_lutpair22" *) 
+  (* SOFT_HLUTNM = "soft_lutpair27" *) 
   LUT3 #(
     .INIT(8'h08)) 
     \o_data_OBUF[3]_inst_i_1 
@@ -3470,7 +3299,7 @@ module string_manager
         .I1(i_start_IBUF),
         .I2(i_rst_IBUF),
         .O(o_data_OBUF[1]));
-  (* SOFT_HLUTNM = "soft_lutpair21" *) 
+  (* SOFT_HLUTNM = "soft_lutpair26" *) 
   LUT3 #(
     .INIT(8'h08)) 
     \o_data_OBUF[4]_inst_i_1 
@@ -3478,7 +3307,7 @@ module string_manager
         .I1(i_start_IBUF),
         .I2(i_rst_IBUF),
         .O(o_data_OBUF[2]));
-  (* SOFT_HLUTNM = "soft_lutpair21" *) 
+  (* SOFT_HLUTNM = "soft_lutpair26" *) 
   LUT3 #(
     .INIT(8'h08)) 
     \o_data_OBUF[5]_inst_i_1 
@@ -3486,7 +3315,7 @@ module string_manager
         .I1(i_start_IBUF),
         .I2(i_rst_IBUF),
         .O(o_data_OBUF[3]));
-  (* SOFT_HLUTNM = "soft_lutpair20" *) 
+  (* SOFT_HLUTNM = "soft_lutpair25" *) 
   LUT3 #(
     .INIT(8'h08)) 
     \o_data_OBUF[6]_inst_i_1 
@@ -3494,7 +3323,7 @@ module string_manager
         .I1(i_start_IBUF),
         .I2(i_rst_IBUF),
         .O(o_data_OBUF[4]));
-  (* SOFT_HLUTNM = "soft_lutpair20" *) 
+  (* SOFT_HLUTNM = "soft_lutpair25" *) 
   LUT3 #(
     .INIT(8'h08)) 
     \o_data_OBUF[7]_inst_i_1 

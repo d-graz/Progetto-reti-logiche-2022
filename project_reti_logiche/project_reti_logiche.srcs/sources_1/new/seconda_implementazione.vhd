@@ -121,8 +121,8 @@ architecture dataflow of controller is
     signal next_state : state_type;
     signal current_state : state_type := idle;
     signal number_of_words : integer := -1;
-    signal base_read : integer := 0;
-    signal base_write : integer := 1000;
+    signal base_read : unsigned(7 downto 0) := (others => '0');
+    signal base_write : unsigned(10 downto 0) := to_unsigned(1000,11);
     signal mem_inout : std_logic_vector(7 downto 0);
     signal component_enable : std_logic :='0';
     
@@ -154,15 +154,15 @@ architecture dataflow of controller is
                  mem_inout(1) when p_6,
                  mem_inout(0) when p_7,
                  '0' when others;
-        base_read <= 0 when (reset = '1' or start = '0') else
+        base_read <= to_unsigned(0,8) when (reset = '1' or start = '0') else
                      base_read + 1 when (falling_edge(clock) and current_state = r and reset = '0');
-        base_write <= 1000 when (reset = '1' or start = '0') else 
+        base_write <= to_unsigned(1000,11) when (reset = '1' or start = '0') else 
                       base_write +1 when (falling_edge(clock) and (current_state = p_4 or current_state = d) and reset = '0');
         number_of_words <= to_integer(unsigned(data)) when (current_state = r_wc) else
                            -1 when reset = '1' else 
                            number_of_words - 1 when (current_state = r and falling_edge(clock));
-        mem_address <= std_logic_vector(to_unsigned(base_read,16)) when (next_state = r_wc or current_state = r) else 
-                       std_logic_vector(to_unsigned(base_write,16)) when (current_state = p_3 or current_state = p_7);
+        mem_address <= std_logic_vector("00000000"&base_read) when (next_state = r_wc or current_state = r) else 
+                       std_logic_vector("00000"&base_write) when (current_state = p_3 or current_state = p_7);
         mem_enable <= '1' when ((current_state = idle and next_state = r_wc) or current_state = r_wc or current_state = r or current_state = p_3 or current_state = p_7) else '0';
         mem_write <= '1' when (current_state = p_3 or current_state = p_7) else '0';
         controller_clk <= '0' when component_enable = '0' else
