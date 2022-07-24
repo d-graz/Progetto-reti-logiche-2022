@@ -1,7 +1,7 @@
 -- Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2021.2 (lin64) Build 3367213 Tue Oct 19 02:47:39 MDT 2021
--- Date        : Sat Jul 23 13:24:48 2022
+-- Date        : Sat Jul 23 13:32:48 2022
 -- Host        : dgraz running 64-bit Manjaro Linux
 -- Command     : write_vhdl -mode funcsim -nolib -force -file
 --               /home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.sim/sim_1/synth/func/xsim/project_tb_func_synth.vhd
