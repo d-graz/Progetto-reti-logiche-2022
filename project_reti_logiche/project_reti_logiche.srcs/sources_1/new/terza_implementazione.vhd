@@ -22,7 +22,7 @@ end FF_D;
 architecture dataflow of FF_D is
     begin
         output <= '0' when reset = '1' else
-                  input when (falling_edge(clock) and enable = '1');
+                  input when (rising_edge(clock) and enable = '1');
 end dataflow;
     
 
@@ -62,8 +62,8 @@ architecture structural of convolutional_encoder is
             port map(input => u, clock => clock, reset => reset, enable => enable, output => FF1_signal);
         FF2 : FF_D
             port map(input => FF1_signal, clock => clock, reset => reset, enable => enable, output => FF2_signal);
-        p1k <= u xor FF2_signal when (clock = '1' and enable = '1') else p1k;
-        p2k <= u xor FF1_signal xor FF2_signal when (clock = '1' and enable = '1') else p2k;
+        p1k <= u xor FF2_signal;
+        p2k <= u xor FF1_signal xor FF2_signal;
         pk <= p1k & p2k;
 
 end structural;
@@ -90,9 +90,9 @@ architecture dataflow of string_manager is
     signal half_z_inout_shifter : std_logic_vector(7 downto 0) := (others => '0');
 
     begin
-        half_z_inout_shifter <= half_z_inout(5 downto 0)& "00" when (rising_edge(controller_clk) and enable = '1');
-        half_z_inout <= half_z_inout_shifter(7 downto 2) & bits when rst = '0' else
-                        "00000000" when rst = '1';
+        half_z_inout_shifter <= half_z_inout(5 downto 0)& "00" when (rising_edge(clock) and enable = '1');
+        half_z_inout <= half_z_inout_shifter(7 downto 2) & bits when reset = '0' else
+                        "00000000" when reset = '1';
         half_z <= half_z_inout;
 end dataflow;
     
@@ -128,6 +128,8 @@ architecture dataflow of controller is
     signal base_read : integer := 0;
     signal base_write : integer := 1000;
     signal mem_inout : std_logic_vector(7 downto 0);
+    signal enable_up : std_logic :='0';
+    signal enable_down : std_logic:= '0';
     
     begin
         done <= '1' when (current_state = d and number_of_words = 0 and reset = '0' and start = '1') else
@@ -168,8 +170,12 @@ architecture dataflow of controller is
                        std_logic_vector(to_unsigned(base_write,16)) when (current_state = p_3 or current_state = p_7);
         mem_enable <= '1' when ((current_state = idle and next_state = r_wc) or current_state = r_wc or current_state = r or current_state = p_3 or current_state = p_7) else '0';
         mem_write <= '1' when (current_state = p_3 or current_state = p_7) else '0';
-        component_enable <= '1' when next_state = p_0 else
-                            '0' when (next_state = d and falling_edge(clock));
+        enable_down <= '1' when current_state = p_0 else
+                       '0' when ((current_state = d and clock = '0') or reset = '1') else enable_down;
+        enable_up <= '0'  when (current_state = d or reset = '1') else
+                     '1' when ((current_state = p_0 and clock = '0') or reset = '1') else enable_up;
+        component_enable <= '1' when (enable_up = '1' and enable_down = '1') else
+                            '0' when (enable_up = '0' and enable_down = '0');
         component_reset <= '1' when (reset = '1' or start = '0') else '0';
 end dataflow;
 
@@ -241,9 +247,9 @@ architecture structural of project_reti_logiche is
             port map(clock => i_clk, reset => i_rst, start => i_start, data => i_data, done => o_done, mem_address => o_address, mem_enable => o_en, mem_write => o_we, u => u, component_enable => component_enable, component_reset => component_reset);
 
         encoder : convolutional_encoder
-            port map(u =>u,clock =>i_clk, reset =>component_reset, enable => component_enable, pk =>conv_encoder_out);
+            port map(u =>u,clock =>i_clk, reset =>component_reset, enable => component_enable, pk =>convolutional_encoder_out);
 
         str_mng: string_manager
-            port map(clock =>i_clk, reset => component_reset, bits =>convolutional_encoder_out, half_z =>o_data);
+            port map(clock =>i_clk, reset => component_reset, enable => component_enable, bits =>convolutional_encoder_out, half_z =>o_data);
 
 end structural;

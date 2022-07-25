@@ -70,8 +70,6 @@ proc create_report { reportName command } {
   }
 }
 OPTRACE "synth_1" START { ROLLUP_AUTO }
-set_param chipscope.maxJobs 4
-set_msg_config -id {Common 17-41} -limit 10000000
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7a200tfbg484-1
 
@@ -86,7 +84,7 @@ set_property ip_output_repo /home/davide/git/Progetto-reti-logiche-2022/project_
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
-read_vhdl -library xil_defaultlib /home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.srcs/sources_1/new/seconda_implementazione.vhd
+read_vhdl -library xil_defaultlib /home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.srcs/sources_1/new/terza_implementazione.vhd
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being
 # stitched into the results of this synthesis run. Any black boxes in the

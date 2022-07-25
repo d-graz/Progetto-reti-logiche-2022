@@ -1,4 +1,4 @@
 Time resolution is 1 ps
 Failure: Simulation Ended! TEST PASSATO
-Time: 2567500 ps  Iteration: 0  Process: /project_tb/test  File: /home/davide/git/Progetto-reti-logiche-2022/docs/Test Bench  Progetto/cartella_1/tb_tre_bis.vhd
-$finish called at time : 2567500 ps : File "/home/davide/git/Progetto-reti-logiche-2022/docs/Test Bench  Progetto/cartella_1/tb_tre_bis.vhd" Line 201
+Time: 16650 ns  Iteration: 0  Process: /project_tb/test  File: /home/davide/git/Progetto-reti-logiche-2022/docs/Test Bench  Progetto/cartella_1/tb_re_encode.vhd
+$finish called at time : 16650 ns : File "/home/davide/git/Progetto-reti-logiche-2022/docs/Test Bench  Progetto/cartella_1/tb_re_encode.vhd" Line 185

@@ -3,49 +3,53 @@
    <wave_state>
    </wave_state>
    <db_ref_list>
-      <db_ref path="project_tb_behav.wdb" id="1">
+      <db_ref path="project_tb_func_synth.wdb" id="1">
          <top_modules>
             <top_module name="project_tb" />
          </top_modules>
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="1,988.804 ns"></ZoomStartTime>
-      <ZoomEndTime time="2,167.240 ns"></ZoomEndTime>
-      <Cursor1Time time="2,047.500 ns"></Cursor1Time>
+      <ZoomStartTime time="423.696 ns"></ZoomStartTime>
+      <ZoomEndTime time="541.997 ns"></ZoomEndTime>
+      <Cursor1Time time="547.600 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="329"></NameColumnWidth>
-      <ValueColumnWidth column_width="117"></ValueColumnWidth>
+      <ValueColumnWidth column_width="113"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="7" />
-   <wvobject type="logic" fp_name="/project_tb/UUT/controller_clk">
-      <obj_property name="ElementShortName">controller_clk</obj_property>
-      <obj_property name="ObjectShortName">controller_clk</obj_property>
+   <WVObjectSize size="8" />
+   <wvobject type="logic" fp_name="/project_tb/UUT/i_clk">
+      <obj_property name="ElementShortName">i_clk</obj_property>
+      <obj_property name="ObjectShortName">i_clk</obj_property>
    </wvobject>
-   <wvobject type="other" fp_name="/project_tb/UUT/cont/current_state">
-      <obj_property name="ElementShortName">current_state</obj_property>
-      <obj_property name="ObjectShortName">current_state</obj_property>
+   <wvobject type="logic" fp_name="/project_tb/UUT/cont/component_enable">
+      <obj_property name="ElementShortName">component_enable</obj_property>
+      <obj_property name="ObjectShortName">component_enable</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/project_tb/UUT/cont/current_state">
+      <obj_property name="ElementShortName">current_state[3:0]</obj_property>
+      <obj_property name="ObjectShortName">current_state[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/project_tb/UUT/i_data">
+      <obj_property name="ElementShortName">i_data[7:0]</obj_property>
+      <obj_property name="ObjectShortName">i_data[7:0]</obj_property>
    </wvobject>
    <wvobject type="logic" fp_name="/project_tb/UUT/encoder/u">
       <obj_property name="ElementShortName">u</obj_property>
       <obj_property name="ObjectShortName">u</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/project_tb/UUT/encoder/pk">
-      <obj_property name="ElementShortName">pk[1:0]</obj_property>
-      <obj_property name="ObjectShortName">pk[1:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/project_tb/UUT/str_mng/half_z_inout">
-      <obj_property name="ElementShortName">half_z_inout[7:0]</obj_property>
-      <obj_property name="ObjectShortName">half_z_inout[7:0]</obj_property>
+   <wvobject type="array" fp_name="/project_tb/UUT/str_mng/convolutional_encoder_out">
+      <obj_property name="ElementShortName">convolutional_encoder_out[1:0]</obj_property>
+      <obj_property name="ObjectShortName">convolutional_encoder_out[1:0]</obj_property>
       <obj_property name="isExpanded"></obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/project_tb/UUT/FF2_signal">
+      <obj_property name="ElementShortName">FF2_signal</obj_property>
+      <obj_property name="ObjectShortName">FF2_signal</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/project_tb/UUT/o_data">
       <obj_property name="ElementShortName">o_data[7:0]</obj_property>
       <obj_property name="ObjectShortName">o_data[7:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/project_tb/UUT/o_address">
-      <obj_property name="ElementShortName">o_address[15:0]</obj_property>
-      <obj_property name="ObjectShortName">o_address[15:0]</obj_property>
    </wvobject>
 </wave_config>

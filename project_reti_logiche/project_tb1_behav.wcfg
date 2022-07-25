@@ -3,22 +3,23 @@
    <wave_state>
    </wave_state>
    <db_ref_list>
-      <db_ref path="project_tb_behav.wdb" id="1">
+      <db_ref path="project_tb_time_synth.wdb" id="1">
          <top_modules>
+            <top_module name="glbl" />
             <top_module name="project_tb" />
          </top_modules>
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="975.000 ns"></ZoomStartTime>
-      <ZoomEndTime time="1,264.806 ns"></ZoomEndTime>
-      <Cursor1Time time="1,050.000 ns"></Cursor1Time>
+      <ZoomStartTime time="877.866 ns"></ZoomStartTime>
+      <ZoomEndTime time="996.167 ns"></ZoomEndTime>
+      <Cursor1Time time="901.866 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="329"></NameColumnWidth>
-      <ValueColumnWidth column_width="125"></ValueColumnWidth>
+      <ValueColumnWidth column_width="113"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="11" />
+   <WVObjectSize size="12" />
    <wvobject type="logic" fp_name="/project_tb/UUT/i_clk">
       <obj_property name="ElementShortName">i_clk</obj_property>
       <obj_property name="ObjectShortName">i_clk</obj_property>
@@ -27,17 +28,25 @@
       <obj_property name="ElementShortName">component_enable</obj_property>
       <obj_property name="ObjectShortName">component_enable</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/project_tb/UUT/controller_clk">
-      <obj_property name="ElementShortName">controller_clk</obj_property>
-      <obj_property name="ObjectShortName">controller_clk</obj_property>
+   <wvobject type="logic" fp_name="/project_tb/UUT/cont/enable_up">
+      <obj_property name="ElementShortName">enable_up</obj_property>
+      <obj_property name="ObjectShortName">enable_up</obj_property>
    </wvobject>
-   <wvobject type="other" fp_name="/project_tb/UUT/cont/current_state">
-      <obj_property name="ElementShortName">current_state</obj_property>
-      <obj_property name="ObjectShortName">current_state</obj_property>
+   <wvobject type="logic" fp_name="/project_tb/UUT/cont/enable_up0">
+      <obj_property name="ElementShortName">enable_up0</obj_property>
+      <obj_property name="ObjectShortName">enable_up0</obj_property>
    </wvobject>
-   <wvobject type="other" fp_name="/project_tb/UUT/cont/next_state">
-      <obj_property name="ElementShortName">next_state</obj_property>
-      <obj_property name="ObjectShortName">next_state</obj_property>
+   <wvobject type="logic" fp_name="/project_tb/UUT/cont/enable_down">
+      <obj_property name="ElementShortName">enable_down</obj_property>
+      <obj_property name="ObjectShortName">enable_down</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/project_tb/UUT/cont/current_state">
+      <obj_property name="ElementShortName">current_state[3:0]</obj_property>
+      <obj_property name="ObjectShortName">current_state[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/project_tb/UUT/cont/next_state">
+      <obj_property name="ElementShortName">next_state[3:0]</obj_property>
+      <obj_property name="ObjectShortName">next_state[3:0]</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/project_tb/UUT/i_data">
       <obj_property name="ElementShortName">i_data[7:0]</obj_property>
@@ -47,21 +56,16 @@
       <obj_property name="ElementShortName">o_address[15:0]</obj_property>
       <obj_property name="ObjectShortName">o_address[15:0]</obj_property>
    </wvobject>
-   <wvobject type="other" fp_name="/project_tb/UUT/cont/number_of_words">
-      <obj_property name="ElementShortName">number_of_words</obj_property>
-      <obj_property name="ObjectShortName">number_of_words</obj_property>
+   <wvobject type="array" fp_name="/project_tb/UUT/cont/number_of_words">
+      <obj_property name="ElementShortName">number_of_words[30:0]</obj_property>
+      <obj_property name="ObjectShortName">number_of_words[30:0]</obj_property>
    </wvobject>
    <wvobject type="logic" fp_name="/project_tb/UUT/cont/u">
       <obj_property name="ElementShortName">u</obj_property>
       <obj_property name="ObjectShortName">u</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/project_tb/UUT/encoder/pk">
-      <obj_property name="ElementShortName">pk[1:0]</obj_property>
-      <obj_property name="ObjectShortName">pk[1:0]</obj_property>
-   </wvobject>
    <wvobject type="array" fp_name="/project_tb/UUT/o_data">
       <obj_property name="ElementShortName">o_data[7:0]</obj_property>
       <obj_property name="ObjectShortName">o_data[7:0]</obj_property>
-      <obj_property name="isExpanded"></obj_property>
    </wvobject>
 </wave_config>

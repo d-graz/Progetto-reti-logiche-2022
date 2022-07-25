@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a200tfbg484-1" LaunchTime="1658655602" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/project_reti_logiche.dcp">
+<GenRun Id="synth_1" LaunchPart="xc7a200tfbg484-1" LaunchTime="1658747377" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/project_reti_logiche.dcp">
   <File Type="VDS-TIMING-PB" Name="project_reti_logiche_timing_summary_synth.pb"/>
   <File Type="VDS-TIMINGSUMMARY" Name="project_reti_logiche_timing_summary_synth.rpt"/>
   <File Type="RDS-DCP" Name="project_reti_logiche.dcp"/>
@@ -11,8 +11,15 @@
   <File Type="PA-TCL" Name="project_reti_logiche.tcl"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
     <Filter Type="Srcs"/>
+    <File Path="$PSRCDIR/sources_1/new/terza_implementazione.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
     <File Path="$PSRCDIR/sources_1/new/seconda_implementazione.vhd">
       <FileInfo>
+        <Attr Name="UserDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
