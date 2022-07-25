@@ -20,30 +20,30 @@ WARNING: [Designutils 20-4072] Reference run did not run incremental synthesis b
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 33598
+INFO: [Synth 8-7075] Helper process launched with PID 122539
 ---------------------------------------------------------------------------------
-Starting Synthesize : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 2607.562 ; gain = 0.000 ; free physical = 7909 ; free virtual = 30554
+Starting Synthesize : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 2607.566 ; gain = 0.000 ; free physical = 6106 ; free virtual = 29553
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-638] synthesizing module 'project_reti_logiche' [/home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.srcs/sources_1/new/terza_implementazione.vhd:202]
-INFO: [Synth 8-3491] module 'controller' declared at '/home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.srcs/sources_1/new/terza_implementazione.vhd:107' bound to instance 'cont' of component 'controller' [/home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.srcs/sources_1/new/terza_implementazione.vhd:246]
+INFO: [Synth 8-638] synthesizing module 'project_reti_logiche' [/home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.srcs/sources_1/new/terza_implementazione.vhd:196]
+INFO: [Synth 8-3491] module 'controller' declared at '/home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.srcs/sources_1/new/terza_implementazione.vhd:107' bound to instance 'cont' of component 'controller' [/home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.srcs/sources_1/new/terza_implementazione.vhd:240]
 INFO: [Synth 8-638] synthesizing module 'controller' [/home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.srcs/sources_1/new/terza_implementazione.vhd:123]
 INFO: [Synth 8-256] done synthesizing module 'controller' (1#1) [/home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.srcs/sources_1/new/terza_implementazione.vhd:123]
-INFO: [Synth 8-3491] module 'convolutional_encoder' declared at '/home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.srcs/sources_1/new/terza_implementazione.vhd:34' bound to instance 'encoder' of component 'convolutional_encoder' [/home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.srcs/sources_1/new/terza_implementazione.vhd:249]
+INFO: [Synth 8-3491] module 'convolutional_encoder' declared at '/home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.srcs/sources_1/new/terza_implementazione.vhd:34' bound to instance 'encoder' of component 'convolutional_encoder' [/home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.srcs/sources_1/new/terza_implementazione.vhd:243]
 INFO: [Synth 8-638] synthesizing module 'convolutional_encoder' [/home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.srcs/sources_1/new/terza_implementazione.vhd:44]
 INFO: [Synth 8-3491] module 'FF_D' declared at '/home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.srcs/sources_1/new/terza_implementazione.vhd:12' bound to instance 'FF1' of component 'FF_D' [/home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.srcs/sources_1/new/terza_implementazione.vhd:61]
 INFO: [Synth 8-638] synthesizing module 'FF_D' [/home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.srcs/sources_1/new/terza_implementazione.vhd:22]
 INFO: [Synth 8-256] done synthesizing module 'FF_D' (2#1) [/home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.srcs/sources_1/new/terza_implementazione.vhd:22]
 INFO: [Synth 8-3491] module 'FF_D' declared at '/home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.srcs/sources_1/new/terza_implementazione.vhd:12' bound to instance 'FF2' of component 'FF_D' [/home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.srcs/sources_1/new/terza_implementazione.vhd:63]
 INFO: [Synth 8-256] done synthesizing module 'convolutional_encoder' (3#1) [/home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.srcs/sources_1/new/terza_implementazione.vhd:44]
-INFO: [Synth 8-3491] module 'string_manager' declared at '/home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.srcs/sources_1/new/terza_implementazione.vhd:78' bound to instance 'str_mng' of component 'string_manager' [/home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.srcs/sources_1/new/terza_implementazione.vhd:252]
+INFO: [Synth 8-3491] module 'string_manager' declared at '/home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.srcs/sources_1/new/terza_implementazione.vhd:78' bound to instance 'str_mng' of component 'string_manager' [/home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.srcs/sources_1/new/terza_implementazione.vhd:246]
 INFO: [Synth 8-638] synthesizing module 'string_manager' [/home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.srcs/sources_1/new/terza_implementazione.vhd:88]
 INFO: [Synth 8-256] done synthesizing module 'string_manager' (4#1) [/home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.srcs/sources_1/new/terza_implementazione.vhd:88]
-INFO: [Synth 8-256] done synthesizing module 'project_reti_logiche' (5#1) [/home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.srcs/sources_1/new/terza_implementazione.vhd:202]
+INFO: [Synth 8-256] done synthesizing module 'project_reti_logiche' (5#1) [/home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.srcs/sources_1/new/terza_implementazione.vhd:196]
 ---------------------------------------------------------------------------------
-Finished Synthesize : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 2607.562 ; gain = 0.000 ; free physical = 7771 ; free virtual = 30417
+Finished Synthesize : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 2607.566 ; gain = 0.000 ; free physical = 5931 ; free virtual = 29379
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 2607.562 ; gain = 0.000 ; free physical = 7766 ; free virtual = 30411
+Finished Constraint Validation : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 2607.566 ; gain = 0.000 ; free physical = 5926 ; free virtual = 29374
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
@@ -51,17 +51,15 @@ Start Loading Part and Timing Information
 Loading part: xc7a200tfbg484-1
 INFO: [Device 21-403] Loading part xc7a200tfbg484-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 2615.379 ; gain = 7.816 ; free physical = 7764 ; free virtual = 30409
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 2615.383 ; gain = 7.816 ; free physical = 5924 ; free virtual = 29372
 ---------------------------------------------------------------------------------
-WARNING: [Synth 8-327] inferring latch for variable 'done_reg' [/home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.srcs/sources_1/new/terza_implementazione.vhd:135]
-WARNING: [Synth 8-327] inferring latch for variable 'mem_address_reg' [/home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.srcs/sources_1/new/terza_implementazione.vhd:169]
-WARNING: [Synth 8-327] inferring latch for variable 'next_state_reg' [/home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.srcs/sources_1/new/terza_implementazione.vhd:138]
-WARNING: [Synth 8-327] inferring latch for variable 'mem_inout_reg' [/home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.srcs/sources_1/new/terza_implementazione.vhd:137]
-WARNING: [Synth 8-327] inferring latch for variable 'component_enable_reg' [/home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.srcs/sources_1/new/terza_implementazione.vhd:177]
-WARNING: [Synth 8-327] inferring latch for variable 'enable_down_reg' [/home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.srcs/sources_1/new/terza_implementazione.vhd:173]
-WARNING: [Synth 8-327] inferring latch for variable 'enable_up_reg' [/home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.srcs/sources_1/new/terza_implementazione.vhd:175]
+WARNING: [Synth 8-327] inferring latch for variable 'done_reg' [/home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.srcs/sources_1/new/terza_implementazione.vhd:133]
+WARNING: [Synth 8-327] inferring latch for variable 'mem_address_reg' [/home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.srcs/sources_1/new/terza_implementazione.vhd:167]
+WARNING: [Synth 8-327] inferring latch for variable 'next_state_reg' [/home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.srcs/sources_1/new/terza_implementazione.vhd:136]
+WARNING: [Synth 8-327] inferring latch for variable 'mem_inout_reg' [/home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.srcs/sources_1/new/terza_implementazione.vhd:135]
+WARNING: [Synth 8-327] inferring latch for variable 'component_enable_reg' [/home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.srcs/sources_1/new/terza_implementazione.vhd:171]
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 2615.379 ; gain = 7.816 ; free physical = 7737 ; free virtual = 30384
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 2615.383 ; gain = 7.816 ; free physical = 5898 ; free virtual = 29346
 ---------------------------------------------------------------------------------
 No constraint files found.
 ---------------------------------------------------------------------------------
@@ -69,21 +67,21 @@ Start RTL Component Statistics
 ---------------------------------------------------------------------------------
 Detailed RTL Component Info : 
 +---Adders : 
-	   2 Input   32 Bit       Adders := 1     
+	   2 Input   11 Bit       Adders := 1     
+	   2 Input    8 Bit       Adders := 2     
 +---XORs : 
 	   2 Input      1 Bit         XORs := 2     
 +---Registers : 
-	               32 Bit    Registers := 1     
-	                8 Bit    Registers := 1     
+	               11 Bit    Registers := 1     
+	                8 Bit    Registers := 3     
 	                4 Bit    Registers := 1     
 	                1 Bit    Registers := 2     
 +---Muxes : 
-	   3 Input   32 Bit        Muxes := 1     
-	   2 Input   32 Bit        Muxes := 1     
-	   2 Input   16 Bit        Muxes := 1     
-	   2 Input    8 Bit        Muxes := 1     
+	   2 Input   11 Bit        Muxes := 1     
+	   2 Input    8 Bit        Muxes := 2     
+	   3 Input    8 Bit        Muxes := 1     
 	   2 Input    4 Bit        Muxes := 3     
-	   2 Input    1 Bit        Muxes := 8     
+	   2 Input    1 Bit        Muxes := 7     
 	   9 Input    1 Bit        Muxes := 1     
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
@@ -102,21 +100,22 @@ No constraint files found.
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+WARNING: [Synth 8-3332] Sequential element (cont/mem_address_reg[15]) is unused and will be removed from module project_reti_logiche.
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 2615.379 ; gain = 7.816 ; free physical = 8377 ; free virtual = 31026
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 2615.383 ; gain = 7.816 ; free physical = 6534 ; free virtual = 29985
 ---------------------------------------------------------------------------------
 No constraint files found.
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 2615.379 ; gain = 7.816 ; free physical = 8375 ; free virtual = 31024
+Finished Timing Optimization : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 2615.383 ; gain = 7.816 ; free physical = 6533 ; free virtual = 29984
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 2615.379 ; gain = 7.816 ; free physical = 8375 ; free virtual = 31024
+Finished Technology Mapping : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 2615.383 ; gain = 7.816 ; free physical = 6535 ; free virtual = 29986
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -134,37 +133,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 2615.379 ; gain = 7.816 ; free physical = 8375 ; free virtual = 31024
+Finished IO Insertion : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 2615.383 ; gain = 7.816 ; free physical = 6534 ; free virtual = 29985
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 2615.379 ; gain = 7.816 ; free physical = 8375 ; free virtual = 31024
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 2615.383 ; gain = 7.816 ; free physical = 6534 ; free virtual = 29985
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 2615.379 ; gain = 7.816 ; free physical = 8375 ; free virtual = 31024
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 2615.383 ; gain = 7.816 ; free physical = 6534 ; free virtual = 29985
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 2615.379 ; gain = 7.816 ; free physical = 8375 ; free virtual = 31024
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 2615.383 ; gain = 7.816 ; free physical = 6534 ; free virtual = 29985
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 2615.379 ; gain = 7.816 ; free physical = 8375 ; free virtual = 31024
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 2615.383 ; gain = 7.816 ; free physical = 6534 ; free virtual = 29985
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 2615.379 ; gain = 7.816 ; free physical = 8375 ; free virtual = 31024
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 2615.383 ; gain = 7.816 ; free physical = 6534 ; free virtual = 29985
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -177,62 +176,61 @@ Report BlackBoxes:
 +-+--------------+----------+
 
 Report Cell Usage: 
-+------+-------+------+
-|      |Cell   |Count |
-+------+-------+------+
-|1     |BUFG   |     2|
-|2     |CARRY4 |    16|
-|3     |LUT1   |     2|
-|4     |LUT2   |     4|
-|5     |LUT3   |    88|
-|6     |LUT4   |    26|
-|7     |LUT5   |    33|
-|8     |LUT6   |    30|
-|9     |FDCE   |    64|
-|10    |FDPE   |    38|
-|11    |FDRE   |     6|
-|12    |LD     |    28|
-|13    |LDC    |    10|
-|14    |LDP    |     3|
-|15    |IBUF   |    11|
-|16    |OBUF   |    27|
-+------+-------+------+
++------+-----+------+
+|      |Cell |Count |
++------+-----+------+
+|1     |BUFG |     1|
+|2     |LUT1 |     2|
+|3     |LUT2 |     6|
+|4     |LUT3 |    29|
+|5     |LUT4 |    20|
+|6     |LUT5 |    33|
+|7     |LUT6 |    28|
+|8     |FDCE |    27|
+|9     |FDPE |    14|
+|10    |FDRE |     6|
+|11    |LD   |    20|
+|12    |LDC  |    11|
+|13    |LDP  |     2|
+|14    |IBUF |    11|
+|15    |OBUF |    27|
++------+-----+------+
 
 Report Instance Areas: 
 +------+----------+----------------------+------+
 |      |Instance  |Module                |Cells |
 +------+----------+----------------------+------+
-|1     |top       |                      |   388|
-|2     |  cont    |controller            |   329|
-|3     |  encoder |convolutional_encoder |     3|
-|4     |    FF1   |FF_D                  |     2|
+|1     |top       |                      |   237|
+|2     |  cont    |controller            |   184|
+|3     |  encoder |convolutional_encoder |     2|
+|4     |    FF1   |FF_D                  |     1|
 |5     |    FF2   |FF_D_0                |     1|
-|6     |  str_mng |string_manager        |    16|
+|6     |  str_mng |string_manager        |    12|
 +------+----------+----------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 2615.379 ; gain = 7.816 ; free physical = 8375 ; free virtual = 31024
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 2615.383 ; gain = 7.816 ; free physical = 6534 ; free virtual = 29985
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 8 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 2615.379 ; gain = 7.816 ; free physical = 8375 ; free virtual = 31024
-Synthesis Optimization Complete : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 2615.387 ; gain = 7.816 ; free physical = 8375 ; free virtual = 31024
+Synthesis finished with 0 errors, 0 critical warnings and 7 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 2615.383 ; gain = 7.816 ; free physical = 6535 ; free virtual = 29986
+Synthesis Optimization Complete : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 2615.391 ; gain = 7.816 ; free physical = 6535 ; free virtual = 29986
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2615.387 ; gain = 0.000 ; free physical = 8460 ; free virtual = 31109
-INFO: [Netlist 29-17] Analyzing 57 Unisim elements for replacement
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2615.391 ; gain = 0.000 ; free physical = 6621 ; free virtual = 30072
+INFO: [Netlist 29-17] Analyzing 33 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2671.406 ; gain = 0.000 ; free physical = 8368 ; free virtual = 31017
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2671.410 ; gain = 0.000 ; free physical = 6525 ; free virtual = 29977
 INFO: [Project 1-111] Unisim Transformation Summary:
-  A total of 41 instances were transformed.
-  LD => LDCE: 28 instances
-  LDC => LDCE: 10 instances
-  LDP => LDPE: 3 instances
+  A total of 33 instances were transformed.
+  LD => LDCE: 20 instances
+  LDC => LDCE: 11 instances
+  LDP => LDPE: 2 instances
 
-Synth Design complete, checksum: 226419ff
+Synth Design complete, checksum: 447fbcc4
 INFO: [Common 17-83] Releasing license: Synthesis
-30 Infos, 9 Warnings, 0 Critical Warnings and 0 Errors encountered.
+30 Infos, 8 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:11 ; elapsed = 00:00:09 . Memory (MB): peak = 2671.406 ; gain = 64.031 ; free physical = 8571 ; free virtual = 31220
+synth_design: Time (s): cpu = 00:00:11 ; elapsed = 00:00:09 . Memory (MB): peak = 2671.410 ; gain = 64.031 ; free physical = 6727 ; free virtual = 30179
 INFO: [Common 17-1381] The checkpoint '/home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.runs/synth_1/project_reti_logiche.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file project_reti_logiche_utilization_synth.rpt -pb project_reti_logiche_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Mon Jul 25 13:09:52 2022...
+INFO: [Common 17-206] Exiting Vivado at Mon Jul 25 16:56:08 2022...

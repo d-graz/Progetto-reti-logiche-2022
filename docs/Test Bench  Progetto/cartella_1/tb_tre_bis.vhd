@@ -7,7 +7,7 @@ entity project_tb is
 end project_tb;
 
 architecture projecttb of project_tb is
-constant c_CLOCK_PERIOD         : time := 15 ns;
+constant c_CLOCK_PERIOD         : time := 20 ns;
 signal   tb_done                : std_logic;
 signal   mem_address            : std_logic_vector (15 downto 0) := (others => '0');
 signal   tb_rst                 : std_logic := '0';

@@ -3,23 +3,30 @@
    <wave_state>
    </wave_state>
    <db_ref_list>
-      <db_ref path="project_tb_time_synth.wdb" id="1">
+      <db_ref path="project_tb_func_impl.wdb" id="1">
          <top_modules>
-            <top_module name="glbl" />
             <top_module name="project_tb" />
          </top_modules>
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="877.866 ns"></ZoomStartTime>
-      <ZoomEndTime time="996.167 ns"></ZoomEndTime>
-      <Cursor1Time time="901.866 ns"></Cursor1Time>
+      <ZoomStartTime time="390.950 ns"></ZoomStartTime>
+      <ZoomEndTime time="986.451 ns"></ZoomEndTime>
+      <Cursor1Time time="790.200 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="329"></NameColumnWidth>
-      <ValueColumnWidth column_width="113"></ValueColumnWidth>
+      <ValueColumnWidth column_width="105"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="12" />
+   <WVObjectSize size="10" />
+   <wvobject type="logic" fp_name="/project_tb/tb_start">
+      <obj_property name="ElementShortName">tb_start</obj_property>
+      <obj_property name="ObjectShortName">tb_start</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/project_tb/tb_done">
+      <obj_property name="ElementShortName">tb_done</obj_property>
+      <obj_property name="ObjectShortName">tb_done</obj_property>
+   </wvobject>
    <wvobject type="logic" fp_name="/project_tb/UUT/i_clk">
       <obj_property name="ElementShortName">i_clk</obj_property>
       <obj_property name="ObjectShortName">i_clk</obj_property>
@@ -27,18 +34,6 @@
    <wvobject type="logic" fp_name="/project_tb/UUT/cont/component_enable">
       <obj_property name="ElementShortName">component_enable</obj_property>
       <obj_property name="ObjectShortName">component_enable</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/project_tb/UUT/cont/enable_up">
-      <obj_property name="ElementShortName">enable_up</obj_property>
-      <obj_property name="ObjectShortName">enable_up</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/project_tb/UUT/cont/enable_up0">
-      <obj_property name="ElementShortName">enable_up0</obj_property>
-      <obj_property name="ObjectShortName">enable_up0</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/project_tb/UUT/cont/enable_down">
-      <obj_property name="ElementShortName">enable_down</obj_property>
-      <obj_property name="ObjectShortName">enable_down</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/project_tb/UUT/cont/current_state">
       <obj_property name="ElementShortName">current_state[3:0]</obj_property>
@@ -55,10 +50,6 @@
    <wvobject type="array" fp_name="/project_tb/UUT/o_address">
       <obj_property name="ElementShortName">o_address[15:0]</obj_property>
       <obj_property name="ObjectShortName">o_address[15:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/project_tb/UUT/cont/number_of_words">
-      <obj_property name="ElementShortName">number_of_words[30:0]</obj_property>
-      <obj_property name="ObjectShortName">number_of_words[30:0]</obj_property>
    </wvobject>
    <wvobject type="logic" fp_name="/project_tb/UUT/cont/u">
       <obj_property name="ElementShortName">u</obj_property>
