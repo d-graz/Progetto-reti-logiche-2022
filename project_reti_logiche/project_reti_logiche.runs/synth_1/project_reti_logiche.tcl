@@ -85,7 +85,7 @@ set_property ip_output_repo /home/davide/git/Progetto-reti-logiche-2022/project_
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
-read_vhdl -library xil_defaultlib /home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.srcs/sources_1/new/terza_implementazione.vhd
+read_vhdl -library xil_defaultlib /home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.srcs/sources_1/new/quarta_implementazione.vhd
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being
 # stitched into the results of this synthesis run. Any black boxes in the

@@ -1,4 +1,10 @@
 Time resolution is 1 ps
-Failure: Simulation Ended! TEST PASSATO
-Time: 2567700 ps  Iteration: 0  Process: /project_tb/test  File: /home/davide/git/Progetto-reti-logiche-2022/docs/Test Bench  Progetto/cartella_1/tb_tre_bis.vhd
-$finish called at time : 2567700 ps : File "/home/davide/git/Progetto-reti-logiche-2022/docs/Test Bench  Progetto/cartella_1/tb_tre_bis.vhd" Line 201
+Failure: TEST FALLITO (WORKING ZONE). Expected  209  found 0
+Time: 1007700 ps  Iteration: 0  Process: /project_tb/test  File: /home/davide/git/Progetto-reti-logiche-2022/docs/Test Bench  Progetto/cartella_1/tb_tre_bis.vhd
+$finish called at time : 1007700 ps : File "/home/davide/git/Progetto-reti-logiche-2022/docs/Test Bench  Progetto/cartella_1/tb_tre_bis.vhd" Line 175
+Failure: TEST FALLITO (WORKING ZONE). Expected  209  found 0
+Time: 1007700 ps  Iteration: 0  Process: /project_tb/test  File: /home/davide/git/Progetto-reti-logiche-2022/docs/Test Bench  Progetto/cartella_1/tb_tre_bis.vhd
+$finish called at time : 1007700 ps : File "/home/davide/git/Progetto-reti-logiche-2022/docs/Test Bench  Progetto/cartella_1/tb_tre_bis.vhd" Line 175
+Failure: TEST FALLITO (WORKING ZONE). Expected  209  found 0
+Time: 1007700 ps  Iteration: 0  Process: /project_tb/test  File: /home/davide/git/Progetto-reti-logiche-2022/docs/Test Bench  Progetto/cartella_1/tb_tre_bis.vhd
+$finish called at time : 1007700 ps : File "/home/davide/git/Progetto-reti-logiche-2022/docs/Test Bench  Progetto/cartella_1/tb_tre_bis.vhd" Line 175

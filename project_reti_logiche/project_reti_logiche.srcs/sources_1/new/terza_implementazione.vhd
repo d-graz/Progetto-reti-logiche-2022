@@ -157,7 +157,7 @@ architecture dataflow of controller is
                  mem_inout(1) when p_6,
                  mem_inout(0) when p_7,
                  '0' when others;
-        --todo sincronizzare i segnali di mem address  e numero di parole
+        --todo sincronizzare i segnali di mem address1  e numero di parole
         base_read <= (others =>'0') when (reset = '1' or start = '0') else
                      base_read + 1 when (falling_edge(clock) and current_state = r and reset = '0');
         base_write <= to_unsigned(1000,11) when (reset = '1' or start = '0') else 

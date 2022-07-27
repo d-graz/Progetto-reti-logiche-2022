@@ -123,12 +123,27 @@ set ACTIVE_STEP init_design
 set rc [catch {
   create_msg_db init_design.pb
   set_param chipscope.maxJobs 4
-  reset_param project.defaultXPMLibraries 
-  open_checkpoint /home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.runs/impl_1/project_reti_logiche.dcp
+OPTRACE "create in-memory project" START { }
+  create_project -in_memory -part xc7a200tfbg484-1
+  set_property design_mode GateLvl [current_fileset]
+  set_param project.singleFileAddWarning.threshold 0
+OPTRACE "create in-memory project" END { }
+OPTRACE "set parameters" START { }
   set_property webtalk.parent_dir /home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.cache/wt [current_project]
   set_property parent.project_path /home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.xpr [current_project]
   set_property ip_output_repo /home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.cache/ip [current_project]
   set_property ip_cache_permissions {read write} [current_project]
+OPTRACE "set parameters" END { }
+OPTRACE "add files" START { }
+  add_files -quiet /home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.runs/synth_1/project_reti_logiche.dcp
+OPTRACE "read constraints: implementation" START { }
+OPTRACE "read constraints: implementation" END { }
+OPTRACE "add files" END { }
+OPTRACE "link_design" START { }
+  link_design -top project_reti_logiche -part xc7a200tfbg484-1 
+OPTRACE "link_design" END { }
+OPTRACE "gray box cells" START { }
+OPTRACE "gray box cells" END { }
 OPTRACE "init_design_reports" START { REPORT }
 OPTRACE "init_design_reports" END { }
 OPTRACE "init_design_write_hwdef" START { }
