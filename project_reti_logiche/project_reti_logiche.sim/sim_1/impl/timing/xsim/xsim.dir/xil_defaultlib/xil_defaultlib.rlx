@@ -2,5 +2,5 @@
 2020.2
 Oct 19 2021
 02:56:52
-/home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.sim/sim_1/impl/timing/xsim/project_tb_time_impl.v,1658936105,verilog,,,,FF_D;FF_D_0;controller;convolutional_encoder;glbl;project_reti_logiche;string_manager,,,,,,,,
-/home/davide/git/tb-generator/gen_testbench_no_reset.vhd,1658935769,vhdl,,,,project_tb,,,,,,,,
+/home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.sim/sim_1/impl/timing/xsim/project_tb_time_impl.v,1659113441,verilog,,,,FF_D;FF_D_0;controller;convolutional_encoder;glbl;project_reti_logiche;string_manager,,,,,,,,
+/home/davide/git/tb-generator/gen_testbench_no_reset.vhd,1659113434,vhdl,,,,project_tb,,,,,,,,

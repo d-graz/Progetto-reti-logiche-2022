@@ -1,7 +1,7 @@
 // Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2021.2 (lin64) Build 3367213 Tue Oct 19 02:47:39 MDT 2021
-// Date        : Wed Jul 27 17:35:05 2022
+// Date        : Fri Jul 29 18:50:40 2022
 // Host        : dgraz running 64-bit Manjaro Linux
 // Command     : write_verilog -mode timesim -nolib -sdf_anno true -force -file
 //               /home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.sim/sim_1/impl/timing/xsim/project_tb_time_impl.v
