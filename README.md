@@ -47,7 +47,12 @@ entrambi adibiti alla mitigazione del ritardo dovuto alla lettura della memoria 
 [immagine della nuova macchina a stati ]
 
 ## Code Overview
+Il progetto si divide in 3 entità principali :
+- controller : è il responsabile per il corretto funzionamento del componente. Esso, oltre ad essere responsabile per il corretto cycling degli stati, controlla anche i segnali 
+- convolutional_encoder : responsabile per la codifica di un singolo bit di una parola
+- string_manager :
 
+[immagine del progetto]
 ## Risultati sperimentali
 
 ## Conclusioni
