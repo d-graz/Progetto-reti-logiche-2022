@@ -38,24 +38,45 @@ Come precedentemente scritto la macchina sopra specificata superava i test bench
 - Analisi di spazio : $numStati = 12$ e utilizzando la codifica binaria $log_2(numStati) \approx 3.6$ quindi si utilizzano 4 bit per la rappresentazione di tali stati. È facile verificare che l'aggiunta di 2 stati in più non richiede allocamento addizionale di memoria su FPGA.
 - Analisi di tempo : essendo uno di questi stati eseguito solo una volta leggendo il numero di parole contenuto in una ram esso verrà trascurato. Ne deriva che $numStati_{m1} = 10$ e $numStati_{m2} = 11$; quindi\
 $numStati_{m1} * clockPeriod_{m1 \space min} > numStati_{m2} * clockPeriod_{m2}$ perchè questa modifica alla FSM sia motivata ($clockPeriod_{m1 \space min} = 35 ns$).\
-Si ottiene che $clockPeriod_{m2} \leq 31.82 ns$, condizione che verrà poi verificate e discussa nella sezione riguardante i risultati sperimentali
+Si ottiene che $clockPeriod_{m2} \leq 31.82 ns$, condizione che verrà poi verificata e discussa nella sezione riguardante i risultati sperimentali
 
 Vengono così aggiunti altri 2 stati:
 - Wait word count - w_wc 
 - Wait - w
-entrambi adibiti alla mitigazione del ritardo dovuto alla lettura della memoria e alla propagazione del segnale in fase di implementazione
+entrambi adibiti alla mitigazione del ritardo dovuto alla lettura della memoria e alla propagazione di tale segnale in fase di implementazione
 [immagine della nuova macchina a stati ]
 
 ## Code Overview
 Il progetto si divide in 3 entità principali :
-- controller : è il responsabile per il corretto funzionamento del componente. Esso, oltre ad essere responsabile per il corretto cycling degli stati, controlla anche i segnali 
+- controller : è il responsabile per il "comportamento" del componente. Esso, oltre ad essere responsabile per il corretto cycling degli stati, controlla direttamente i segnali di `o_en`, `o_we` e `o_address`; fornisce  
 - convolutional_encoder : responsabile per la codifica di un singolo bit di una parola
-- string_manager :
+- string_manager : ha il compito di concatenare i 2 bit di output del convolutional_encoder per formare una parola in uscita
+
+Di seguito verranno riportate le interfacce
+
+### controller
+### convolutional_encoder 
+### string_manager
+[inseirire tutti gli header con commento]
 
 [immagine del progetto]
 ## Risultati sperimentali
+Vengono qui brevemente appuntate alcune informazioni necessarie all'eventuale ricreazione dell'envirorment di test
+- FPGA : Artix-7 xc7a200tfbg484-1
+- Clock range : $15\leq clockPeriod \leq 100$
+- Test bench : le test bench utilizzate sono state :
+    - test bench fornite dal professore
+    - test bench generale da un tool automatico di un collega (reperibile qui : [mettere link alla repo])
+    - test bench generate 
+Tutti i test sono stati eseguiti su FPGA * con periodo di clock $clockPeriod \approx [15,100] ns$\
+Come prima brevemente affermato sono stati eseguiti diversi test su 2 componenti diverse, utilizzando come testbench
+Viene qui sotto riportata un'immagine di una simulazione behavioral del progetto per la codifica convoluzionale di una singola parola.
+[immagine di una parola con le waweforms]
 
 ## Conclusioni
 - limiti oggetti del sistema
 - limiti su ciò che avrei potuto fare meglio
 - possibili implementazioni pratiche
+
+## Postfazione
+### Il codice del generatore di ram

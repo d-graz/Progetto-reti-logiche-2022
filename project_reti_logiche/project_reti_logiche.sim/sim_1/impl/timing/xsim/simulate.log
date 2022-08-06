@@ -100,4 +100,4 @@ WARNING: "/wrk/ci/prod/2021.2/rdi_builds/continuous/2021_10_19_3367213/data/veri
 WARNING: "/wrk/ci/prod/2021.2/rdi_builds/continuous/2021_10_19_3367213/data/verilog/src/unisims/LDCE.v" Line 163: Timing violation in scope /project_tb/UUT/cont/next_state_reg[0]/TChk163_1827 at time 2059167875 ps $setuphold (posedge G,negedge D,(0:0:0),(0:0:0),notifier,in_clk_enable_p,in_clk_enable_p,G_dly,D_dly) 
 WARNING: "/wrk/ci/prod/2021.2/rdi_builds/continuous/2021_10_19_3367213/data/verilog/src/unisims/LDCE.v" Line 163: Timing violation in scope /project_tb/UUT/cont/next_state_reg[0]/TChk163_1827 at time 2082840875 ps $setuphold (posedge G,negedge D,(0:0:0),(0:0:0),notifier,in_clk_enable_p,in_clk_enable_p,G_dly,D_dly) 
 $finish called at time : 2082858237 ps : File "/home/davide/git/tb-generator/gen_testbench_no_reset.vhd" Line 160
-INFO: xsimkernel Simulation Memory Usage: 118688 KB (Peak: 177708 KB), Simulation CPU Usage: 24160 ms
+INFO: xsimkernel Simulation Memory Usage: 118688 KB (Peak: 177708 KB), Simulation CPU Usage: 24310 ms
