@@ -13,3 +13,7 @@
 \contentsline {subsubsection}{\numberline {2.3.1}Analisi di trade-off spaziale}{5}{}%
 \contentsline {subsubsection}{\numberline {2.3.2}Analisi di trade-off temporale}{5}{}%
 \contentsline {subsubsection}{\numberline {2.3.3}Nuova macchina a Stati}{5}{}%
+\contentsline {subsection}{\numberline {2.4}Code overview}{6}{}%
+\contentsline {subsubsection}{\numberline {2.4.1}\texttt {controller}}{6}{}%
+\contentsline {subsubsection}{\numberline {2.4.2}\texttt {convolutional\_encoder}}{7}{}%
+\contentsline {subsubsection}{\numberline {2.4.3}\texttt {string\_manager}}{7}{}%

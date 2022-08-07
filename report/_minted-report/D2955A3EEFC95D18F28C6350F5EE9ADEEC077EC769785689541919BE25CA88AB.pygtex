@@ -1,0 +1,11 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{entity}\PYG{+w}{ }\PYG{n+nc}{convolutional\PYGZus{}encoder}\PYG{+w}{ }\PYG{k}{is}
+\PYG{+w}{    }\PYG{k}{port}\PYG{p}{(}
+\PYG{+w}{        }\PYG{n}{u}\PYG{+w}{      }\PYG{o}{:}\PYG{+w}{ }\PYG{k}{in}\PYG{+w}{ }\PYG{k+kt}{std\PYGZus{}logic}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{\PYGZhy{}\PYGZhy{}\PYGZgt{} u}
+\PYG{+w}{        }\PYG{n}{clock}\PYG{+w}{  }\PYG{o}{:}\PYG{+w}{ }\PYG{k}{in}\PYG{+w}{ }\PYG{k+kt}{std\PYGZus{}logic}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{\PYGZhy{}\PYGZhy{}\PYGZgt{} i\PYGZus{}clock}
+\PYG{+w}{        }\PYG{n}{reset}\PYG{+w}{  }\PYG{o}{:}\PYG{+w}{ }\PYG{k}{in}\PYG{+w}{ }\PYG{k+kt}{std\PYGZus{}logic}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{\PYGZhy{}\PYGZhy{}\PYGZgt{} component\PYGZus{}reset}
+\PYG{+w}{        }\PYG{n}{enable}\PYG{+w}{ }\PYG{o}{:}\PYG{+w}{ }\PYG{k}{in}\PYG{+w}{ }\PYG{k+kt}{std\PYGZus{}logic}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{\PYGZhy{}\PYGZhy{}\PYGZgt{} component\PYGZus{}enable}
+\PYG{+w}{        }\PYG{n}{pk}\PYG{+w}{     }\PYG{o}{:}\PYG{+w}{ }\PYG{k}{out}\PYG{+w}{ }\PYG{k+kt}{std\PYGZus{}logic\PYGZus{}vector}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{+w}{ }\PYG{k}{downto}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{)}\PYG{+w}{ }\PYG{c+c1}{\PYGZhy{}\PYGZhy{}\PYGZgt{} encoder\PYGZsq{}s output}
+\PYG{+w}{    }\PYG{p}{);}
+\PYG{k}{end}\PYG{+w}{ }\PYG{n+nc}{convolutional\PYGZus{}encoder}\PYG{p}{;}
+\end{Verbatim}

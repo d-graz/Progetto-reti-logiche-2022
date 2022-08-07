@@ -35,19 +35,19 @@
         Di seguito viene riportata l'interfaccia del modulo hardware da sviluppare, l'interfaccia della memoria ed infine alcune specifiche progettuali.
         \subsubsection{Interfaccia del progetto}
             \begin{minted}{vhdl}
-            entity project_reti_logiche is
-                port (
-                    i_clk : in std_logic;
-                    i_rst : in std_logic;
-                    i_start : in std_logic;
-                    i_data : in std_logic_vector(7 downto 0);
-                    o_address : out std_logic_vector(15 downto 0);
-                    o_done : out std_logic;
-                    o_en : out std_logic;
-                    o_we : out std_logic;
-                    o_data : out std_logic_vector (7 downto 0)
-                );
-            end project_reti_logiche;
+entity project_reti_logiche is
+    port (
+        i_clk : in std_logic;
+        i_rst : in std_logic;
+        i_start : in std_logic;
+        i_data : in std_logic_vector(7 downto 0);
+        o_address : out std_logic_vector(15 downto 0);
+        o_done : out std_logic;
+        o_en : out std_logic;
+        o_we : out std_logic;
+        o_data : out std_logic_vector (7 downto 0)
+    );
+end project_reti_logiche;
             \end{minted}
         \subsubsection{Interfaccia della memoria}
         TODO SISTEMARE QUESTA PARTE
@@ -98,7 +98,7 @@
                         \path[->] (p_6)    edge              node {}                     (p_7);
                         \path[->] (p_7)    edge              node {}                     (d);
                         \path[->] (d)      edge [loop below] node {$wc = 0$}             (d);
-                        \path[->] (d)      edge              node {start = 0}            (i);
+                        \path[->] (d)      edge              node {\texttt{start = '0'}} (i);
                         \path[->] (d)      edge              node {$wc \neq 0$}          (r);
                     \end{tikzpicture}
                     \caption{Primo design della \textit{FSM}}
@@ -138,10 +138,78 @@
                 entrambi adibiti alla mitigazione del ritardo dovuto alla lettura della memoria e alla propagazione di tale segnale in fase di implementazione.
                 \begin{figure}[h]
                     \centering
-                    \begin{tikzpicture}[>=stealth',shorten >=1pt,auto,node distance=3cm,initial text =\texttt{Reset}]
-                        
+                    \begin{tikzpicture}[>=stealth',shorten >=1pt,auto,node distance=3.5cm,initial text =\texttt{Reset}]
+                        \node[state, initial, initial where=left] (i)                    {$idle$};
+                        \node[state]                              (w_wc) [right of=i]    {$w_{wc}$};
+                        \node[state]                              (r_wc) [right of=w_wc] {$r_{wc}$};
+                        \node[state]                              (r)    [right of=r_wc] {$ r  $};
+                        \node[state]                              (w)    [below of=r]    {$ w  $};
+                        \node[state]                              (p)    [left of=w]     {$p$};
+                        \node[state]                              (d)    [left of=p]     {$ d  $};
+                        \path[->] (i)      edge [loop above] node {\texttt{start = '0'}} (i);
+                        \path[->] (i)      edge              node {start = '1'}          (w_wc);
+                        \path[->] (w_wc)   edge              node {}                     (r_wc);
+                        \path[->] (r_wc)   edge              node {}                     (r);
+                        \path[->] (r)      edge              node {}                     (w);
+                        \path[->] (w)      edge              node {}                     (p);
+                        \path[->] (p)      edge              node {}                     (d);
+                        \path[->] (d)      edge [loop below] node {$wc = 0$}             (d);
+                        \path[->] (d)      edge              node {\texttt{start = '0'}} (i);
+                        \path[->] (d)      edge              node {$wc \neq 0$}          (r);
                     \end{tikzpicture}
                     \caption{Design finale compatto della \textit{FSM} finale}
                     \label{seconda_fsm}
-                \end{figure}
+                \end{figure}\\
+                \textbf{Nota :} In figuara \ref{seconda_fsm} gli stati $p_0,p_1,...,p_7$ sono compressi in un unico stato $p$ al solo fine di alleggerire la notazione della macchina. Essi rimangono quindi separati come mostrato in figura \ref{prima_fsm}.
+        \subsection{Code overview}
+            L'obbitettivo di questa sezione è quello di mettere in relazione, e quindi eventualmente far chiarezza, le scelte implementative precedentemente introdotte con l'effettivo codice VHDL del progetto.\\
+            Il progetto è composto da 3 principali componenti :
+            \begin{itemize}
+                \item \texttt{controller}
+                \item \texttt{convolutional\_encoder}
+                \item \texttt{string\_manager}
+            \end{itemize}
+            Successivamente vengono riportate le interfaccie dei componenti e una breve spiegazione sulle funzionalità implementate.
+            \subsubsection{\texttt{controller}}
+                \begin{minted}{vhdl}
+entity controller is
+    port(
+        clock            : in std_logic; --> i_clock
+        reset            : in std_logic; --> i_reset
+        start            : in std_logic; --> i_start
+        data             : in std_logic_vector (7 downto 0); --> i_data
+        done             : out std_logic := '-'; --> o_done
+        mem_address      : out std_logic_vector(15 downto 0); --> o_address
+        mem_enable       : out std_logic; --> o_en
+        mem_write        : out std_logic; --> o_we
+        u                : out std_logic; --> bit to be encoded
+        component_enable : out std_logic := '0'; --> enable signal for other components
+        component_reset  : out std_logic := '0' --> reset signal for other components
+    );
+end controller;
+                \end{minted}
+            \subsubsection{\texttt{convolutional\_encoder}}
+                \begin{minted}{vhdl}
+entity convolutional_encoder is 
+    port(
+        u      : in std_logic; --> u
+        clock  : in std_logic; --> i_clock
+        reset  : in std_logic; --> component_reset
+        enable : in std_logic; --> component_enable
+        pk     : out std_logic_vector(1 downto 0) --> encoder's output
+    );
+end convolutional_encoder;
+                \end{minted}
+            \subsubsection{\texttt{string\_manager}}
+                \begin{minted}{vhdl}
+                    entity string_manager is
+                        port(
+                        clock  : in std_logic;
+                        reset  : in std_logic;
+                        enable : in std_logic;
+                        bits   : in std_logic_vector(1 downto 0);
+                        half_z : out std_logic_vector(7 downto 0)
+                        );
+                    end string_manager;
+                \end{minted}
 \end{document}
