@@ -9,3 +9,7 @@
 \contentsline {subsection}{\numberline {2.1}Considerazioni su VHDL}{4}{}%
 \contentsline {subsection}{\numberline {2.2}Primo design della FSM}{4}{}%
 \contentsline {subsubsection}{\numberline {2.2.1}Stati della macchina}{4}{}%
+\contentsline {subsection}{\numberline {2.3}Design finale della FSM}{5}{}%
+\contentsline {subsubsection}{\numberline {2.3.1}Analisi di trade-off spaziale}{5}{}%
+\contentsline {subsubsection}{\numberline {2.3.2}Analisi di trade-off temporale}{5}{}%
+\contentsline {subsubsection}{\numberline {2.3.3}Nuova macchina a Stati}{5}{}%
