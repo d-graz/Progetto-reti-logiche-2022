@@ -6,5 +6,5 @@ INFO: [VRFC 10-311] analyzing module convolutional_encoder
 INFO: [VRFC 10-311] analyzing module project_reti_logiche
 INFO: [VRFC 10-311] analyzing module string_manager
 INFO: [VRFC 10-311] analyzing module glbl
-INFO: [VRFC 10-163] Analyzing VHDL file "/home/davide/git/tb-generator/gen_testbench_no_reset.vhd" into library xil_defaultlib
+INFO: [VRFC 10-163] Analyzing VHDL file "/home/davide/git/Progetto-reti-logiche-2022/docs/Test Bench  Progetto/cartella_1/tb_tre_bis.vhd" into library xil_defaultlib
 INFO: [VRFC 10-3107] analyzing entity 'project_tb'

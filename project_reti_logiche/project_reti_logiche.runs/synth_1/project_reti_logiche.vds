@@ -2,13 +2,13 @@
 # Vivado v2021.2 (64-bit)
 # SW Build 3367213 on Tue Oct 19 02:47:39 MDT 2021
 # IP Build 3369179 on Thu Oct 21 08:25:16 MDT 2021
-# Start of session at: Sun Jul 31 11:56:49 2022
-# Process ID: 35087
+# Start of session at: Mon Aug  8 16:31:31 2022
+# Process ID: 81479
 # Current directory: /home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.runs/synth_1
 # Command line: vivado -log project_reti_logiche.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source project_reti_logiche.tcl
 # Log file: /home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.runs/synth_1/project_reti_logiche.vds
 # Journal file: /home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.runs/synth_1/vivado.jou
-# Running On: dgraz, OS: Linux, CPU Frequency: 3800.000 MHz, CPU Physical cores: 16, Host memory: 16694 MB
+# Running On: dgraz, OS: Linux, CPU Frequency: 2200.000 MHz, CPU Physical cores: 16, Host memory: 16694 MB
 #-----------------------------------------------------------
 source project_reti_logiche.tcl -notrace
 Command: read_checkpoint -auto_incremental -incremental /home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.srcs/utils_1/imports/synth_1/project_reti_logiche.dcp
@@ -22,9 +22,9 @@ WARNING: [Designutils 20-4072] Reference run did not run incremental synthesis b
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 35132
+INFO: [Synth 8-7075] Helper process launched with PID 81513
 ---------------------------------------------------------------------------------
-Starting Synthesize : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 2607.562 ; gain = 0.000 ; free physical = 5927 ; free virtual = 29229
+Starting Synthesize : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 2607.566 ; gain = 0.000 ; free physical = 5456 ; free virtual = 29990
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-638] synthesizing module 'project_reti_logiche' [/home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.srcs/sources_1/new/quarta_implementazione.vhd:199]
 INFO: [Synth 8-3491] module 'controller' declared at '/home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.srcs/sources_1/new/quarta_implementazione.vhd:107' bound to instance 'cont' of component 'controller' [/home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.srcs/sources_1/new/quarta_implementazione.vhd:243]
@@ -42,10 +42,10 @@ INFO: [Synth 8-638] synthesizing module 'string_manager' [/home/davide/git/Proge
 INFO: [Synth 8-256] done synthesizing module 'string_manager' (4#1) [/home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.srcs/sources_1/new/quarta_implementazione.vhd:88]
 INFO: [Synth 8-256] done synthesizing module 'project_reti_logiche' (5#1) [/home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.srcs/sources_1/new/quarta_implementazione.vhd:199]
 ---------------------------------------------------------------------------------
-Finished Synthesize : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 2607.562 ; gain = 0.000 ; free physical = 5570 ; free virtual = 28873
+Finished Synthesize : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 2607.566 ; gain = 0.000 ; free physical = 5394 ; free virtual = 29935
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 2607.562 ; gain = 0.000 ; free physical = 5594 ; free virtual = 28897
+Finished Constraint Validation : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 2607.566 ; gain = 0.000 ; free physical = 5389 ; free virtual = 29930
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
@@ -53,7 +53,7 @@ Start Loading Part and Timing Information
 Loading part: xc7a200tfbg484-1
 INFO: [Device 21-403] Loading part xc7a200tfbg484-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 2615.379 ; gain = 7.816 ; free physical = 5591 ; free virtual = 28895
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 2615.383 ; gain = 7.816 ; free physical = 5386 ; free virtual = 29928
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-327] inferring latch for variable 'done_reg' [/home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.srcs/sources_1/new/quarta_implementazione.vhd:133]
 WARNING: [Synth 8-327] inferring latch for variable 'mem_address_reg' [/home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.srcs/sources_1/new/quarta_implementazione.vhd:170]
@@ -61,7 +61,7 @@ WARNING: [Synth 8-327] inferring latch for variable 'next_state_reg' [/home/davi
 WARNING: [Synth 8-327] inferring latch for variable 'mem_inout_reg' [/home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.srcs/sources_1/new/quarta_implementazione.vhd:135]
 WARNING: [Synth 8-327] inferring latch for variable 'component_enable_reg' [/home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.srcs/sources_1/new/quarta_implementazione.vhd:174]
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 2615.379 ; gain = 7.816 ; free physical = 5558 ; free virtual = 28862
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 2615.383 ; gain = 7.816 ; free physical = 6196 ; free virtual = 30744
 ---------------------------------------------------------------------------------
 No constraint files found.
 ---------------------------------------------------------------------------------
@@ -106,20 +106,20 @@ Start Cross Boundary and Area Optimization
 WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
 WARNING: [Synth 8-3332] Sequential element (cont/mem_address_reg[15]) is unused and will be removed from module project_reti_logiche.
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 2615.379 ; gain = 7.816 ; free physical = 6203 ; free virtual = 29509
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 2615.383 ; gain = 7.816 ; free physical = 5972 ; free virtual = 30550
 ---------------------------------------------------------------------------------
 No constraint files found.
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 2615.379 ; gain = 7.816 ; free physical = 6200 ; free virtual = 29506
+Finished Timing Optimization : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 2615.383 ; gain = 7.816 ; free physical = 5970 ; free virtual = 30549
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 2615.379 ; gain = 7.816 ; free physical = 6192 ; free virtual = 29498
+Finished Technology Mapping : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 2615.383 ; gain = 7.816 ; free physical = 5971 ; free virtual = 30550
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -137,37 +137,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 2615.379 ; gain = 7.816 ; free physical = 6191 ; free virtual = 29497
+Finished IO Insertion : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 2615.383 ; gain = 7.816 ; free physical = 5971 ; free virtual = 30550
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 2615.379 ; gain = 7.816 ; free physical = 6191 ; free virtual = 29497
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 2615.383 ; gain = 7.816 ; free physical = 5971 ; free virtual = 30550
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 2615.379 ; gain = 7.816 ; free physical = 6191 ; free virtual = 29497
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 2615.383 ; gain = 7.816 ; free physical = 5971 ; free virtual = 30550
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 2615.379 ; gain = 7.816 ; free physical = 6191 ; free virtual = 29497
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 2615.383 ; gain = 7.816 ; free physical = 5971 ; free virtual = 30550
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 2615.379 ; gain = 7.816 ; free physical = 6191 ; free virtual = 29497
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 2615.383 ; gain = 7.816 ; free physical = 5971 ; free virtual = 30550
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 2615.379 ; gain = 7.816 ; free physical = 6191 ; free virtual = 29497
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 2615.383 ; gain = 7.816 ; free physical = 5971 ; free virtual = 30550
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -212,18 +212,18 @@ Report Instance Areas:
 |6     |  str_mng |string_manager        |    14|
 +------+----------+----------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 2615.379 ; gain = 7.816 ; free physical = 6191 ; free virtual = 29497
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 2615.383 ; gain = 7.816 ; free physical = 5971 ; free virtual = 30550
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 7 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 2615.379 ; gain = 7.816 ; free physical = 6197 ; free virtual = 29503
-Synthesis Optimization Complete : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 2615.387 ; gain = 7.816 ; free physical = 6197 ; free virtual = 29503
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 2615.383 ; gain = 7.816 ; free physical = 5972 ; free virtual = 30551
+Synthesis Optimization Complete : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 2615.391 ; gain = 7.816 ; free physical = 5972 ; free virtual = 30551
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2615.387 ; gain = 0.000 ; free physical = 6280 ; free virtual = 29586
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2615.391 ; gain = 0.000 ; free physical = 6055 ; free virtual = 30637
 INFO: [Netlist 29-17] Analyzing 33 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2671.406 ; gain = 0.000 ; free physical = 6190 ; free virtual = 29497
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2671.410 ; gain = 0.000 ; free physical = 5948 ; free virtual = 30543
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 33 instances were transformed.
   LD => LDCE: 20 instances
@@ -234,7 +234,7 @@ Synth Design complete, checksum: d5bd7c98
 INFO: [Common 17-83] Releasing license: Synthesis
 30 Infos, 8 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:11 ; elapsed = 00:00:09 . Memory (MB): peak = 2671.406 ; gain = 64.031 ; free physical = 6391 ; free virtual = 29698
+synth_design: Time (s): cpu = 00:00:11 ; elapsed = 00:00:09 . Memory (MB): peak = 2671.410 ; gain = 64.031 ; free physical = 6150 ; free virtual = 30745
 INFO: [Common 17-1381] The checkpoint '/home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.runs/synth_1/project_reti_logiche.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file project_reti_logiche_utilization_synth.rpt -pb project_reti_logiche_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Sun Jul 31 11:57:04 2022...
+INFO: [Common 17-206] Exiting Vivado at Mon Aug  8 16:31:46 2022...

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Arch Linux) (preloaded format=pdflatex 2022.8.1)  7 AUG 2022 18:54
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Arch Linux) (preloaded format=pdflatex 2022.7.30)  8 AUG 2022 16:28
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -627,29 +627,44 @@ Overfull \hbox (27.71675pt too wide) in paragraph at lines 103--104
 [4] [5]
 \openout3 = `report.pyg'.
 
- (./_minted-report/25B9D6949C1BDF9FC647478244CA4E0DEC077EC769785689541919BE25CA88AB.pygtex)
+ (./_minted-report/25B9D6949C1BDF9FC647478244CA4E0DEC077EC769785689541919BE25CA88AB.pygtex [6])
 \openout3 = `report.pyg'.
 
- (./_minted-report/D2955A3EEFC95D18F28C6350F5EE9ADEEC077EC769785689541919BE25CA88AB.pygtex [6])
+ (./_minted-report/D2955A3EEFC95D18F28C6350F5EE9ADEEC077EC769785689541919BE25CA88AB.pygtex)
 \openout3 = `report.pyg'.
 
- (./_minted-report/66C871FC0D868662272BF463F83B50F9EC077EC769785689541919BE25CA88AB.pygtex) [7] (./report.aux)
+ (./_minted-report/C16F33E73E081E0892889E7E986A13CEEC077EC769785689541919BE25CA88AB.pygtex
+Overfull \hbox (11.15353pt too wide) in paragraph at lines 206--1
+\OT1/cmr/m/n/10.95 Questo mo-du-lo del com-po-nen-te ha il com-pi-to di con-ca-te-na-re i 2 bit di out-put del \OT1/cmtt/m/n/10.95 convolutional[]encoder
+ []
+
+)
+<progetto_reti_logiche.png, id=40, 1776.6375pt x 938.50626pt>
+File: progetto_reti_logiche.png Graphic file (type png)
+<use progetto_reti_logiche.png>
+Package pdftex.def Info: progetto_reti_logiche.png  used on input line 223.
+(pdftex.def)             Requested size: 483.69687pt x 255.50517pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[7] [8 <./progetto_reti_logiche.png>] (./report.aux)
 runsystem(rm report.pyg)...executed.
 
  ) 
 Here is how much of TeX's memory you used:
- 20139 strings out of 478238
- 413850 string characters out of 5850457
- 756833 words of memory out of 5000000
- 38001 multiletter control sequences out of 15000+600000
+ 20148 strings out of 478238
+ 414102 string characters out of 5850456
+ 755076 words of memory out of 5000000
+ 38009 multiletter control sequences out of 15000+600000
  478293 words of font info for 62 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,11n,89p,502b,976s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmitt10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb>
-Output written on report.pdf (7 pages, 198494 bytes).
+Output written on report.pdf (8 pages, 242182 bytes).
 PDF statistics:
- 100 PDF objects out of 1000 (max. 8388607)
- 62 compressed objects within 1 object stream
+ 105 PDF objects out of 1000 (max. 8388607)
+ 64 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 18 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 23 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -17,3 +17,6 @@
 \contentsline {subsubsection}{\numberline {2.4.1}\texttt {controller}}{6}{}%
 \contentsline {subsubsection}{\numberline {2.4.2}\texttt {convolutional\_encoder}}{7}{}%
 \contentsline {subsubsection}{\numberline {2.4.3}\texttt {string\_manager}}{7}{}%
+\contentsline {subsubsection}{\numberline {2.4.4}Schematico del codice}{7}{}%
+\contentsline {section}{\numberline {3}Risultati sperimentali}{7}{}%
+\contentsline {subsection}{\numberline {3.1}Simulazioni}{8}{}%

@@ -5,6 +5,8 @@
 
 % Node styles
 \tikzstyle{white node}=[fill=white, draw=black, shape=circle]
+\tikzstyle{box}=[fill=white, draw=black, shape=rectangle]
 
 % Edge styles
 \tikzstyle{arrow}=[->]
+\tikzstyle{line}=[-]

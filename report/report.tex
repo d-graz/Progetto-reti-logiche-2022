@@ -121,7 +121,7 @@ end project_reti_logiche;
             Possibile soluzione sarebbe quella di aggiungere altri 2 stati così da poter mitigare i ritardi dovuti alla lettura della memoria. Vengono quindi qui sotto riportate delle semplici, seppur doverose, analisi in termini di tempo e di spazio per poter giustificare il cambiamento delle stuttura della macchina a stati.
             \subsubsection{Analisi di trade-off spaziale}
                 Considerando il numero di stati $numStati = 12$ e utilizzando la codifica binaria $log_2(numStati) \approx 3.6$ quindi si utilizzano 4 bit per la rappresentazione di tali stati. È facile verificare che l'aggiunta di 2 stati, quindi $numStati = 14$, non richiede allocamento aggiuntivo di memoria su FPGA.
-            \subsubsection{Analisi di trade-off temporale}
+            \subsubsection{Analisi di trade-off temporale} \label{cap:tradeoff_temporale}
                 Essendo uno di questi 2 stati aggiuntivi eseguito solo una volta in fase di lettura del numero di parole contenuto in ram esso verrà trascurato perchè asintoticamente irrilevante. Tenendo in considerazione gli stati che vengono eseguiti in \textit{loop}, facendo riferimento alla figura \ref{prima_fsm} gli stati da $r$ a $d$, si ottine $numStati_{m1} = 10$ e $numStati_{m2} =numStati_{m1} + 1= 11$.\\
                 Quindi perchè questa modifica alla FSM sia motivata si deve avere che 
                 \begin{gather*}
@@ -171,6 +171,7 @@ end project_reti_logiche;
             \end{itemize}
             Successivamente vengono riportate le interfaccie dei componenti e una breve spiegazione sulle funzionalità implementate.
             \subsubsection{\texttt{controller}}
+            È il responsabile per il "comportamento" del componente. Oltre ad essere responsabile per il corretto cycling degli stati, controlla direttamente i segnali di \texttt{o\_en}, \texttt{o\_we} e \texttt{o\_address}. 
                 \begin{minted}{vhdl}
 entity controller is
     port(
@@ -189,6 +190,7 @@ entity controller is
 end controller;
                 \end{minted}
             \subsubsection{\texttt{convolutional\_encoder}}
+                Parte del componente adibita alla codifica di un singolo bit di una parola; implementa il codificatore convoluzionale mostrato in figura \ref{codificatore_convoluzionale_image}.
                 \begin{minted}{vhdl}
 entity convolutional_encoder is 
     port(
@@ -201,15 +203,41 @@ entity convolutional_encoder is
 end convolutional_encoder;
                 \end{minted}
             \subsubsection{\texttt{string\_manager}}
+                Questo modulo del componente ha il compito di concatenare i 2 bit di output del \texttt{convolutional\_encoder} per formare una parola in uscita, da scrivere successivamente in memoria.
                 \begin{minted}{vhdl}
-                    entity string_manager is
-                        port(
-                        clock  : in std_logic;
-                        reset  : in std_logic;
-                        enable : in std_logic;
-                        bits   : in std_logic_vector(1 downto 0);
-                        half_z : out std_logic_vector(7 downto 0)
-                        );
-                    end string_manager;
+entity string_manager is
+    port(
+    clock  : in std_logic; --> i_clock
+    reset  : in std_logic; --> component_reset
+    enable : in std_logic; --> component_enable
+    bits   : in std_logic_vector(1 downto 0); --> pk
+    half_z : out std_logic_vector(7 downto 0) --> o_data
+    );
+end string_manager;
                 \end{minted}
+            \subsubsection{Schematico del codice}
+                Viene qui riportata un'immagine che mostra i collegamenti fra le varie entità del codice VHDL. La descrizione di tali collegamenti si può ritrovare nell'architettura, di tipo \textit{structural}, dell'entità \texttt{project\_reti\_logiche}.
+                % todo da impaginare correttamente
+                \begin{figure}[h]
+                    \centering
+                    \includegraphics[width = \linewidth]{progetto_reti_logiche.png}
+                    \caption{Schematico dei collegamenti tra le varie entità}
+                    \label{collegamento_entità}
+                \end{figure}
+    \section{Risultati sperimentali}
+        In questa sezione verranno discussi tutti i risultati ottenuti attraverso i vari tipi di simulazioni insieme a quali tipi di test siano stati usati per assicurare il corretto funzionamento del componente; successivamente vengono riportati alcuni dati sperimentati direttamente ottenuti dal tool di sintesi ed implementazione \textit{Vivado}.\\
+        \textbf{Nota :} tutti i test eseguiti sono stati eseguiti su FPGA \textit{Artix-7 xc7a200tfbg484-1}.
+        Vengono prima riportate tutti i tipi di simulazioni utilizzate :
+        ed infine i tipi di test utilizzati :
+        \begin{itemize}
+            \item testbench fornite dal professore 
+            \item testbench generate da un tool automatico di un collega (link : TODO link da mettere)
+            \item testbench generate da un tool automatico appositamente sviluppato
+        \end{itemize}
+        La copertura dei test verrà discussa in seguito.
+        \subsection{Simulazioni}
+            Come precedentemente accennato le simulazioni \textit{behavioral} e quelle di \textit{Post-Synthesis} (sia \textit{Functional} che \textit{Timing}) ottenevano esiti positivi già utilizzando la FSM in figura \ref{prima_fsm} con un range di clock $clockPeriod \approx [15,100] ns$.
+            Per assicurare però un minimo standard di qualità si è comunque preferito testare il componente anche in \textit{Post-Implementation}.
+            È proprio dalla neccessità di ottenere un componente in grado di funzionare correttamente in  \textit{Post-Implementation} con periodi di clock $clockPeriod \approx 15 ns$ che ha portato ad una modifica della prima macchina a stati finiti ottenendo il design finale mostrato in figura \ref{seconda_fsm}.
+            In precedenza, discusso al capitolo \ref{cap:tradeoff_temporale}, 
 \end{document}
