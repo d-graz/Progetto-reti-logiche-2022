@@ -7,6 +7,7 @@
 \usepackage{graphicx}
 \usepackage{minted}
 \usepackage{enumitem}
+\usepackage{hyperref}
 \usepackage{tikz}
 \usetikzlibrary{automata, positioning, arrows}
 \usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
@@ -32,7 +33,8 @@
         \label{codificatore_convoluzionale_image}
     \end{figure}
     \subsection{Specifiche del progetto}
-        Di seguito viene riportata l'interfaccia del modulo hardware da sviluppare, l'interfaccia della memoria ed infine alcune specifiche progettuali.
+        Vengono fornite l'interfaccia del progetto, la specifica della memoria sulla quale interfacciarsi ed infine una limitazione temporale che impone che il modulo hardware computi correttamente con periodi di clock di almeno $clockPeriod_{req} = 100ns$.\\
+        Di seguito viene riportata l'interfaccia del modulo e l'interfaccia della memoria.
         \subsubsection{Interfaccia del progetto}
             \begin{minted}{vhdl}
 entity project_reti_logiche is
@@ -49,13 +51,21 @@ entity project_reti_logiche is
     );
 end project_reti_logiche;
             \end{minted}
+        \newpage
         \subsubsection{Interfaccia della memoria}
-        TODO SISTEMARE QUESTA PARTE
-        \subsubsection{Altri constrains progettuali}
-        \begin{description}
-            \item[Periodo di clock minimo richiesto] $clockPeriod_{req} = 100ns$
-            \item[Ram] vedere   
-        \end{description}
+            \begin{minted}{vhdl}
+entity rams_sp_wf is
+    port(
+        clk : in std_logic;
+        we : in std_logic;
+        en : in std_logic;
+        addr : in std_logic_vector(15 downto 0);
+        di : in std_logic_vector(7 downto 0);
+        do : out std_logic_vector(7 downto 0)
+    );
+end rams_sp_wf;
+            \end{minted}
+            Per maggiori dettagli viene fornito il link alla \textit{User Guide} di \textit{Vivado} dalla quale la memoria è stata derivata : \url{https://www.xilinx.com/support/documentation/sw\_manuals/xilinx2017\_3/ug901-vivado-synthesis.pdf}
     \section{Architettura, approccio e scielte implementative}
         In questa sezione verrà descritta la \textit{FSM} del progetto seguita da un rapido overview sul codice presentato. Prima però vengono riportate alcune doverose considerazioni
         riguardanti il linguaggio di programmazione VHDL.
@@ -69,6 +79,7 @@ end project_reti_logiche;
         \subsection{Primo design della FSM}
             Tenendo conto delle considerazioni sopra fatte viene ora presentata la prima macchina a stati in grado già di soddisfare ampiamente requisiti di timing sia post sintesi sia post implementazione; viene discussa quest'ultima in 
             quanto alla base del design finale e da considerarsi design ottimale per periodi di clock $clockPeriod \approx [35,100] ns$.
+            \newpage
             \subsubsection{Stati della macchina}
                 \begin{figure}[h]
                     \centering
@@ -125,7 +136,7 @@ end project_reti_logiche;
                 Essendo uno di questi 2 stati aggiuntivi eseguito solo una volta in fase di lettura del numero di parole contenuto in ram esso verrà trascurato perchè asintoticamente irrilevante. Tenendo in considerazione gli stati che vengono eseguiti in \textit{loop}, facendo riferimento alla figura \ref{prima_fsm} gli stati da $r$ a $d$, si ottine $numStati_{m1} = 10$ e $numStati_{m2} =numStati_{m1} + 1= 11$.\\
                 Quindi perchè questa modifica alla FSM sia motivata si deve avere che 
                 \begin{gather*}
-                    numStati_{m1} * clockPeriod_{m1 \space min} > numStati_{m2} * clockPeriod_{m2} 
+                    numStati_{m1} * clockPeriod_{\textit{\text{m1 min}}} > numStati_{m2} * clockPeriod_{m2} 
                 \end{gather*}
                 con $clockPeriod_{m1 \space min} = 35 ns$.\\
                 Si ottiene che $clockPeriod_{m2} \leq 31.82 ns$, condizione che verrà poi verificata e discussa nella sezione riguardante i risultati sperimentali.
@@ -217,7 +228,6 @@ end string_manager;
                 \end{minted}
             \subsubsection{Schematico del codice}
                 Viene qui riportata un'immagine che mostra i collegamenti fra le varie entità del codice VHDL. La descrizione di tali collegamenti si può ritrovare nell'architettura, di tipo \textit{structural}, dell'entità \texttt{project\_reti\_logiche}.
-                % todo da impaginare correttamente
                 \begin{figure}[h]
                     \centering
                     \includegraphics[width = \linewidth]{progetto_reti_logiche.png}
@@ -225,19 +235,115 @@ end string_manager;
                     \label{collegamento_entità}
                 \end{figure}
     \section{Risultati sperimentali}
-        In questa sezione verranno discussi tutti i risultati ottenuti attraverso i vari tipi di simulazioni insieme a quali tipi di test siano stati usati per assicurare il corretto funzionamento del componente; successivamente vengono riportati alcuni dati sperimentati direttamente ottenuti dal tool di sintesi ed implementazione \textit{Vivado}.\\
+        In questa sezione verranno discussi tutti i risultati ottenuti attraverso i vari tipi di simulazioni insieme a quali tipi di test siano stati usati per assicurare il corretto funzionamento del componente; successivamente vengono riportati alcuni dati sperimentati direttamente ottenuti dal tool di sintesi ed implementazione \textit{Vivado}.
+        Vengono però prima riportate le dimensioni, in termini di \textit{LUT} e \textit{FF}, del componente hardware implementato.
+        \begin{description}
+            \item[LUT : ] TODO numero
+            \item[FF : ] TODO numero 
+        \end{description}
         \textbf{Nota :} tutti i test eseguiti sono stati eseguiti su FPGA \textit{Artix-7 xc7a200tfbg484-1}.
-        Vengono prima riportate tutti i tipi di simulazioni utilizzate :
-        ed infine i tipi di test utilizzati :
-        \begin{itemize}
-            \item testbench fornite dal professore 
-            \item testbench generate da un tool automatico di un collega (link : TODO link da mettere)
-            \item testbench generate da un tool automatico appositamente sviluppato
-        \end{itemize}
-        La copertura dei test verrà discussa in seguito.
         \subsection{Simulazioni}
             Come precedentemente accennato le simulazioni \textit{behavioral} e quelle di \textit{Post-Synthesis} (sia \textit{Functional} che \textit{Timing}) ottenevano esiti positivi già utilizzando la FSM in figura \ref{prima_fsm} con un range di clock $clockPeriod \approx [15,100] ns$.
             Per assicurare però un minimo standard di qualità si è comunque preferito testare il componente anche in \textit{Post-Implementation}.
-            È proprio dalla neccessità di ottenere un componente in grado di funzionare correttamente in  \textit{Post-Implementation} con periodi di clock $clockPeriod \approx 15 ns$ che ha portato ad una modifica della prima macchina a stati finiti ottenendo il design finale mostrato in figura \ref{seconda_fsm}.
-            In precedenza, discusso al capitolo \ref{cap:tradeoff_temporale}, 
+            È proprio dalla neccessità di ottenere un componente in grado di funzionare correttamente in  \textit{Post-Implementation} con periodi di clock $clockPeriod \approx 15 ns$ che ha portato ad una modifica della prima macchina a stati finiti ottenendo il design finale mostrato in figura \ref{seconda_fsm}.\\
+            Grazie alle simulazioni è stato possibile verificare che il modulo hardware computa correttamente per periodi di clock poco inferiori a $clockPeriod = 15$, verificando così un discreto guadagno prestazionale rispetto al primo design presentato (al capitolo \ref{cap:tradeoff_temporale} vengono presentati i calcoli temporali).
+            Va comunque notato che per $clockPeriod > 31.82ns$ il design ottimale rimane ancora il primo discusso.
+            \newpage
+            \subsubsection{Simulazione d'esempio}
+                Viene ora commentata una simulazione per mostrare il funzionamento del modulo hardware :
+                \begin{description}
+                    \item[Tipo di simulazione : ] behavioral
+                    \item[TestBench : ] \texttt{tre\_bis.vhdl}, fornita dal docente 
+                    \item[Periodo di clock : ] $15ns$ 
+                \end{description}
+                \begin{figure}[h]
+                    \centering
+                    \includegraphics[width = \linewidth]{totale.png}
+                    \caption{Codifica di una parola, simulazione \textit{behavioral}}
+                    \label{behavioral_totale}
+                \end{figure}
+                La figuara \ref{behavioral_totale} mostra l'inizio della testbench e la codifica completa della parola; sulla sinistra sono presenti i sengali facenti parte dell'interfaccia del progetto insieme ad un segnale \texttt{current\_state} che rappresenta lo stato corrente della macchina.
+                È stata scelta una simulazione \textit{behavioral} perchè assente da ritardi dovuti a computazione e/o propagazione, facilitandone così la lettura.\\
+                Viene ora spezzata la figuara appena sopra riportata per consentirne migliore lettura.
+                \begin{figure}[h]
+                    \centering
+                    \includegraphics[width = \linewidth]{primi_4_scaled.png}
+                    \caption{Inizio testbench, lettura parola, inizio computazione e scrittura prima parola codificata}
+                    \label{behavioral_primi_4}
+                \end{figure}
+                Facendo riferimento alla figura \ref{behavioral_primi_4}
+                \begin{description}[leftmargin = 0cm]
+                    \item[Inizio testbench - Marker 1] La macchina si trova in stato di \textit{idle} e appena \texttt{start = '1'} viene portato \texttt{o\_en = '1'} per richiedere alla memoria il numero di parole da codificare.
+                    \item[Lettura parola - Marker 2] Nella fase di \textit{read (r)} il componente porta nuovamente \texttt{o\_en = '1'} preparandosi così per la lettura di una parola.
+                    \item[Inizio computazione - Marker 3] Il modulo si trova ora nella prima fase di computazione della parola \textit{$p_0$}. Viene codificato il primo bit della parola precedentemente letta e in parallelo viene aggiornato il valore di \texttt{o\_data}.
+                    \item[Scrittura prima parola codifica - Marker 4] La macchina si trova nello stato \textit{$p_3$}; sta quindi codificando il quarto bit e la prima parola è già pronta per essere scritta. Si realizza così un parallelismo tra codifica e scrittura in memoria portando alto i segnali di \texttt{o\_en} e \texttt{o\_we}.
+                \end{description}
+                \newpage
+                \begin{figure}[h]
+                    \centering
+                    \includegraphics[width = \linewidth]{ultimi_2_scaled.png}
+                    \caption{Fine codifica e lettura prossima parola}
+                    \label{behavioral_ultimi_2}
+                \end{figure}
+                \begin{description}[leftmargin = 0cm]
+                    \item[Marker 1] vedi Marker 4 in riferimento a figuara \ref{behavioral_primi_4} 
+                    \item[Fine codifica - Marker 2] Nello stato \textit{$p_7$} il componente ha terminato la codifica dell'intera parola. Similmente a come accade nello stato \textit{$p_3$} (Marker 4 in riferimento a figuara \ref{behavioral_primi_4}) vi è il parallelismo tra computazione e scrittura in memoria.
+                    \item[Lettura prossima parola - Marker 3] Essendo le parole da codificare 2 la FSM ritorna nello stato di \textit{read} (Marker 2).
+                \end{description}
+        \subsection{Testbench}
+                Vengono ora qui discusse le testbench eseguite e la loro potenza di test.
+                    \subsubsection{Testbench fornite dal docente} \label{cap:test_bench_docente}
+                        Questa sezione di testbench comprende in particolare :
+                        \begin{enumerate}
+                            \item \texttt{tb\_esempio\_1.vhdl}
+                            \item \texttt{tb\_esempio\_2.vhdl}
+                            \item \texttt{tb\_esempio\_3.vhdl}
+                            \item \texttt{tb\_seq\_max.vhdl}
+                            \item \texttt{tb\_seq\_min.vhdl}
+                            \item \texttt{tb\_re\_encode.vhdl}
+                            \item \texttt{tb\_reset.vhdl}
+                            \item \texttt{tb\_tre\_reset.vhdl}
+                            \item \texttt{tb\_tre\_bis.vhdl}
+                        \end{enumerate}
+                        Questo set di test è molto vario così come la loro potenza.
+                        \begin{description}[leftmargin = 0cm]
+                            \item[Test 1, 2 e 3 : ] sono testbench iniziali per verificare il "basilare" funzionamento del componente hardware; per esempio non viene in alcun modo testata ricodifiche succesive o reset della FSM. 
+                            \item[Test 4 e 5 : ] testbench utilizzate per verificare il corretto comportamento della macchina in caso di sequenze limite .
+                            \item[Test 6 : ] testbench che test il re-encoding del modulo hardware (senza resettare la macchina) .
+                            \item[Test 7 e 8 : ] testbench che testano le funzionalità del reset della macchina .
+                            \item[Test 9 : ] testbench con $clockPeriod = 15ns$ che va ad eseguire più encoding in successione. Lo scopo di questo test è verificare il comportamento del modulo con periodi di clock molto bassi. 
+                        \end{description} 
+                    \subsubsection{Testbench generate attraverso tool automatico}
+                        In questa sezioni vengono ulteriormente distinte :
+                        \begin{itemize}
+                            \item testbench generate attraverso tool automati di un collega (reperibile al seguente link : TODO link)
+                            \item testbench con ram generate attraverso tool automatico (reperibile al link :TODO link   dopo la chiusura della data di consegna).\\\textit{Nota :} il tool non viene rilasciato immediatamente in quanto risedente nella stessa repository del source code del progetto stesso.
+                        \end{itemize}
+                        Entrambe le seguenti testbench hanno come scopo quella di verificare la correttezza del componente sintetizzato mettendo il componente stesso sotto forte stress computazionale.\\
+                        Inoltre, considerando il secondo tool citato, è stato possibile riutilizzare le testbench del capitolo \ref{cap:test_bench_docente} con ram differenti aumentando così anche la loro potenza di test.
+    \section{Conclusioni}
+            In questo capitolo vengono discussi le limitazioni del componente sviluppato, possibili miglioramenti ed infine vengono presentati alcuni possibili campi di utilizzo del componente svilupppato. 
+        \subsection{Limiti del componente hardware}
+            Il modulo hardware non presenta sostanziali problematiche dall'autore rilevate. Soprattutto per $clockPeriod \approx 100ns$, definito come minimo target del progetto, il suddetto componente non presenta alcuna criticità.
+            Viene invece riportato che per $clockPeriod \approx 12ns$ in simulazioni \textit{Post-Implementation, Timing} il componente non riesce a computare correttamente.
+            Questo è dovuto a causa dei ritardi di computazione e di propagazione del segnale; in particolare quando il modulo vede alzare \texttt{i\_start} (fsm in stato di $idle$) non riesce a richidere alla memoria il giusto indirizzo prima del cambiamento del nuovo stato.
+            Sebbene questa criticità sia nota viene scelto di non correggerla in quanto molto lontani dal minimo periodo di clock richiesto.
+        \subsection{Possibili miglioramenti - Parallelismo}
+            È subito immediato pensare che la migliore modifica al progetto sia quella di sfruttare le proprietà fisiche del circuito e quindi di implementare un modulo hardware in grado di codificare una parola in un solo ciclo di clock. 
+            Questa modifica sarebbe possibile eliminando i flip flop che tengono in memoria gli stati precedenti del codificatore convoluzionale e collegando a cascata 8 codificatori convoluzionali modificati come precedentemente descritto.
+            Il design della macchina a stati di questo componente non sarebbe diversa da quelle riportata in figura \ref{seconda_fsm}, con unica eccezione che lo stato $p$ sia effettivamente un unico stato. 
+            Considerando che $numStati_{\textit{\text{m loop}}} =11$ e che $numStati_{\textit{\text{m  parallela loop}}} = 11 -7 = 4$ si ottine che :
+            \begin{gather*}
+                numStati_{\textit{\text{m loop}}} * 15ns > numStati_{\textit{\text{m  parallela loop}}} * clockPeriod_{\textit{\text{m  parallela}}}
+            \end{gather*}
+            Quindi per $clockPeriod_{\textit{\text{m  parallela}}} \leq 41.25ns$ si ottine un componente hardware più performante.\\
+            Tale approccio, seppur considerato, non è stato intrapreso in quanto "snaturato" il convolutore riportato in figura \ref{codificatore_convoluzionale_image}.
+        \subsection{Campi di utilizzo del modulo hardware sviluppato}
+            Come già  descritto nel capitolo 1, un codificatore convoluzionale trova applicazione in sistemi di telecomunicazione dove l'integrità dell'informazione scambiata è essenziale.
+            Date le dimensioni ridotte dell'implementato trova i maggiori campi d'utilizzo in dispositivi \textit{IoT} ove non è necessario l'integrazione di una \textit{Generic Purpose CPU}.
+            Alcuni possibili esempi possone essere :
+            \begin{itemize}
+                \item telecamer
+                \item dispositivi di domotica
+            \end{itemize}
 \end{document}

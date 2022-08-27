@@ -1,22 +1,29 @@
 \babel@toc {italian}{}\relax 
 \babel@toc {italian}{}\relax 
-\contentsline {section}{\numberline {1}Codifiche Convoluzionali e Introduzione al Progetto}{3}{}%
-\contentsline {subsection}{\numberline {1.1}Specifiche del progetto}{3}{}%
-\contentsline {subsubsection}{\numberline {1.1.1}Interfaccia del progetto}{3}{}%
-\contentsline {subsubsection}{\numberline {1.1.2}Interfaccia della memoria}{3}{}%
-\contentsline {subsubsection}{\numberline {1.1.3}Altri constrains progettuali}{4}{}%
-\contentsline {section}{\numberline {2}Architettura, approccio e scielte implementative}{4}{}%
-\contentsline {subsection}{\numberline {2.1}Considerazioni su VHDL}{4}{}%
-\contentsline {subsection}{\numberline {2.2}Primo design della FSM}{4}{}%
-\contentsline {subsubsection}{\numberline {2.2.1}Stati della macchina}{4}{}%
-\contentsline {subsection}{\numberline {2.3}Design finale della FSM}{5}{}%
-\contentsline {subsubsection}{\numberline {2.3.1}Analisi di trade-off spaziale}{5}{}%
-\contentsline {subsubsection}{\numberline {2.3.2}Analisi di trade-off temporale}{5}{}%
-\contentsline {subsubsection}{\numberline {2.3.3}Nuova macchina a Stati}{5}{}%
-\contentsline {subsection}{\numberline {2.4}Code overview}{6}{}%
-\contentsline {subsubsection}{\numberline {2.4.1}\texttt {controller}}{6}{}%
-\contentsline {subsubsection}{\numberline {2.4.2}\texttt {convolutional\_encoder}}{7}{}%
-\contentsline {subsubsection}{\numberline {2.4.3}\texttt {string\_manager}}{7}{}%
-\contentsline {subsubsection}{\numberline {2.4.4}Schematico del codice}{7}{}%
-\contentsline {section}{\numberline {3}Risultati sperimentali}{7}{}%
-\contentsline {subsection}{\numberline {3.1}Simulazioni}{8}{}%
+\contentsline {section}{\numberline {1}Codifiche Convoluzionali e Introduzione al Progetto}{3}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Specifiche del progetto}{3}{subsection.1.1}%
+\contentsline {subsubsection}{\numberline {1.1.1}Interfaccia del progetto}{3}{subsubsection.1.1.1}%
+\contentsline {subsubsection}{\numberline {1.1.2}Interfaccia della memoria}{4}{subsubsection.1.1.2}%
+\contentsline {section}{\numberline {2}Architettura, approccio e scielte implementative}{4}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Considerazioni su VHDL}{4}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Primo design della FSM}{4}{subsection.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.1}Stati della macchina}{5}{subsubsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.3}Design finale della FSM}{5}{subsection.2.3}%
+\contentsline {subsubsection}{\numberline {2.3.1}Analisi di trade-off spaziale}{6}{subsubsection.2.3.1}%
+\contentsline {subsubsection}{\numberline {2.3.2}Analisi di trade-off temporale}{6}{subsubsection.2.3.2}%
+\contentsline {subsubsection}{\numberline {2.3.3}Nuova macchina a Stati}{6}{subsubsection.2.3.3}%
+\contentsline {subsection}{\numberline {2.4}Code overview}{6}{subsection.2.4}%
+\contentsline {subsubsection}{\numberline {2.4.1}\texttt {controller}}{7}{subsubsection.2.4.1}%
+\contentsline {subsubsection}{\numberline {2.4.2}\texttt {convolutional\_encoder}}{7}{subsubsection.2.4.2}%
+\contentsline {subsubsection}{\numberline {2.4.3}\texttt {string\_manager}}{7}{subsubsection.2.4.3}%
+\contentsline {subsubsection}{\numberline {2.4.4}Schematico del codice}{8}{subsubsection.2.4.4}%
+\contentsline {section}{\numberline {3}Risultati sperimentali}{8}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Simulazioni}{8}{subsection.3.1}%
+\contentsline {subsubsection}{\numberline {3.1.1}Simulazione d'esempio}{9}{subsubsection.3.1.1}%
+\contentsline {subsection}{\numberline {3.2}Testbench}{10}{subsection.3.2}%
+\contentsline {subsubsection}{\numberline {3.2.1}Testbench fornite dal docente}{10}{subsubsection.3.2.1}%
+\contentsline {subsubsection}{\numberline {3.2.2}Testbench generate attraverso tool automatico}{11}{subsubsection.3.2.2}%
+\contentsline {section}{\numberline {4}Conclusioni}{11}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Limiti del componente hardware}{11}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Possibili miglioramenti - Parallelismo}{11}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Campi di utilizzo del modulo hardware sviluppato}{12}{subsection.4.3}%
