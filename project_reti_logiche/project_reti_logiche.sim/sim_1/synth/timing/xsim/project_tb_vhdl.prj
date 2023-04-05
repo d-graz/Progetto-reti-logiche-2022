@@ -1,6 +1,0 @@
-# compile vhdl design source files
-vhdl xil_defaultlib  \
-"../../../../../../docs/Test Bench  Progetto/cartella_1/tb_tre_bis.vhd" \
-
-# Do not sort compile order
-nosort

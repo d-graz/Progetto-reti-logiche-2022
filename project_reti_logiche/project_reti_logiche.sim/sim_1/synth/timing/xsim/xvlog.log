@@ -1,8 +1,0 @@
-INFO: [VRFC 10-2263] Analyzing Verilog file "/home/davide/git/Progetto-reti-logiche-2022/project_reti_logiche/project_reti_logiche.sim/sim_1/synth/timing/xsim/project_tb_time_synth.v" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module FF_D
-INFO: [VRFC 10-311] analyzing module FF_D_0
-INFO: [VRFC 10-311] analyzing module controller
-INFO: [VRFC 10-311] analyzing module convolutional_encoder
-INFO: [VRFC 10-311] analyzing module project_reti_logiche
-INFO: [VRFC 10-311] analyzing module string_manager
-INFO: [VRFC 10-311] analyzing module glbl

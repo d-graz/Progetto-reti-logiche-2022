@@ -1,4 +1,0 @@
-Time resolution is 1 ps
-Failure: Simulation Ended! TEST PASSATO
-Time: 2777700 ps  Iteration: 0  Process: /project_tb/test  File: /home/davide/git/Progetto-reti-logiche-2022/docs/Test Bench  Progetto/cartella_1/tb_tre_bis.vhd
-$finish called at time : 2777700 ps : File "/home/davide/git/Progetto-reti-logiche-2022/docs/Test Bench  Progetto/cartella_1/tb_tre_bis.vhd" Line 201
